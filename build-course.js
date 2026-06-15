@@ -1,5 +1,5 @@
 // build-course.js — Run with: node build-course.js
-// Reads all .md chapter files and generates a self-contained sql-course.html
+// Reads all .md chapter files and generates a self-contained index.html
 
 const fs = require('fs');
 const path = require('path');
@@ -52,10 +52,24 @@ const html = `<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\\/script>
 <style>
 :root{--bg:#0f1117;--bg-card:#181b23;--bg-code:#1e2029;--bg-th:#232730;--text:#e1e3ea;--dim:#8b8fa3;--bright:#fff;--blue:#5b8def;--purple:#a47de5;--teal:#3ecfb4;--orange:#f0a056;--red:#e85d6f;--green:#4ade80;--border:#2a2e3a;--r:14px;--rs:8px;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Consolas',monospace}
+[data-theme="light"]{--bg:#f4f0ea;--bg-card:#ffffff;--bg-code:#eef0f4;--bg-th:#eef0f4;--text:#1a1a1a;--dim:#5a5f73;--bright:#000;--blue:#0550ae;--purple:#8250df;--teal:#0d9488;--orange:#e36209;--red:#cf222e;--green:#1a7f37;--border:#d0d7de;}
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased}
 .w{max-width:880px;margin:0 auto;padding:2rem 2.5rem}
+
+/* Control Panel */
+.controls{position:fixed;top:20px;right:20px;display:flex;gap:10px;z-index:100}
+.btn{padding:10px 15px;border-radius:20px;background:var(--bg-card);color:var(--text);border:1px solid var(--border);cursor:pointer;font-family:var(--font);font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.1);transition:0.2s}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.smart-scroll{position:fixed;bottom:20px;right:20px;padding:12px 18px;border-radius:20px;background:var(--blue);color:#fff;border:none;cursor:pointer;font-family:var(--font);font-weight:600;box-shadow:0 4px 12px rgba(91,141,239,0.3);z-index:100;transition:0.2s}
+.smart-scroll:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(91,141,239,0.4)}
+
+/* SPA Pages */
+.page{display:none}
+.page.active{display:block;animation:fadein 0.3s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
 .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
 .cover::before{content:'';position:absolute;inset:-50%;background:radial-gradient(circle at 30% 40%,rgba(91,141,239,.1)0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(164,125,229,.07)0%,transparent 50%);pointer-events:none}
 .cover img{width:300px;border-radius:24px;margin-bottom:2rem;filter:drop-shadow(0 20px 60px rgba(91,141,239,.3));position:relative;z-index:1}
@@ -70,13 +84,17 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 .toc li{counter-increment:t;padding:.55rem 0;border-bottom:1px solid var(--border)}
 .toc li:last-child{border-bottom:none}
 .toc li::before{content:counter(t,decimal-leading-zero)'  ';font-family:var(--mono);font-size:.8rem;color:var(--blue);font-weight:600}
-.toc a{color:var(--text);text-decoration:none;font-weight:500}
+.toc a{color:var(--text);text-decoration:none;font-weight:500;cursor:pointer}
 .toc a:hover{color:var(--blue)}
-.ch-hdr{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:4rem 0 2rem;padding:2rem;display:flex;flex-direction:column;align-items:center;text-align:center;page-break-before:always}
+.ch-hdr{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:0 0 2rem;padding:2rem;display:flex;flex-direction:column;align-items:center;text-align:center;}
 .ch-hdr img{width:280px;border-radius:var(--r);margin-bottom:1.5rem}
 .ch-n{font-family:var(--mono);font-size:.85rem;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.4rem}
 .ch-hdr h2{font-size:2.1rem;font-weight:800;color:var(--bright);line-height:1.2;margin-bottom:.5rem}
 .ch-hdr p{color:var(--dim);max-width:600px}
+
+/* Chapter Nav Buttons */
+.nav-buttons{display:flex;justify-content:space-between;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+
 .md h2{font-size:1.65rem;font-weight:700;color:var(--bright);margin:2.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:2px solid var(--border)}
 .md h3{font-size:1.3rem;font-weight:600;color:var(--teal);margin:2rem 0 .5rem}
 .md h4{font-size:1.1rem;font-weight:600;color:var(--purple);margin:1.5rem 0 .5rem}
@@ -99,65 +117,49 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 .md blockquote{border-left:4px solid var(--teal);background:rgba(62,207,180,.06);border-radius:var(--rs);padding:1rem 1.3rem;margin:1.2rem 0;font-size:.92rem}
 .md blockquote p{margin:.3rem 0}
 .md blockquote strong{color:var(--teal)}
-@media print{
-  body{background:#fff;color:#1a1a1a;font-size:10.5pt}
-  .w{max-width:none;padding:.5in}
-  .ch-hdr{page-break-before:always;border-color:#ddd;background:#f8f9fa}
-  .ch-hdr h2,.md h2,.md h3,.md h4,.md strong{color:#1a1a1a}
-  .ch-n{color:#0550ae}
-  .md pre{background:#f5f6f8;border-color:#ddd}
-  .md pre code{color:#1a1a1a}
-  .md table{border-color:#ddd}
-  .md th{background:#eef0f4;color:#1a1a1a}
-  .md td{border-color:#eee}
-  .md blockquote{background:#f5f8fa;border-color:#aaa}
-  .md code{background:#eef0f4;color:#1a1a1a;border-color:#ddd}
-  .cover{min-height:auto;padding:2rem}
-  .cover::before{display:none}
-  .cover h1{-webkit-text-fill-color:#1a1a1a;color:#1a1a1a}
-  .toc{background:#f8f9fa;border-color:#ddd}
-}
+
 @media(max-width:768px){html{font-size:14px}.w{padding:1rem}.cover h1{font-size:2.2rem}.ch-hdr h2{font-size:1.5rem}.ch-hdr img{width:200px}}
 </style>
 </head>
 <body>
-<div class="w">
-<section class="cover">
-  <img src="images/course_hero.png" alt="SQL Course">
-  <h1>The Complete SQL Course</h1>
-  <p class="sub">From Zero to Production — A Data Analyst's Training Manual</p>
-  <div class="badges">
-    <span class="badge"><b>12</b> Chapters</span>
-    <span class="badge"><b>120+</b> Exercises</span>
-    <span class="badge"><b>6</b> Databases</span>
-    <span class="badge"><b>6</b> Projects</span>
-    <span class="badge">MySQL 8.0 · PostgreSQL 15+</span>
-  </div>
-</section>
-<nav class="toc">
-  <h2>📋 Table of Contents</h2>
-  <ol>
-    <li><a href="#ch01">Introduction to Databases & SQL</a></li>
-    <li><a href="#ch02">Querying Data — The SELECT Statement</a></li>
-    <li><a href="#ch03">Data Definition (DDL)</a></li>
-    <li><a href="#ch04">Data Manipulation (DML)</a></li>
-    <li><a href="#ch05">Filtering Data</a></li>
-    <li><a href="#ch06">Combining Data</a></li>
-    <li><a href="#ch07">Row-Level Functions</a></li>
-    <li><a href="#ch08">Aggregation & Analytical Functions</a></li>
-    <li><a href="#ch09">Advanced SQL Techniques</a></li>
-    <li><a href="#ch10">Performance Optimization</a></li>
-    <li><a href="#ch11">AI & SQL</a></li>
-    <li><a href="#ch12">SQL Projects</a></li>
-  </ol>
-</nav>
-<div id="chapters"></div>
+
+<div class="controls">
+  <button id="home-btn" class="btn" onclick="navigate('home')">🏠 Home</button>
+  <button id="theme-toggle" class="btn">🌓 Theme</button>
 </div>
+
+<button id="smart-scroll" class="smart-scroll">⬇ Scroll Down</button>
+
+<div class="w">
+  <!-- Home Page -->
+  <div id="page-home" class="page active">
+    <section class="cover">
+      <img src="images/course_hero.png" alt="SQL Course">
+      <h1>The Complete SQL Course</h1>
+      <p class="sub">From Zero to Production — A Data Analyst's Training Manual</p>
+      <div class="badges">
+        <span class="badge"><b>12</b> Chapters</span>
+        <span class="badge"><b>120+</b> Exercises</span>
+        <span class="badge"><b>6</b> Databases</span>
+        <span class="badge"><b>6</b> Projects</span>
+        <span class="badge">MySQL 8.0 · PostgreSQL 15+</span>
+      </div>
+    </section>
+    <nav class="toc">
+      <h2>📋 Table of Contents</h2>
+      <ol id="toc-list"></ol>
+    </nav>
+  </div>
+
+  <div id="chapters-container"></div>
+</div>
+
 <script>
 ${dataBlock}
 
 const chapters = ${JSON.stringify(chapters)};
 
+// Markdown Config
 marked.setOptions({ gfm: true, breaks: false });
 const renderer = new marked.Renderer();
 renderer.code = function(text, lang) {
@@ -173,20 +175,90 @@ renderer.heading = function(text, level) {
 };
 marked.use({ renderer });
 
-const el = document.getElementById('chapters');
-for (const ch of chapters) {
+// Build TOC and Pages
+const tocList = document.getElementById('toc-list');
+const container = document.getElementById('chapters-container');
+
+chapters.forEach((ch, index) => {
+  // TOC Entry
+  const li = document.createElement('li');
+  li.innerHTML = \`<a onclick="navigate('\${ch.id}')">\${ch.title}</a>\`;
+  tocList.appendChild(li);
+
+  // Chapter Page
+  const page = document.createElement('div');
+  page.className = 'page';
+  page.id = 'page-' + ch.id;
+
+  // Header
   const hdr = document.createElement('div');
   hdr.className = 'ch-hdr';
-  hdr.id = ch.id;
   hdr.innerHTML = '<img src="'+ch.img+'" alt="'+ch.title+'"><div class="ch-n">'+ch.num+'</div><h2>'+ch.title+'</h2><p>'+ch.desc+'</p>';
-  el.appendChild(hdr);
+  page.appendChild(hdr);
+
+  // Content
   const md = document.createElement('div');
   md.className = 'md';
   let src = chapterData[ch.file] || '_No content_';
-  src = src.replace(/^# .+$/m, '');
+  src = src.replace(/^# .+$/m, ''); // Remove H1
   md.innerHTML = marked.parse(src);
-  el.appendChild(md);
+  page.appendChild(md);
+
+  // Navigation Buttons
+  const navBtns = document.createElement('div');
+  navBtns.className = 'nav-buttons';
+  
+  let prevBtn = index > 0 ? \`<button class="btn" onclick="navigate('\${chapters[index-1].id}')">← Previous Chapter</button>\` : \`<div></div>\`;
+  let nextBtn = index < chapters.length - 1 ? \`<button class="btn" onclick="navigate('\${chapters[index+1].id}')">Next Chapter →</button>\` : \`<div></div>\`;
+  
+  navBtns.innerHTML = prevBtn + nextBtn;
+  page.appendChild(navBtns);
+
+  container.appendChild(page);
+});
+
+// Navigation Logic
+function navigate(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  if (pageId === 'home') {
+    document.getElementById('page-home').classList.add('active');
+    location.hash = '';
+  } else {
+    document.getElementById('page-' + pageId).classList.add('active');
+    location.hash = pageId;
+  }
+  window.scrollTo(0,0);
 }
+
+// Handle Hash Routing
+if (location.hash && location.hash.length > 1) {
+  const hash = location.hash.substring(1);
+  if (chapters.some(ch => ch.id === hash)) {
+    navigate(hash);
+  }
+}
+
+// Smart Scroll
+const scrollBtn = document.getElementById('smart-scroll');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollBtn.innerHTML = '⬆ Scroll Up';
+    scrollBtn.onclick = () => window.scrollTo(0, 0);
+  } else {
+    scrollBtn.innerHTML = '⬇ Scroll Down';
+    scrollBtn.onclick = () => window.scrollTo(0, document.body.scrollHeight);
+  }
+});
+
+// Theme Toggle
+const toggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('sql_theme') || 'dark';
+document.documentElement.setAttribute('data-theme', currentTheme);
+toggle.addEventListener('click', () => {
+    let theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('sql_theme', theme);
+});
 <\\/script>
 </body>
 </html>`;

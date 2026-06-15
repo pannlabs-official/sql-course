@@ -726,6 +726,31 @@ Complete these exercises using **pgAdmin 4** connected to your PostgreSQL server
 
 ---
 
+## Chapter 1 Final Assignment: The 10-Table Data Maze
+
+This assignment is designed to test your understanding of how the SQL execution order operates when retrieving data. You will be provided with a massive, pre-built dataset simulating a global e-commerce logistics company (`GlobalLogistics_DB.sql` in your datasets folder). 
+
+This database contains **10 interconnected tables**, each loaded with at least **100 rows** of data (Customers, Warehouses, Shipments, Products, Couriers, Routes, Invoices, Suppliers, Inventory, Returns).
+
+**Your Goal**: Write the exact SQL queries to answer the following business questions. 
+
+> **Constraint**: You are strictly limited to the clauses taught in Chapter 1 (`SELECT`, `FROM`, `WHERE`, `ORDER BY`, `LIMIT`). You are not given any starting queries — you must build them from scratch. Pay careful attention to how your clauses are ordered and evaluated.
+
+1. **The Warehouse Audit**: Retrieve the names, locations, and total capacity of all warehouses that are located in "Germany" and have a capacity greater than 50,000 units. Sort the results so the largest warehouse appears first.
+2. **Courier Performance**: Find the top 5 couriers who have an average delivery time of less than 3 days. Display their `courier_name` and `avg_delivery_time`.
+3. **The Lost Shipments**: Retrieve all columns for shipments that have a `status` of 'Lost' or 'Delayed', but only if the `shipping_cost` is over $500. Sort them by cost, from highest to lowest.
+4. **Execution Order Puzzle**: Why does this query fail? Fix it so it runs correctly using only `SELECT`, `FROM`, `WHERE`, and `ORDER BY`.
+   ```sql
+   -- This query throws an error! Fix it without using a subquery.
+   SELECT product_name, (price - cost) AS profit
+   FROM Products
+   WHERE profit > 100
+   ORDER BY profit DESC;
+   ```
+5. **Inventory Crisis**: We need to find the 10 most critically low products. Retrieve the `product_name`, `stock_level`, and `supplier_id` where the stock level is below 20. Order the results so the product with the *lowest* stock appears first.
+
+---
+
 ## Next Chapter
 
 → **Chapter 2 — Querying Data (SELECT)**: Now that you can connect and run basic queries, we go deep on the `SELECT` statement — aliases, expressions, sorting, limiting, and building queries that extract exactly the information you need.
