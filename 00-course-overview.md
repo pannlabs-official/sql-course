@@ -1,4 +1,4 @@
-# SQL Course — Complete Course Overview
+# SQL Course - Complete Course Overview
 
 ---
 
@@ -20,7 +20,7 @@ By the end of this course, you will not just "know SQL." You will be able to sit
 
 ### Prerequisites
 
-- **Technical**: None. We start from scratch — what a database is, how to install MySQL, how to run your first query.
+- **Technical**: None. We start from scratch - what a database is, how to install MySQL, how to run your first query.
 - **Mindset**: Willingness to type queries yourself, make mistakes, and debug them. Reading SQL is not the same as writing SQL.
 
 ---
@@ -60,7 +60,7 @@ Ch.1 (Introduction)
                 │         └── Ch.9 (Advanced Techniques)
                 │              └── Ch.10 (Performance)
                 │                   └── Ch.11 (AI & SQL)
-                └──────────────────── Ch.12 (Projects — uses everything)
+                └──────────────────── Ch.12 (Projects - uses everything)
 ```
 
 ---
@@ -89,7 +89,7 @@ This course uses **6 databases** of varying complexity. You will install all of 
 
 | Database | Description | Used In |
 |---|---|---|
-| **`employees`** | Classic MySQL test database — 93MB, ~300,000 employee records with salaries, titles, departments. Used exclusively for performance optimization where real data volume is needed to see meaningful differences. | Ch. 10 |
+| **`employees`** | Classic MySQL test database - 93MB, ~300,000 employee records with salaries, titles, departments. Used exclusively for performance optimization where real data volume is needed to see meaningful differences. | Ch. 10 |
 
 ---
 
@@ -118,16 +118,16 @@ This course uses **6 databases** of varying complexity. You will install all of 
 
 ### If You Are a Trainee
 
-1. **Follow the setup guide first** (`00-database-setup-guide.md`). Do not skip this — every example depends on having the databases loaded.
+1. **Follow the setup guide first** (`00-database-setup-guide.md`). Do not skip this - every example depends on having the databases loaded.
 2. **Read each chapter in order**. Type every SQL example yourself. Do not copy-paste. The act of typing builds muscle memory for syntax.
 3. **Do the exercises at the end of each chapter** before moving on. They are graded by difficulty (Beginner → Intermediate → Challenge). Start with Beginner even if you feel confident.
-4. **Use the PostgreSQL assignments** to practice translating between engines. This is a real-world skill — most data professionals work with multiple engines.
+4. **Use the PostgreSQL assignments** to practice translating between engines. This is a real-world skill - most data professionals work with multiple engines.
 5. **When you get an error**, read the error message carefully. MySQL error messages are usually clear and tell you exactly what went wrong. This course intentionally shows common errors so you learn to recognise them.
 
 ### If You Are the Trainer
 
 - Each chapter is self-contained and can be delivered as a standalone session
-- Worked examples are designed for live coding — run them in front of trainees and discuss the output
+- Worked examples are designed for live coding - run them in front of trainees and discuss the output
 - "Common Mistakes" sections are excellent for interactive discussions: show the broken query first, ask trainees what's wrong
 - The practice exercises can be used as in-class work or homework
 - The 6 capstone projects in Chapter 12 work well as assessed coursework
@@ -175,7 +175,7 @@ Dangerous operations or critical misconceptions are highlighted:
 
 ### Common Mistake Boxes
 
-> ❌ **Common Mistake**: Using `WHERE score = NULL` instead of `WHERE score IS NULL`. The `=` operator cannot compare to NULL — it always returns UNKNOWN, so no rows are ever returned.
+> ❌ **Common Mistake**: Using `WHERE score = NULL` instead of `WHERE score IS NULL`. The `=` operator cannot compare to NULL - it always returns UNKNOWN, so no rows are ever returned.
 
 ---
 
@@ -206,13 +206,13 @@ My course/
 
 1. **Depth over breadth**: Each topic is explained with enough detail that you understand *why* the SQL works, not just *what* to type. When you encounter a variation you haven't seen before, you'll be able to reason about it.
 
-2. **Real databases, not toy examples**: You work with 6 databases of varying complexity — from a 5-row customer table to a 300,000-row employee database. This mirrors real work where you move between different schemas daily.
+2. **Real databases, not toy examples**: You work with 6 databases of varying complexity - from a 5-row customer table to a 300,000-row employee database. This mirrors real work where you move between different schemas daily.
 
-3. **MySQL + PostgreSQL**: Most courses teach one engine. We teach MySQL as the primary and give you PostgreSQL assignments so you can adapt — a skill employers value highly.
+3. **MySQL + PostgreSQL**: Most courses teach one engine. We teach MySQL as the primary and give you PostgreSQL assignments so you can adapt - a skill employers value highly.
 
 4. **Error-first teaching**: We show you the wrong way before the right way. Seeing `ERROR 1054 (42S22): Unknown column` and understanding why it happened teaches you more than a hundred correct examples.
 
-5. **Exercises with teeth**: The exercises are not afterthoughts. They are carefully designed to test specific concepts, and the Challenge-level problems are genuinely challenging — they combine multiple concepts and require you to think about the problem before writing SQL.
+5. **Exercises with teeth**: The exercises are not afterthoughts. They are carefully designed to test specific concepts, and the Challenge-level problems are genuinely challenging - they combine multiple concepts and require you to think about the problem before writing SQL.
 
 ---
 

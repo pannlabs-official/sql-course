@@ -1,4 +1,4 @@
-# Chapter 8 — Aggregation & Analytical Functions
+# Chapter 8 - Aggregation & Analytical Functions
 
 ---
 
@@ -58,7 +58,7 @@ FROM orders;
 |---|---|---|---|---|
 | 10 | 380 | 38.0000 | 10 | 90 |
 
-### 8.1.2 COUNT Variations — What Each Actually Counts
+### 8.1.2 COUNT Variations - What Each Actually Counts
 
 ```sql
 SELECT 
@@ -72,9 +72,9 @@ FROM customers;
 |---|---|---|
 | 5 | 4 | 2 |
 
-- `COUNT(*)` — counts all rows, regardless of NULLs
-- `COUNT(column)` — counts rows where that column is NOT NULL
-- `COUNT(DISTINCT column)` — counts unique non-NULL values
+- `COUNT(*)` - counts all rows, regardless of NULLs
+- `COUNT(column)` - counts rows where that column is NOT NULL
+- `COUNT(DISTINCT column)` - counts unique non-NULL values
 
 ### 8.1.3 NULL Behaviour in Aggregates
 
@@ -89,7 +89,7 @@ SELECT AVG(score) FROM customers;  -- (350+900+750+500)/4 = 625, NOT /5
 |---|
 | 625.0000 |
 
-The average is 625, calculated from 4 values (not 5). Anna's NULL is excluded entirely — not treated as 0.
+The average is 625, calculated from 4 values (not 5). Anna's NULL is excluded entirely - not treated as 0.
 
 > ⚠️ **Common trap**: If you want NULLs treated as 0, use `AVG(COALESCE(score, 0))`:
 > ```sql
@@ -98,7 +98,7 @@ The average is 625, calculated from 4 values (not 5). Anna's NULL is excluded en
 
 ---
 
-## 8.2 GROUP BY — Deep Dive
+## 8.2 GROUP BY - Deep Dive
 
 ### 8.2.1 GROUP BY with Multiple Columns
 
@@ -142,7 +142,7 @@ ORDER BY order_month;
 | 2025-02 | 4 | 195 |
 | 2025-03 | 2 | 80 |
 
-### 8.2.3 GROUP BY with ROLLUP — Subtotals and Grand Total
+### 8.2.3 GROUP BY with ROLLUP - Subtotals and Grand Total
 
 `ROLLUP` adds subtotal and grand total rows to your grouped output:
 
@@ -163,7 +163,7 @@ GROUP BY orderstatus WITH ROLLUP;
 
 The last row is the grand total, added by ROLLUP. Without COALESCE, the `orderstatus` column would show NULL for the total row.
 
-### 8.2.4 GROUPING() — Distinguishing Real NULLs from ROLLUP NULLs
+### 8.2.4 GROUPING() - Distinguishing Real NULLs from ROLLUP NULLs
 
 ```sql
 SELECT 
@@ -184,7 +184,7 @@ GROUP BY orderstatus WITH ROLLUP;
 
 ---
 
-## 8.3 Window Functions — The Game Changer
+## 8.3 Window Functions - The Game Changer
 
 ### 8.3.1 The Conceptual Shift
 
@@ -193,7 +193,7 @@ GROUP BY orderstatus WITH ROLLUP;
 
 This is the fundamental difference. Window functions compute aggregates, ranks, and comparisons **across a "window" of related rows** without reducing the number of rows in the output.
 
-### 8.3.2 The OVER Clause — Defining the Window
+### 8.3.2 The OVER Clause - Defining the Window
 
 The `OVER()` clause turns an aggregate function into a window function:
 
@@ -223,7 +223,7 @@ FROM orders;
 
 All 10 rows remain. Each row now carries the grand total (380) alongside its individual data. With GROUP BY, you would lose the individual order details.
 
-### 8.3.3 PARTITION BY — Windowing by Category
+### 8.3.3 PARTITION BY - Windowing by Category
 
 `PARTITION BY` divides the window into groups (like GROUP BY, but without collapsing rows):
 
@@ -254,7 +254,7 @@ FROM orders;
 
 Each row now has both the grand total (380) and its product-specific total. Product 101 orders each show 140, product 102 orders show 105, etc.
 
-### 8.3.4 ORDER BY — Ordering Within the Window
+### 8.3.4 ORDER BY - Ordering Within the Window
 
 Adding `ORDER BY` inside `OVER()` creates **running calculations**:
 
@@ -283,7 +283,7 @@ FROM orders;
 
 The `running_total` accumulates as we move through the ordered rows. This is a cumulative sum.
 
-### 8.3.5 PARTITION BY + ORDER BY — Running Totals Per Category
+### 8.3.5 PARTITION BY + ORDER BY - Running Totals Per Category
 
 ```sql
 -- Running total of sales PER ORDER STATUS
@@ -327,11 +327,11 @@ ROWS BETWEEN <start> AND <end>
 ```
 
 Where `<start>` and `<end>` can be:
-- `UNBOUNDED PRECEDING` — from the first row of the partition
-- `N PRECEDING` — N rows before the current row
-- `CURRENT ROW` — the current row
-- `N FOLLOWING` — N rows after the current row
-- `UNBOUNDED FOLLOWING` — to the last row of the partition
+- `UNBOUNDED PRECEDING` - from the first row of the partition
+- `N PRECEDING` - N rows before the current row
+- `CURRENT ROW` - the current row
+- `N FOLLOWING` - N rows after the current row
+- `UNBOUNDED FOLLOWING` - to the last row of the partition
 
 ### 8.4.2 Moving Average (3-Row Window)
 
@@ -373,12 +373,12 @@ SELECT
 FROM orders;
 ```
 
-This is equivalent to `SUM(sales) OVER(ORDER BY orderdate)` — the default frame when ORDER BY is specified is `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
+This is equivalent to `SUM(sales) OVER(ORDER BY orderdate)` - the default frame when ORDER BY is specified is `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
 
 ### 8.4.4 ROWS vs RANGE
 
-- `ROWS` — counts physical rows (position-based)
-- `RANGE` — groups logically equivalent values (value-based)
+- `ROWS` - counts physical rows (position-based)
+- `RANGE` - groups logically equivalent values (value-based)
 
 If two rows have the same `orderdate`, `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` includes both in the calculation, while `ROWS` treats them as separate positions.
 
@@ -388,7 +388,7 @@ If two rows have the same `orderdate`, `RANGE BETWEEN UNBOUNDED PRECEDING AND CU
 
 ## 8.5 Ranking Functions
 
-### 8.5.1 ROW_NUMBER — Unique Sequential Number
+### 8.5.1 ROW_NUMBER - Unique Sequential Number
 
 ```sql
 SELECT 
@@ -409,7 +409,7 @@ FROM orders;
 
 Every row gets a unique number. Ties (orders 4 and 10 both have sales = 60) are assigned arbitrarily.
 
-### 8.5.2 RANK — Gaps After Ties
+### 8.5.2 RANK - Gaps After Ties
 
 ```sql
 SELECT 
@@ -427,9 +427,9 @@ FROM orders;
 | 6 | 50 | **4** |
 | ... | ... | ... |
 
-Orders 4 and 10 both get rank 2 (tied). The next rank is 4 (not 3) — the gap reflects the number of rows at the tied rank.
+Orders 4 and 10 both get rank 2 (tied). The next rank is 4 (not 3) - the gap reflects the number of rows at the tied rank.
 
-### 8.5.3 DENSE_RANK — No Gaps
+### 8.5.3 DENSE_RANK - No Gaps
 
 ```sql
 SELECT 
@@ -449,7 +449,7 @@ FROM orders;
 
 Same as RANK, but the next value after the tie is 3 (no gap).
 
-### 8.5.4 NTILE — Dividing Into Buckets
+### 8.5.4 NTILE - Dividing Into Buckets
 
 ```sql
 -- Divide orders into 4 quartiles by sales
@@ -498,7 +498,7 @@ GROUP BY customerid;
 
 Value functions access data from other rows in the window without self-joining.
 
-### 8.6.1 LAG — Previous Row Value
+### 8.6.1 LAG - Previous Row Value
 
 ```sql
 -- Compare each order's sales to the previous order's sales
@@ -524,7 +524,7 @@ FROM orders;
 
 `LAG(sales, 2)` would look 2 rows back. `LAG(sales, 1, 0)` provides a default value (0) instead of NULL.
 
-### 8.6.2 LEAD — Next Row Value
+### 8.6.2 LEAD - Next Row Value
 
 ```sql
 -- Compare each order's sales to the NEXT order
@@ -672,7 +672,7 @@ The default frame with ORDER BY stops at the current row, making LAST_VALUE usel
 
 3. **Window functions keep all rows.** The OVER() clause is what makes an aggregate a window function. Empty OVER() = entire table as one window.
 
-4. **PARTITION BY** is the window equivalent of GROUP BY — it divides rows into groups without collapsing.
+4. **PARTITION BY** is the window equivalent of GROUP BY - it divides rows into groups without collapsing.
 
 5. **ORDER BY inside OVER()** enables running/cumulative calculations.
 
@@ -698,4 +698,4 @@ The default frame with ORDER BY stops at the current row, making LAST_VALUE usel
 
 ## Next Chapter
 
-→ **Chapter 9 — Advanced SQL Techniques**: Subqueries, CTEs, recursive CTEs, views, stored procedures, and triggers — the tools that make SQL a complete programming environment.
+→ **Chapter 9 - Advanced SQL Techniques**: Subqueries, CTEs, recursive CTEs, views, stored procedures, and triggers - the tools that make SQL a complete programming environment.

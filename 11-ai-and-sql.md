@@ -1,4 +1,4 @@
-# Chapter 11 — AI & SQL
+# Chapter 11 - AI & SQL
 
 ---
 
@@ -6,7 +6,7 @@
 
 AI tools have fundamentally changed how SQL is written, debugged, and optimised. This chapter covers the practical intersection of AI and SQL: using AI assistants to write queries, debug errors, optimise performance, generate test data, and integrate SQL with Python for data analysis workflows.
 
-This is not a theoretical chapter about "the future of AI." It is a practical guide to using AI tools effectively — and critically — in your SQL work today.
+This is not a theoretical chapter about "the future of AI." It is a practical guide to using AI tools effectively - and critically - in your SQL work today.
 
 ### Prerequisites
 
@@ -165,7 +165,7 @@ AI-generated SQL is useful but not infallible. Here is what to always check:
 
 1. Describe your requirement to the AI
 2. Get the query
-3. **Read it before running** — does the logic make sense?
+3. **Read it before running** - does the logic make sense?
 4. Run it on a **small dataset** or with `LIMIT`
 5. Verify the output against known data
 6. Only then run on production data
@@ -270,7 +270,7 @@ df = pd.read_sql("SELECT * FROM orders", engine)
 df.to_sql('orders_backup', engine, if_exists='replace', index=False)
 ```
 
-### 11.3.5 Parameterised Queries — Preventing SQL Injection
+### 11.3.5 Parameterised Queries - Preventing SQL Injection
 
 ```python
 # ❌ NEVER do this (SQL injection vulnerability)
@@ -308,7 +308,7 @@ LEFT JOIN orders o ON c.customerid = o.customerid
 GROUP BY c.customerid, c.country, c.score;
 ```
 
-This single query creates 8 features from raw transactional data — ready to load into a Python ML pipeline.
+This single query creates 8 features from raw transactional data - ready to load into a Python ML pipeline.
 
 ---
 
@@ -323,7 +323,7 @@ Modern data analytics often happens in cloud data warehouses. The SQL is the sam
 | **Snowflake** | Multi-cloud | Separates compute and storage, auto-scaling, time travel queries |
 | **Azure Synapse** | Microsoft | T-SQL based, integrates with Power BI |
 
-Your MySQL and PostgreSQL skills transfer directly. The core SQL is identical — only platform-specific extensions (partitioning syntax, data types, optimisation hints) differ.
+Your MySQL and PostgreSQL skills transfer directly. The core SQL is identical - only platform-specific extensions (partitioning syntax, data types, optimisation hints) differ.
 
 ---
 
@@ -367,13 +367,13 @@ As a data analyst, you have access to sensitive information. Handle it responsib
 
 ## Key Takeaways
 
-1. **AI accelerates SQL work** but does not replace understanding. Use it for drafting, debugging, and optimising — but always verify the output.
+1. **AI accelerates SQL work** but does not replace understanding. Use it for drafting, debugging, and optimising - but always verify the output.
 
 2. **Provide schema context in prompts.** AI cannot guess your table and column names. The better the context, the better the output.
 
 3. **Python + SQL is the modern data analyst's toolkit.** `pd.read_sql()` bridges database queries into DataFrames for analysis and visualisation.
 
-4. **Use parameterised queries in Python.** Never concatenate user input into SQL strings — this creates SQL injection vulnerabilities.
+4. **Use parameterised queries in Python.** Never concatenate user input into SQL strings - this creates SQL injection vulnerabilities.
 
 5. **Cloud SQL platforms** (BigQuery, Redshift, Snowflake) use the same SQL fundamentals you have learned. Your skills are portable.
 
@@ -383,4 +383,4 @@ As a data analyst, you have access to sensitive information. Handle it responsib
 
 ## Next Chapter
 
-→ **Chapter 12 — SQL Projects**: Put everything together. Six guided capstone projects that test every concept from the course.
+→ **Chapter 12 - SQL Projects**: Put everything together. Six guided capstone projects that test every concept from the course.

@@ -1,10 +1,10 @@
-# Chapter 5 — Filtering Data
+# Chapter 5 - Filtering Data
 
 ---
 
 ## Chapter Overview
 
-Every useful query filters data. A database with 10 million rows is useless if you cannot extract the 47 rows that answer your question. The `WHERE` clause is the gatekeeper — it determines which rows pass through to the result set and which are excluded.
+Every useful query filters data. A database with 10 million rows is useless if you cannot extract the 47 rows that answer your question. The `WHERE` clause is the gatekeeper - it determines which rows pass through to the result set and which are excluded.
 
 This chapter is not just about the WHERE clause itself, but about the entire toolbox of operators and techniques that make filtering precise: comparison operators, logical operators, pattern matching, range checks, list matching, NULL handling, and the `EXISTS` operator.
 
@@ -15,8 +15,8 @@ This chapter is not just about the WHERE clause itself, but about the entire too
 
 ### Databases Used
 
-- `salesdb` — primary (customers, orders, employees, products)
-- `sql_store` — secondary (more diverse data for practice)
+- `salesdb` - primary (customers, orders, employees, products)
+- `sql_store` - secondary (more diverse data for practice)
 
 ```sql
 USE salesdb;
@@ -29,7 +29,7 @@ USE salesdb;
 By the end of this chapter, you will be able to:
 
 1. Filter rows using the `WHERE` clause with all comparison operators
-2. Combine conditions with `AND`, `OR`, and `NOT` — understanding precedence
+2. Combine conditions with `AND`, `OR`, and `NOT` - understanding precedence
 3. Use `BETWEEN` for range queries, including date ranges
 4. Use `IN` and `NOT IN` for matching against lists
 5. Use `LIKE` and `REGEXP` for pattern matching
@@ -123,13 +123,13 @@ WHERE orderdate > '2025-02-01';
 | 9 | 2025-03-10 | Shipped |
 | 10 | 2025-03-15 | Shipped |
 
-> Wait — order 5 has `orderdate = '2025-02-01'` and our condition is `> '2025-02-01'`. Since `>` is strict greater-than, `2025-02-01` is NOT greater than itself. If we wanted to include it: use `>= '2025-02-01'`.
+> Wait - order 5 has `orderdate = '2025-02-01'` and our condition is `> '2025-02-01'`. Since `>` is strict greater-than, `2025-02-01` is NOT greater than itself. If we wanted to include it: use `>= '2025-02-01'`.
 
 ---
 
 ## 5.3 Logical Operators: AND, OR, NOT
 
-### 5.3.1 AND — All Conditions Must Be True
+### 5.3.1 AND - All Conditions Must Be True
 
 ```sql
 -- Customers from USA with a score above 700
@@ -145,7 +145,7 @@ WHERE country = 'USA' AND score > 700;
 
 Both conditions must be satisfied for a row to appear.
 
-### 5.3.2 OR — At Least One Condition Must Be True
+### 5.3.2 OR - At Least One Condition Must Be True
 
 ```sql
 -- Customers from Germany OR with a score above 700
@@ -164,7 +164,7 @@ WHERE country = 'Germany' OR score > 700;
 Jossef (Germany, score 350) passes because the country condition is true.
 Kevin (USA, score 900) passes because the score condition is true.
 
-### 5.3.3 NOT — Negates a Condition
+### 5.3.3 NOT - Negates a Condition
 
 ```sql
 -- Customers who are NOT from the USA
@@ -178,7 +178,7 @@ WHERE NOT country = 'USA';
 | 1 | Jossef | Goldberg | Germany | 350 |
 | 4 | Mark | Schwarz | Germany | 500 |
 
-### 5.3.4 Operator Precedence — Why Parentheses Matter
+### 5.3.4 Operator Precedence - Why Parentheses Matter
 
 **`AND` has higher precedence than `OR`.** This means:
 
@@ -223,9 +223,9 @@ WHERE (country = 'Germany' OR country = 'USA') AND score > 700
 | 2 | Kevin | Brown | USA | 900 |
 | 3 | Mary | NULL | USA | 750 |
 
-Only 2 rows — because now the score filter applies to everyone.
+Only 2 rows - because now the score filter applies to everyone.
 
-> **Rule**: Always use parentheses when mixing AND and OR. Do not rely on precedence — explicit grouping is clearer and safer.
+> **Rule**: Always use parentheses when mixing AND and OR. Do not rely on precedence - explicit grouping is clearer and safer.
 
 ---
 
@@ -306,7 +306,7 @@ This is equivalent to:
 WHERE country = 'Germany' OR country = 'USA'
 ```
 
-But `IN` is shorter, cleaner, and more readable — especially with longer lists.
+But `IN` is shorter, cleaner, and more readable - especially with longer lists.
 
 ### 5.5.2 IN with Numbers
 
@@ -338,7 +338,7 @@ WHERE country NOT IN ('Germany', 'USA');
 | customerid | firstname | lastname | country | score |
 |---|---|---|---|---|
 
-Empty result — all our customers are from Germany or USA.
+Empty result - all our customers are from Germany or USA.
 
 ### 5.5.4 IN with Subquery
 
@@ -391,7 +391,7 @@ WHERE score NOT IN (350, 500)
 
 ---
 
-## 5.6 LIKE — Pattern Matching
+## 5.6 LIKE - Pattern Matching
 
 `LIKE` compares a string against a pattern using two wildcard characters:
 
@@ -441,7 +441,7 @@ WHERE firstname LIKE '%ar%';
 | 3 | Mary | NULL | USA | 750 |
 | 4 | Mark | Schwarz | Germany | 500 |
 
-### 5.6.4 Underscore Wildcard — Exact Position
+### 5.6.4 Underscore Wildcard - Exact Position
 
 ```sql
 -- Customers whose first name has exactly 4 characters
@@ -480,7 +480,7 @@ WHERE firstname NOT LIKE 'M%';
 
 ---
 
-## 5.7 REGEXP — Regular Expressions
+## 5.7 REGEXP - Regular Expressions
 
 When LIKE is not powerful enough, MySQL offers `REGEXP` (regular expression matching) for advanced pattern matching.
 
@@ -529,7 +529,7 @@ WHERE lastname REGEXP '(er|ee)$';
 
 ## 5.8 IS NULL / IS NOT NULL
 
-NULL is not a value — it is the **absence of a value**. It cannot be compared with `=`, `!=`, `>`, `<`, or any standard operator.
+NULL is not a value - it is the **absence of a value**. It cannot be compared with `=`, `!=`, `>`, `<`, or any standard operator.
 
 ### 5.8.1 Why `= NULL` Does Not Work
 
@@ -541,7 +541,7 @@ WHERE lastname = NULL;
 -- Empty result set
 ```
 
-**Why?** In SQL's three-valued logic, any comparison with NULL returns **UNKNOWN** — not TRUE, not FALSE. `NULL = NULL` is UNKNOWN. `NULL != NULL` is UNKNOWN. Only `IS NULL` evaluates to TRUE.
+**Why?** In SQL's three-valued logic, any comparison with NULL returns **UNKNOWN** - not TRUE, not FALSE. `NULL = NULL` is UNKNOWN. `NULL != NULL` is UNKNOWN. Only `IS NULL` evaluates to TRUE.
 
 ### 5.8.2 IS NULL
 
@@ -610,7 +610,7 @@ For Anna: `NULL > 300` → UNKNOWN; `'USA' = 'USA'` → TRUE. `UNKNOWN AND TRUE`
 
 ## 5.9 EXISTS
 
-`EXISTS` checks whether a subquery returns **any rows at all**. It does not care about the values — only whether the result set is empty or not.
+`EXISTS` checks whether a subquery returns **any rows at all**. It does not care about the values - only whether the result set is empty or not.
 
 ### 5.9.1 Basic EXISTS
 
@@ -651,12 +651,12 @@ WHERE NOT EXISTS (
 |---|---|---|---|---|
 | 5 | Anna | Adams | USA | NULL |
 
-### 5.9.3 EXISTS vs IN — When to Use Each
+### 5.9.3 EXISTS vs IN - When to Use Each
 
 | Aspect | `IN` | `EXISTS` |
 |---|---|---|
 | Syntax | Simpler | More verbose (requires correlated subquery) |
-| NULL handling | Dangerous with `NOT IN` + NULLs | Safe — NULLs do not cause issues |
+| NULL handling | Dangerous with `NOT IN` + NULLs | Safe - NULLs do not cause issues |
 | Performance (large outer, small inner) | Often faster | May be slower |
 | Performance (small outer, large inner) | May be slower | Often faster (stops at first match) |
 | Readability | Better for static lists | Better for correlated checks |
@@ -804,13 +804,13 @@ Apply De Morgan's Law to rewrite the condition without NOT.
 
 3. **AND has higher precedence than OR.** Always use parentheses when combining them to make your intent explicit.
 
-4. **BETWEEN is inclusive on both ends.** Be careful with DATETIME columns — `BETWEEN '2025-01-01' AND '2025-01-31'` may miss records after midnight on Jan 31.
+4. **BETWEEN is inclusive on both ends.** Be careful with DATETIME columns - `BETWEEN '2025-01-01' AND '2025-01-31'` may miss records after midnight on Jan 31.
 
-5. **IN is cleaner than multiple OR conditions.** But `NOT IN` is dangerous when the list contains NULLs — it silently returns no rows. Use `NOT EXISTS` as a safe alternative.
+5. **IN is cleaner than multiple OR conditions.** But `NOT IN` is dangerous when the list contains NULLs - it silently returns no rows. Use `NOT EXISTS` as a safe alternative.
 
 6. **LIKE uses `%` (any characters) and `_` (one character).** MySQL LIKE is case-insensitive; PostgreSQL LIKE is case-sensitive (use `ILIKE`).
 
-7. **NULL is not a value — it is the absence of a value.** You cannot compare to NULL with `=`. Use `IS NULL` and `IS NOT NULL`. Every comparison with NULL returns UNKNOWN, which is neither TRUE nor FALSE.
+7. **NULL is not a value - it is the absence of a value.** You cannot compare to NULL with `=`. Use `IS NULL` and `IS NOT NULL`. Every comparison with NULL returns UNKNOWN, which is neither TRUE nor FALSE.
 
 8. **EXISTS checks for the existence of rows** in a subquery. It is NULL-safe and often outperforms `IN` for correlated subqueries.
 
@@ -830,4 +830,4 @@ Apply De Morgan's Law to rewrite the condition without NOT.
 
 ## Next Chapter
 
-→ **Chapter 6 — Combining Data**: Filtering is powerful on one table. But real insights come from connecting multiple tables. Joins are how you do that — and they are the most important SQL concept you will learn after SELECT.
+→ **Chapter 6 - Combining Data**: Filtering is powerful on one table. But real insights come from connecting multiple tables. Joins are how you do that - and they are the most important SQL concept you will learn after SELECT.

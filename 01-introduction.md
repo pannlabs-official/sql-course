@@ -1,10 +1,10 @@
-# Chapter 1 — Introduction
+# Chapter 1 - Introduction
 
 ---
 
 ## Chapter Overview
 
-This chapter answers the questions that every trainee has on day one: *What is a database? What is SQL? Why should I learn this?* — and then immediately puts you in front of a working MySQL environment running real queries.
+This chapter answers the questions that every trainee has on day one: *What is a database? What is SQL? Why should I learn this?* - and then immediately puts you in front of a working MySQL environment running real queries.
 
 We do not spend the entire chapter on theory. By the end of this chapter, you will have installed MySQL, loaded two databases, written and executed your first SQL queries, and understood the mental model that governs how SQL processes every query you will ever write.
 
@@ -33,13 +33,13 @@ By the end of this chapter, you will be able to:
 
 ### 1.1.1 The Problem Databases Solve
 
-Before databases existed, data lived in flat files — spreadsheets, text files, paper ledgers. This worked fine when you had 50 customers. It fails catastrophically when you have 50,000.
+Before databases existed, data lived in flat files - spreadsheets, text files, paper ledgers. This worked fine when you had 50 customers. It fails catastrophically when you have 50,000.
 
 The problems with flat files:
 
 | Problem | Example |
 |---|---|
-| **Data duplication** | Customer "Kevin Brown" appears in 47 different invoice rows, each with his address copied. If he moves, you update 47 rows — or miss one. |
+| **Data duplication** | Customer "Kevin Brown" appears in 47 different invoice rows, each with his address copied. If he moves, you update 47 rows - or miss one. |
 | **No data integrity** | Nothing stops someone from entering "January 32nd" as a date, or "-500" as a quantity. |
 | **No concurrent access** | Two people editing the same spreadsheet at once leads to conflicts and data loss. |
 | **No relationships** | How do you connect a customer to their orders to the products they bought? In a spreadsheet, you either cram everything into one mega-row or maintain multiple sheets with no enforced link. |
@@ -56,7 +56,7 @@ The most widely used database model is the **relational model**, proposed by Edg
 - Each **column** (field/attribute) is one property of that entity (customer's name, country, score)
 - Tables are **linked** through shared columns (a customer's ID appears in both the `customers` table and the `orders` table)
 
-This linking — the "relational" part — is the key innovation. Instead of duplicating "Kevin Brown, USA" across 47 rows, you store Kevin once in the `customers` table with an ID of `2`, and every order he places simply references `customer_id = 2`.
+This linking - the "relational" part - is the key innovation. Instead of duplicating "Kevin Brown, USA" across 47 rows, you store Kevin once in the `customers` table with an ID of `2`, and every order he places simply references `customer_id = 2`.
 
 **Example**: Here is how the `MyDatabase` you loaded organises customer and order data across two linked tables:
 
@@ -79,7 +79,7 @@ This linking — the "relational" part — is the key innovation. Instead of dup
 | 1003 | 3 | 2021-06-18 | 20 |
 | 1004 | 6 | 2021-08-31 | 10 |
 
-Notice: `customer_id` in the orders table corresponds to `id` in the customers table. Customer `1` (Maria) placed order `1001`. Customer `6` placed order `1004` — but there is no customer with `id = 6` in our customers table. This kind of inconsistency is called an **orphan record**, and we will learn how to prevent it with foreign keys in Chapter 3.
+Notice: `customer_id` in the orders table corresponds to `id` in the customers table. Customer `1` (Maria) placed order `1001`. Customer `6` placed order `1004` - but there is no customer with `id = 6` in our customers table. This kind of inconsistency is called an **orphan record**, and we will learn how to prevent it with foreign keys in Chapter 3.
 
 ### 1.1.3 Relational vs Non-Relational Databases
 
@@ -140,7 +140,7 @@ SQL is divided into several sub-languages, each handling a different aspect of d
 
 ## 1.3 Database Engines
 
-A **database engine** (or DBMS — Database Management System) is the software that stores, manages, and serves the data. SQL is the language; the engine is the machine that interprets and executes it.
+A **database engine** (or DBMS - Database Management System) is the software that stores, manages, and serves the data. SQL is the language; the engine is the machine that interprets and executes it.
 
 ### 1.3.1 Engines We Use in This Course
 
@@ -154,13 +154,13 @@ A **database engine** (or DBMS — Database Management System) is the software t
 | Engine | When You'd Use It |
 |---|---|
 | **SQL Server** | Microsoft ecosystem, enterprise environments, .NET applications |
-| **Oracle** | Large enterprise, banking, telecommunications — very expensive licensing |
-| **SQLite** | Embedded databases, mobile apps, browser storage, prototyping — no separate server process |
-| **BigQuery** | Google Cloud analytics — handles petabytes, serverless |
-| **Redshift** | AWS analytics — columnar storage optimised for analytical queries |
-| **Snowflake** | Cloud-native data warehouse — separates compute and storage |
+| **Oracle** | Large enterprise, banking, telecommunications - very expensive licensing |
+| **SQLite** | Embedded databases, mobile apps, browser storage, prototyping - no separate server process |
+| **BigQuery** | Google Cloud analytics - handles petabytes, serverless |
+| **Redshift** | AWS analytics - columnar storage optimised for analytical queries |
+| **Snowflake** | Cloud-native data warehouse - separates compute and storage |
 
-### 1.3.3 MySQL vs PostgreSQL — Key Differences
+### 1.3.3 MySQL vs PostgreSQL - Key Differences
 
 Since this course uses both engines, here is a quick reference of the most common syntax differences you will encounter:
 
@@ -254,7 +254,7 @@ SHOW DATABASES;
 | performance_schema |
 | sys |
 
-The system databases (`information_schema`, `mysql`, `performance_schema`, `sys`) are MySQL internals — you do not need to touch them in this course.
+The system databases (`information_schema`, `mysql`, `performance_schema`, `sys`) are MySQL internals - you do not need to touch them in this course.
 
 ### 1.5.2 Switching to a Database
 
@@ -301,12 +301,12 @@ SELECT * FROM customers;
 | 5 | Peter | USA | 0 |
 
 Breaking this down:
-- `SELECT` — the command that says "retrieve data"
-- `*` — a wildcard meaning "all columns"
-- `FROM customers` — specifies which table to read from
-- `;` — terminates the statement (required in MySQL)
+- `SELECT` - the command that says "retrieve data"
+- `*` - a wildcard meaning "all columns"
+- `FROM customers` - specifies which table to read from
+- `;` - terminates the statement (required in MySQL)
 
-> **Note**: Notice the leading space in " John" (row 2). This is intentional in the source data — it represents a common real-world data quality issue. We will learn how to fix this with string functions in Chapter 7.
+> **Note**: Notice the leading space in " John" (row 2). This is intentional in the source data - it represents a common real-world data quality issue. We will learn how to fix this with string functions in Chapter 7.
 
 ### 1.5.5 Retrieving Specific Columns
 
@@ -397,7 +397,7 @@ You have just queried two different databases. Every database has its own tables
 
 ---
 
-## 1.6 SQL Execution Order — The Most Important Mental Model
+## 1.6 SQL Execution Order - The Most Important Mental Model
 
 This is arguably the most valuable concept in this entire chapter. Most SQL beginners (and many intermediate users) are confused by SQL because they think SQL executes in the order you write it. **It does not.**
 
@@ -442,7 +442,7 @@ WHERE double_score > 500;
 -- ERROR 1054: Unknown column 'double_score' in 'where clause'
 ```
 
-The reason: `WHERE` executes before `SELECT`. When MySQL processes the `WHERE` clause, it has not yet created the alias `double_score` — it does not exist yet.
+The reason: `WHERE` executes before `SELECT`. When MySQL processes the `WHERE` clause, it has not yet created the alias `double_score` - it does not exist yet.
 
 **Why you CAN use a column alias in ORDER BY**:
 
@@ -565,7 +565,7 @@ SeLeCt * FrOm CuStOmErS;  -- Please don't do this
 
 **Table and column names**: In MySQL on **Windows and macOS**, table names are case-insensitive. On **Linux**, they are case-sensitive. Column names are always case-insensitive in MySQL. PostgreSQL treats unquoted identifiers as lowercase.
 
-**Best practice**: Always use consistent casing. Treat table and column names as case-sensitive even on platforms where they are not — your code will be portable.
+**Best practice**: Always use consistent casing. Treat table and column names as case-sensitive even on platforms where they are not - your code will be portable.
 
 ### 1.8.3 Whitespace and Formatting
 
@@ -575,7 +575,7 @@ SQL ignores extra whitespace (spaces, tabs, newlines). These are identical:
 -- Compact (hard to read)
 SELECT first_name,country,score FROM customers WHERE country='Germany' ORDER BY score DESC;
 
--- Expanded (easy to read — this is how we write SQL)
+-- Expanded (easy to read - this is how we write SQL)
 SELECT 
     first_name, 
     country, 
@@ -592,10 +592,10 @@ Both produce the same result. The second version is dramatically easier to read,
 Text values are enclosed in **single quotes**:
 
 ```sql
--- ✅ Correct — single quotes for string values
+-- ✅ Correct - single quotes for string values
 SELECT * FROM customers WHERE country = 'Germany';
 
--- ❌ Wrong — double quotes are for identifiers (column/table names) in some engines
+-- ❌ Wrong - double quotes are for identifiers (column/table names) in some engines
 SELECT * FROM customers WHERE country = "Germany";
 ```
 
@@ -645,7 +645,7 @@ SELECT * FROM orders;
 -- ❌ Non-standard (works in MySQL but fails in PostgreSQL)
 SELECT * FROM customers WHERE country = "Germany";
 
--- ✅ Standard SQL — works everywhere
+-- ✅ Standard SQL - works everywhere
 SELECT * FROM customers WHERE country = 'Germany';
 ```
 
@@ -720,7 +720,7 @@ Complete these exercises using **pgAdmin 4** connected to your PostgreSQL server
 
 **PG-1.3**: Run `SELECT version();` to confirm your PostgreSQL version.
 
-**PG-1.4**: In PostgreSQL, try running `SHOW DATABASES;` — the same command that works in MySQL. What happens? What is the PostgreSQL equivalent?
+**PG-1.4**: In PostgreSQL, try running `SHOW DATABASES;` - the same command that works in MySQL. What happens? What is the PostgreSQL equivalent?
 
 > **Hint**: PostgreSQL uses `\l` in the psql command line, or `SELECT datname FROM pg_database;` in a query.
 
@@ -734,7 +734,7 @@ This database contains **10 interconnected tables**, each loaded with at least *
 
 **Your Goal**: Write the exact SQL queries to answer the following business questions. 
 
-> **Constraint**: You are strictly limited to the clauses taught in Chapter 1 (`SELECT`, `FROM`, `WHERE`, `ORDER BY`, `LIMIT`). You are not given any starting queries — you must build them from scratch. Pay careful attention to how your clauses are ordered and evaluated.
+> **Constraint**: You are strictly limited to the clauses taught in Chapter 1 (`SELECT`, `FROM`, `WHERE`, `ORDER BY`, `LIMIT`). You are not given any starting queries - you must build them from scratch. Pay careful attention to how your clauses are ordered and evaluated.
 
 1. **The Warehouse Audit**: Retrieve the names, locations, and total capacity of all warehouses that are located in "Germany" and have a capacity greater than 50,000 units. Sort the results so the largest warehouse appears first.
 2. **Courier Performance**: Find the top 5 couriers who have an average delivery time of less than 3 days. Display their `courier_name` and `avg_delivery_time`.
@@ -753,4 +753,4 @@ This database contains **10 interconnected tables**, each loaded with at least *
 
 ## Next Chapter
 
-→ **Chapter 2 — Querying Data (SELECT)**: Now that you can connect and run basic queries, we go deep on the `SELECT` statement — aliases, expressions, sorting, limiting, and building queries that extract exactly the information you need.
+→ **Chapter 2 - Querying Data (SELECT)**: Now that you can connect and run basic queries, we go deep on the `SELECT` statement - aliases, expressions, sorting, limiting, and building queries that extract exactly the information you need.

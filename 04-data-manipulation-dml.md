@@ -1,12 +1,12 @@
-# Chapter 4 — Data Manipulation (DML)
+# Chapter 4 - Data Manipulation (DML)
 
 ---
 
 ## Chapter Overview
 
-In Chapter 3, you built the containers (databases and tables). Now it is time to fill them — and learn how to modify and remove data safely. Data Manipulation Language (DML) covers the three operations that change what is *inside* a table: `INSERT` (add rows), `UPDATE` (modify rows), and `DELETE` (remove rows).
+In Chapter 3, you built the containers (databases and tables). Now it is time to fill them - and learn how to modify and remove data safely. Data Manipulation Language (DML) covers the three operations that change what is *inside* a table: `INSERT` (add rows), `UPDATE` (modify rows), and `DELETE` (remove rows).
 
-This chapter also introduces **transactions** — the mechanism that lets you group multiple changes into a single atomic operation that either fully succeeds or fully rolls back. Transactions are what separate a professional data workflow from a dangerous one.
+This chapter also introduces **transactions** - the mechanism that lets you group multiple changes into a single atomic operation that either fully succeeds or fully rolls back. Transactions are what separate a professional data workflow from a dangerous one.
 
 ### Prerequisites
 
@@ -15,9 +15,9 @@ This chapter also introduces **transactions** — the mechanism that lets you gr
 
 ### Databases Used
 
-- `salesdb` — for INSERT, UPDATE, DELETE exercises on real relational data
-- `Parks_and_Recreation` — for beginner-friendly DML practice
-- `my_practice_db` — the database you created in Chapter 3 (or create a fresh one)
+- `salesdb` - for INSERT, UPDATE, DELETE exercises on real relational data
+- `Parks_and_Recreation` - for beginner-friendly DML practice
+- `my_practice_db` - the database you created in Chapter 3 (or create a fresh one)
 
 ---
 
@@ -27,7 +27,7 @@ By the end of this chapter, you will be able to:
 
 1. Insert single and multiple rows into a table
 2. Insert data from one table into another using `INSERT INTO ... SELECT`
-3. Update existing rows — single columns, multiple columns, and conditional updates
+3. Update existing rows - single columns, multiple columns, and conditional updates
 4. Delete specific rows and understand the difference between `DELETE` and `TRUNCATE`
 5. Use `REPLACE` and `INSERT ... ON DUPLICATE KEY UPDATE` for upsert operations
 6. Wrap DML operations in transactions with `START TRANSACTION`, `COMMIT`, and `ROLLBACK`
@@ -36,7 +36,7 @@ By the end of this chapter, you will be able to:
 
 ---
 
-## 4.1 INSERT — Adding Data
+## 4.1 INSERT - Adding Data
 
 ### 4.1.1 Inserting a Single Row
 
@@ -74,7 +74,7 @@ SELECT * FROM students;
 Notice:
 - `student_id` was auto-generated (AUTO_INCREMENT)
 - `enrollment_date` used the DEFAULT value (today's date)
-- We specified the columns we wanted to fill — columns we omitted got their defaults
+- We specified the columns we wanted to fill - columns we omitted got their defaults
 
 ### 4.1.2 Inserting Without Specifying Columns
 
@@ -147,7 +147,7 @@ This is extremely useful for:
 
 ### 4.1.5 Inserting with Specific Columns from SELECT
 
-You do not need to select all columns — just match the target table's expected columns:
+You do not need to select all columns - just match the target table's expected columns:
 
 ```sql
 -- Create a simple name list table
@@ -174,7 +174,7 @@ SELECT * FROM student_names;
 
 ---
 
-## 4.2 UPDATE — Modifying Data
+## 4.2 UPDATE - Modifying Data
 
 ### 4.2.1 Updating a Single Column
 
@@ -260,7 +260,7 @@ SET o.orderstatus = 'Delivered'
 WHERE c.country = 'Germany';
 ```
 
-This is a MySQL extension — PostgreSQL uses a different syntax:
+This is a MySQL extension - PostgreSQL uses a different syntax:
 
 ```sql
 -- PostgreSQL equivalent
@@ -273,7 +273,7 @@ WHERE orders.customerid = customers.customerid
 
 ---
 
-## 4.3 DELETE — Removing Data
+## 4.3 DELETE - Removing Data
 
 ### 4.3.1 Deleting Specific Rows
 
@@ -310,9 +310,9 @@ WHERE gpa < 3.00;
 | `DROP TABLE table` | Removes the table entirely | ❌ No | ❌ No | N/A (table is gone) | Instant |
 
 **When to use each**:
-- `DELETE` — when you need to remove specific rows, or need the ability to roll back
-- `TRUNCATE` — when you want to empty a table quickly and do not need to undo it
-- `DROP` — when you want to remove the table definition itself
+- `DELETE` - when you need to remove specific rows, or need the ability to roll back
+- `TRUNCATE` - when you want to empty a table quickly and do not need to undo it
+- `DROP` - when you want to remove the table definition itself
 
 ### 4.3.4 DELETE with JOIN (MySQL)
 
@@ -419,7 +419,7 @@ A transaction is a group of SQL operations that are treated as a **single unit o
 2. Add $500 to Account B
 ```
 
-If step 1 succeeds but step 2 fails (database crash, network error), Account A lost $500 that never arrived in Account B. A transaction prevents this — if step 2 fails, step 1 is automatically undone.
+If step 1 succeeds but step 2 fails (database crash, network error), Account A lost $500 that never arrived in Account B. A transaction prevents this - if step 2 fails, step 1 is automatically undone.
 
 ### 4.5.2 ACID Properties
 
@@ -483,7 +483,7 @@ DELETE FROM orders WHERE orderstatus = 'Shipped';
 
 -- Check how many orders remain
 SELECT COUNT(*) AS remaining_orders FROM orders;
--- Oops — we deleted too many. Let's undo.
+-- Oops - we deleted too many. Let's undo.
 
 ROLLBACK;
 
@@ -527,12 +527,12 @@ ROLLBACK;  -- Undo it
 
 | Scenario | Use Transaction? |
 |---|---|
-| Single SELECT query | No — read-only, nothing to undo |
-| Single INSERT of one row | Usually no — auto-commit is fine |
-| Bulk INSERT (thousands of rows) | **Yes** — commit once at the end is much faster |
-| UPDATE or DELETE on production data | **Yes, always** — verify results before committing |
-| Multiple related changes (e.g., transfer between accounts) | **Yes, absolutely** — atomicity is essential |
-| Running a script you have not tested | **Yes** — wrap in a transaction, review, then commit |
+| Single SELECT query | No - read-only, nothing to undo |
+| Single INSERT of one row | Usually no - auto-commit is fine |
+| Bulk INSERT (thousands of rows) | **Yes** - commit once at the end is much faster |
+| UPDATE or DELETE on production data | **Yes, always** - verify results before committing |
+| Multiple related changes (e.g., transfer between accounts) | **Yes, absolutely** - atomicity is essential |
+| Running a script you have not tested | **Yes** - wrap in a transaction, review, then commit |
 
 ---
 
@@ -684,7 +684,7 @@ INSERT INTO students (first_name) VALUES ('Frank');
 -- Columns not specified get DEFAULT values, not the old values
 REPLACE INTO students (student_id, first_name)
 VALUES (1, 'Alice');
--- Alice's last_name, email, gpa are now NULL/default — NOT their old values
+-- Alice's last_name, email, gpa are now NULL/default - NOT their old values
 
 -- UPDATE preserves unmentioned columns
 UPDATE students SET first_name = 'Alice' WHERE student_id = 1;
@@ -767,7 +767,7 @@ Verify that the salaries returned to their original values.
 
 6. **The Safe DML Workflow**: SELECT first (preview) → COUNT (verify scope) → START TRANSACTION → execute DML → verify → COMMIT or ROLLBACK.
 
-7. **REPLACE deletes then inserts** — it does not preserve unmentioned column values. Use `INSERT ... ON DUPLICATE KEY UPDATE` for true upsert behaviour.
+7. **REPLACE deletes then inserts** - it does not preserve unmentioned column values. Use `INSERT ... ON DUPLICATE KEY UPDATE` for true upsert behaviour.
 
 8. **Always back up before bulk operations.** `CREATE TABLE backup AS SELECT * FROM target;` is your safety net.
 
@@ -795,4 +795,4 @@ Explain what `EXCLUDED` refers to.
 
 ## Next Chapter
 
-→ **Chapter 5 — Filtering Data**: You know how to read, create, and modify data. Now learn how to precisely target the exact rows you need using the WHERE clause, comparison operators, pattern matching, NULL logic, and more.
+→ **Chapter 5 - Filtering Data**: You know how to read, create, and modify data. Now learn how to precisely target the exact rows you need using the WHERE clause, comparison operators, pattern matching, NULL logic, and more.

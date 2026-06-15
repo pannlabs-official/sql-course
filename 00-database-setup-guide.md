@@ -29,9 +29,9 @@
 1. Run the downloaded installer
 2. Choose **Custom** installation type
 3. Select these components:
-   - **MySQL Server 8.x** — the database engine
-   - **MySQL Workbench** — the graphical query tool
-   - **MySQL Shell** — the command-line interface (optional but recommended)
+   - **MySQL Server 8.x** - the database engine
+   - **MySQL Workbench** - the graphical query tool
+   - **MySQL Shell** - the command-line interface (optional but recommended)
 4. Click **Next** through the configuration steps:
    - **Type and Networking**: Keep defaults (port `3306`, TCP/IP enabled)
    - **Authentication Method**: Choose "Use Strong Password Encryption" (recommended)
@@ -45,7 +45,7 @@
 1. Run the downloaded DMG
 2. Follow the installer prompts
 3. When asked, set a **root password** and write it down
-4. The MySQL preference pane will appear in System Preferences — use it to start/stop the server
+4. The MySQL preference pane will appear in System Preferences - use it to start/stop the server
 5. Download MySQL Workbench separately from [https://dev.mysql.com/downloads/workbench/](https://dev.mysql.com/downloads/workbench/)
 
 ### 1.4 Verify MySQL Installation
@@ -66,7 +66,7 @@ Then open the connection and run:
 SELECT VERSION();
 ```
 
-Expected output — something like:
+Expected output - something like:
 
 | VERSION() |
 |---|
@@ -89,10 +89,10 @@ If you see a version number, MySQL is working.
 
 1. Run the downloaded installer
 2. Select components:
-   - **PostgreSQL Server** — the database engine
-   - **pgAdmin 4** — the graphical query tool
-   - **Command Line Tools** — required
-   - **Stack Builder** — optional (you can skip this)
+   - **PostgreSQL Server** - the database engine
+   - **pgAdmin 4** - the graphical query tool
+   - **Command Line Tools** - required
+   - **Stack Builder** - optional (you can skip this)
 3. Set the **installation directory** (keep default)
 4. Set the **data directory** (keep default)
 5. Set a **superuser password** for the `postgres` user. **Write this down.**
@@ -120,7 +120,7 @@ Open **pgAdmin 4**:
 SELECT version();
 ```
 
-Expected output — something like:
+Expected output - something like:
 
 | version |
 |---|
@@ -217,7 +217,7 @@ SELECT COUNT(*) FROM orders_archive; -- Expected: 10
 
 **What it creates**:
 - Database `Parks_and_Recreation` with 3 tables: `employee_demographics` (11 rows), `employee_salary` (12 rows), `parks_departments` (6 rows)
-- Note: This database intentionally has no foreign key constraints — an imperfect design used for teaching purposes
+- Note: This database intentionally has no foreign key constraints - an imperfect design used for teaching purposes
 
 **How to load**:
 1. **File → Open SQL Script** → select the file
@@ -293,7 +293,7 @@ SELECT COUNT(*) FROM products;      -- Expected: 10
 
 ---
 
-#### Database 5: `employees` (Large-Scale — 93MB)
+#### Database 5: `employees` (Large-Scale - 93MB)
 
 **Script**: `assets/employees.sql`
 
@@ -305,7 +305,7 @@ SELECT COUNT(*) FROM products;      -- Expected: 10
 
 **How to load**:
 1. **File → Open SQL Script** → select `employees.sql`
-2. MySQL Workbench may warn about the file size — click **OK**
+2. MySQL Workbench may warn about the file size - click **OK**
 3. Execute. Wait for completion (2–10 minutes depending on hardware)
 4. Verify:
 
@@ -355,7 +355,7 @@ psql -U postgres -f "C:\path\to\init-postgres-mydatabase.sql"
 1. First, create the database:
    - In pgAdmin: Right-click **Databases** → **Create → Database** → name it `salesdb` → **Save**
 2. Connect to `salesdb` (right-click → Query Tool)
-3. Execute the script (skip the `DROP DATABASE` / `CREATE DATABASE` lines at the top — you already created it)
+3. Execute the script (skip the `DROP DATABASE` / `CREATE DATABASE` lines at the top - you already created it)
 4. Verify:
 
 ```sql
@@ -393,7 +393,7 @@ You should see at least these in the output:
 | sql_inventory |
 | employees |
 
-### Quick Test — Run a Query Across Databases
+### Quick Test - Run a Query Across Databases
 
 ```sql
 -- Test 1: Simple query on salesdb
@@ -482,4 +482,4 @@ Make sure the PostgreSQL service is running:
 | `salesdb` loaded (PostgreSQL) | ☐ |
 | `mydatabase` loaded (PostgreSQL) | ☐ |
 
-Once all boxes are checked, proceed to **Chapter 1 — Introduction**.
+Once all boxes are checked, proceed to **Chapter 1 - Introduction**.

@@ -1,14 +1,14 @@
-# Chapter 6 — Combining Data
+# Chapter 6 - Combining Data
 
 ---
 
 ## Chapter Overview
 
-Until now, every query has pulled data from a single table. But databases are relational — data is deliberately split across multiple tables to eliminate redundancy. To answer real business questions, you need to **combine** data from different tables.
+Until now, every query has pulled data from a single table. But databases are relational - data is deliberately split across multiple tables to eliminate redundancy. To answer real business questions, you need to **combine** data from different tables.
 
 This chapter covers two mechanisms for combining data:
-1. **JOINs** — connect rows from different tables based on a shared column
-2. **Set Operations** — stack or compare result sets from different queries (UNION, INTERSECT, EXCEPT)
+1. **JOINs** - connect rows from different tables based on a shared column
+2. **Set Operations** - stack or compare result sets from different queries (UNION, INTERSECT, EXCEPT)
 
 JOINs are the single most important SQL concept after SELECT. If you master JOINs, you can query virtually any relational database.
 
@@ -19,10 +19,10 @@ JOINs are the single most important SQL concept after SELECT. If you master JOIN
 
 ### Databases Used
 
-- `salesdb` — primary (multi-table JOINs across customers/orders/products/employees)
-- `sql_hr` — self-JOIN exercises (employee → manager hierarchy)
-- `sql_store` — complex multi-table JOINs
-- `sql_invoicing` — financial data JOINs
+- `salesdb` - primary (multi-table JOINs across customers/orders/products/employees)
+- `sql_hr` - self-JOIN exercises (employee → manager hierarchy)
+- `sql_store` - complex multi-table JOINs
+- `sql_invoicing` - financial data JOINs
 
 ---
 
@@ -91,9 +91,9 @@ INNER JOIN customers c ON o.customerid = c.customerid;
 | 10 | Mary | NULL | 2025-03-15 | 60 |
 
 **Anatomy of this JOIN**:
-- `orders o` — the left table (aliased as `o`)
-- `INNER JOIN customers c` — the right table (aliased as `c`)
-- `ON o.customerid = c.customerid` — the join condition (how to match rows)
+- `orders o` - the left table (aliased as `o`)
+- `INNER JOIN customers c` - the right table (aliased as `c`)
+- `ON o.customerid = c.customerid` - the join condition (how to match rows)
 - Table aliases (`o`, `c`) prevent ambiguity and keep the query concise
 
 ### 6.2.2 Adding Product Information
@@ -126,7 +126,7 @@ INNER JOIN products p ON o.productid = p.productid;
 
 We are now querying across 3 tables in a single statement. This is the power of JOINs.
 
-### 6.2.3 Four-Table JOIN — Full Order Details
+### 6.2.3 Four-Table JOIN - Full Order Details
 
 ```sql
 -- Complete order report: customer, product, and salesperson
@@ -215,7 +215,7 @@ The `WHERE o.orderid IS NULL` keeps only the rows where the LEFT JOIN found no m
 
 ## 6.4 RIGHT JOIN (RIGHT OUTER JOIN)
 
-A `RIGHT JOIN` is the mirror of LEFT JOIN — it keeps **all rows from the right table**, filling non-matching left table columns with NULL.
+A `RIGHT JOIN` is the mirror of LEFT JOIN - it keeps **all rows from the right table**, filling non-matching left table columns with NULL.
 
 ```sql
 -- All orders, including those for customers not in the customers table
@@ -227,7 +227,7 @@ FROM customers c
 RIGHT JOIN orders o ON c.customerid = o.customerid;
 ```
 
-In our data, every order has a valid customerid, so this produces the same result as INNER JOIN. Right JOINs are rarely used in practice — you can always rewrite them as LEFT JOINs by swapping the table order.
+In our data, every order has a valid customerid, so this produces the same result as INNER JOIN. Right JOINs are rarely used in practice - you can always rewrite them as LEFT JOINs by swapping the table order.
 
 > **Convention**: Prefer LEFT JOIN over RIGHT JOIN. It reads more naturally (start with the "main" table on the left) and is the industry standard.
 
@@ -263,7 +263,7 @@ RIGHT JOIN orders o ON c.customerid = o.customerid;
 
 ## 6.6 CROSS JOIN
 
-A `CROSS JOIN` produces the **Cartesian product** — every row from the left table paired with every row from the right table. No join condition is needed.
+A `CROSS JOIN` produces the **Cartesian product** - every row from the left table paired with every row from the right table. No join condition is needed.
 
 ```sql
 -- Every customer paired with every product
@@ -296,7 +296,7 @@ This produces 5 customers × 5 products = **25 rows**.
 
 ## 6.7 SELF JOIN
 
-A self JOIN joins a table **to itself**. This is essential for hierarchical or recursive data — like the employee/manager relationship in our `employees` table.
+A self JOIN joins a table **to itself**. This is essential for hierarchical or recursive data - like the employee/manager relationship in our `employees` table.
 
 ### 6.7.1 Employee-Manager Hierarchy
 
@@ -320,7 +320,7 @@ LEFT JOIN employees m ON e.managerid = m.employeeid;
 | Michael | Ray | Kevin |
 | Carol | Baker | Mary |
 
-Frank has no manager (NULL) — he is at the top. Kevin reports to Frank, Mary reports to Frank, Michael reports to Kevin, and Carol reports to Mary.
+Frank has no manager (NULL) - he is at the top. Kevin reports to Frank, Mary reports to Frank, Michael reports to Kevin, and Carol reports to Mary.
 
 > **Why LEFT JOIN?** Because Frank's `managerid` is NULL. An INNER JOIN would exclude him since there is no matching manager.
 
@@ -355,7 +355,7 @@ All 19 employees report to Yovonnda (employee_id = 37270).
 
 Both specify the join condition, but they work differently:
 
-### `ON` — Full Control
+### `ON` - Full Control
 
 ```sql
 SELECT *
@@ -363,7 +363,7 @@ FROM orders o
 INNER JOIN customers c ON o.customerid = c.customerid;
 ```
 
-`ON` allows any condition — the column names do not need to match:
+`ON` allows any condition - the column names do not need to match:
 
 ```sql
 -- Join on differently-named columns
@@ -371,7 +371,7 @@ FROM orders o
 INNER JOIN employees e ON o.salespersonid = e.employeeid
 ```
 
-### `USING` — Shorthand for Same-Named Columns
+### `USING` - Shorthand for Same-Named Columns
 
 When both tables have a column with the **exact same name**, you can use `USING`:
 
@@ -391,7 +391,7 @@ This is equivalent to `ON orders.customerid = customers.customerid`, but shorter
 
 Set operations combine the **results** of two separate queries (not the tables themselves).
 
-### 6.9.1 UNION — Combine and Deduplicate
+### 6.9.1 UNION - Combine and Deduplicate
 
 `UNION` stacks two result sets vertically and removes duplicates:
 
@@ -412,7 +412,7 @@ FROM orders_archive;
 - Column names come from the **first** query
 - **Duplicates are removed** (if a row appears in both result sets, it appears once in the output)
 
-### 6.9.2 UNION ALL — Combine Without Deduplication
+### 6.9.2 UNION ALL - Combine Without Deduplication
 
 `UNION ALL` keeps all rows, including duplicates. It is faster than `UNION` because it does not need to check for duplicates:
 
@@ -449,9 +449,9 @@ SELECT firstname, lastname, 'Employee' AS source FROM employees;
 | Michael | Ray | Employee |
 | Carol | Baker | Employee |
 
-Notice: Kevin Brown appears twice — once as Customer, once as Employee. They are not duplicates because the `source` column differs.
+Notice: Kevin Brown appears twice - once as Customer, once as Employee. They are not duplicates because the `source` column differs.
 
-### 6.9.4 INTERSECT — Common Rows Only
+### 6.9.4 INTERSECT - Common Rows Only
 
 `INTERSECT` returns only rows that appear in **both** result sets.
 
@@ -479,7 +479,7 @@ FROM customers c
 INNER JOIN employees e ON c.firstname = e.firstname;
 ```
 
-### 6.9.5 EXCEPT — Rows in First But Not Second
+### 6.9.5 EXCEPT - Rows in First But Not Second
 
 `EXCEPT` returns rows from the first query that do **not** appear in the second.
 
@@ -516,7 +516,7 @@ WHERE e.firstname IS NULL;
 ### Mistake 1: Accidental Cartesian Product
 
 ```sql
--- ❌ Missing join condition — produces Cartesian product
+-- ❌ Missing join condition - produces Cartesian product
 SELECT c.firstname, o.orderid
 FROM customers c, orders o;
 -- Returns 5 × 10 = 50 rows instead of 10
@@ -642,11 +642,11 @@ This requires joining: `orders` → `customers`, `order_items` → `products`, `
 
 3. **RIGHT JOIN** is the mirror of LEFT JOIN. Prefer LEFT JOIN (reorder tables) for consistency.
 
-4. **FULL OUTER JOIN** returns all rows from both tables. MySQL does not support it natively — simulate with `UNION` of LEFT and RIGHT JOINs.
+4. **FULL OUTER JOIN** returns all rows from both tables. MySQL does not support it natively - simulate with `UNION` of LEFT and RIGHT JOINs.
 
 5. **CROSS JOIN** produces every combination of rows (Cartesian product). Use deliberately and cautiously.
 
-6. **SELF JOIN** joins a table to itself — essential for hierarchical data (employee-manager).
+6. **SELF JOIN** joins a table to itself - essential for hierarchical data (employee-manager).
 
 7. **UNION combines result sets vertically** and removes duplicates. `UNION ALL` is faster and keeps duplicates.
 
@@ -662,7 +662,7 @@ This requires joining: `orders` → `customers`, `order_items` → `products`, `
 
 **PG-6.1**: In the PostgreSQL `salesdb`, join `sales.orders` with `sales.customers` using schema-qualified table names. Note the syntax difference.
 
-**PG-6.2**: Write a FULL OUTER JOIN between `sales.customers` and `sales.orders` in PostgreSQL (native support — no UNION workaround needed).
+**PG-6.2**: Write a FULL OUTER JOIN between `sales.customers` and `sales.orders` in PostgreSQL (native support - no UNION workaround needed).
 
 **PG-6.3**: Use PostgreSQL's native `INTERSECT` and `EXCEPT` to find:
 - Names that appear in both `sales.customers` and `sales.employees`
@@ -672,4 +672,4 @@ This requires joining: `orders` → `customers`, `order_items` → `products`, `
 
 ## Next Chapter
 
-→ **Chapter 7 — Row-Level Functions**: JOINs let you combine tables. Row-level functions let you transform individual values — cleaning strings, formatting dates, handling NULLs, and building conditional logic.
+→ **Chapter 7 - Row-Level Functions**: JOINs let you combine tables. Row-level functions let you transform individual values - cleaning strings, formatting dates, handling NULLs, and building conditional logic.

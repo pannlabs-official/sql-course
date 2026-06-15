@@ -1,4 +1,4 @@
-# Chapter 3 — Data Definition (DDL)
+# Chapter 3 - Data Definition (DDL)
 
 ---
 
@@ -6,14 +6,14 @@
 
 So far, you have queried data from existing tables. But who created those tables? Who decided that `customers` should have columns called `firstname`, `lastname`, `country`, and `score`? Who defined that `score` is an integer and not text?
 
-That is what **Data Definition Language (DDL)** is for. DDL is the set of SQL commands that define and modify the *structure* of databases and tables — the containers that hold data. In this chapter, you will learn to create databases, design tables with appropriate data types, enforce data integrity through constraints, and modify existing structures safely.
+That is what **Data Definition Language (DDL)** is for. DDL is the set of SQL commands that define and modify the *structure* of databases and tables - the containers that hold data. In this chapter, you will learn to create databases, design tables with appropriate data types, enforce data integrity through constraints, and modify existing structures safely.
 
 This is where you transition from being someone who *reads* data to someone who *architects* data.
 
 ### Prerequisites
 
 - Completed Chapters 1 and 2
-- `salesdb` loaded (for reference — we will study its structure)
+- `salesdb` loaded (for reference - we will study its structure)
 
 ### Database Used
 
@@ -122,12 +122,12 @@ CREATE TABLE students (
 ```
 
 Breaking this down:
-- `CREATE TABLE students` — creates a table named `students`
+- `CREATE TABLE students` - creates a table named `students`
 - Each line inside the parentheses defines a **column**: `column_name DATA_TYPE`
-- `INT` — whole number
-- `VARCHAR(50)` — variable-length text, maximum 50 characters
-- `DATE` — date value (YYYY-MM-DD)
-- `DECIMAL(3, 2)` — decimal number with 3 total digits and 2 after the decimal point (e.g., `3.85`)
+- `INT` - whole number
+- `VARCHAR(50)` - variable-length text, maximum 50 characters
+- `DATE` - date value (YYYY-MM-DD)
+- `DECIMAL(3, 2)` - decimal number with 3 total digits and 2 after the decimal point (e.g., `3.85`)
 
 ### 3.2.2 Verifying Table Structure
 
@@ -151,7 +151,7 @@ Notice: all columns allow NULL and have no keys or defaults. This is a bare-mini
 
 ---
 
-## 3.3 Data Types — The Complete Guide
+## 3.3 Data Types - The Complete Guide
 
 Choosing the right data type is one of the most important schema design decisions. The wrong choice leads to wasted storage, incorrect calculations, or data that cannot be stored at all.
 
@@ -164,7 +164,7 @@ Choosing the right data type is one of the most important schema design decision
 | `TINYINT` | 1 byte | -128 to 127 | 0 to 255 | Boolean flags, status codes |
 | `SMALLINT` | 2 bytes | -32,768 to 32,767 | 0 to 65,535 | Small counts (e.g., order quantity) |
 | `MEDIUMINT` | 3 bytes | -8.3M to 8.3M | 0 to 16.7M | Medium-range IDs |
-| `INT` | 4 bytes | -2.1B to 2.1B | 0 to 4.3B | **Most common integer type** — IDs, counts, amounts |
+| `INT` | 4 bytes | -2.1B to 2.1B | 0 to 4.3B | **Most common integer type** - IDs, counts, amounts |
 | `BIGINT` | 8 bytes | -9.2×10¹⁸ to 9.2×10¹⁸ | 0 to 1.8×10¹⁹ | Very large numbers (social media IDs, big data) |
 
 > **Rule of thumb**: Use `INT` unless you have a reason to use something else. Use `BIGINT` if the values could exceed 2 billion.
@@ -173,9 +173,9 @@ Choosing the right data type is one of the most important schema design decision
 
 | Type | Storage | Precision | Use Case |
 |---|---|---|---|
-| `DECIMAL(p, s)` | Varies | Exact (up to 65 digits) | **Money, financial data** — no rounding errors |
-| `FLOAT` | 4 bytes | ~7 significant digits | Scientific measurements — rounding is acceptable |
-| `DOUBLE` | 8 bytes | ~15 significant digits | Scientific measurements — more precision than FLOAT |
+| `DECIMAL(p, s)` | Varies | Exact (up to 65 digits) | **Money, financial data** - no rounding errors |
+| `FLOAT` | 4 bytes | ~7 significant digits | Scientific measurements - rounding is acceptable |
+| `DOUBLE` | 8 bytes | ~15 significant digits | Scientific measurements - more precision than FLOAT |
 
 > ⚠️ **Never use FLOAT or DOUBLE for money.** They introduce floating-point rounding errors. `0.1 + 0.2` might become `0.30000000000000004`. Use `DECIMAL(10, 2)` for monetary values.
 
@@ -194,10 +194,10 @@ Choosing the right data type is one of the most important schema design decision
 | Type | Storage | Max Length | Use Case |
 |---|---|---|---|
 | `CHAR(n)` | Fixed n bytes | 255 | Fixed-length codes: country codes (`CHAR(2)`), gender (`CHAR(1)`), postal codes |
-| `VARCHAR(n)` | Variable (up to n) | 65,535 | **Most common string type** — names, emails, addresses |
-| `TEXT` | Variable | 65,535 | Long text — descriptions, comments, notes |
+| `VARCHAR(n)` | Variable (up to n) | 65,535 | **Most common string type** - names, emails, addresses |
+| `TEXT` | Variable | 65,535 | Long text - descriptions, comments, notes |
 | `MEDIUMTEXT` | Variable | 16.7MB | Articles, documentation |
-| `LONGTEXT` | Variable | 4.3GB | Very large text — rarely needed |
+| `LONGTEXT` | Variable | 4.3GB | Very large text - rarely needed |
 | `ENUM('a','b','c')` | 1-2 bytes | N/A | Fixed set of values: status ('Active', 'Inactive'), gender ('M', 'F') |
 
 **CHAR vs VARCHAR**:
@@ -216,13 +216,13 @@ Use `CHAR` when all values are the same length (e.g., country codes, gender). Us
 | `DATE` | `YYYY-MM-DD` | 1000-01-01 to 9999-12-31 | 3 bytes | Birthdays, hire dates, order dates |
 | `TIME` | `HH:MM:SS` | -838:59:59 to 838:59:59 | 3 bytes | Duration, time of day |
 | `DATETIME` | `YYYY-MM-DD HH:MM:SS` | 1000-01-01 to 9999-12-31 | 8 bytes | Event timestamps where timezone is not needed |
-| `TIMESTAMP` | `YYYY-MM-DD HH:MM:SS` | 1970-01-01 to 2038-01-19 | 4 bytes | Record creation/modification times — auto-converts to UTC |
+| `TIMESTAMP` | `YYYY-MM-DD HH:MM:SS` | 1970-01-01 to 2038-01-19 | 4 bytes | Record creation/modification times - auto-converts to UTC |
 | `YEAR` | `YYYY` | 1901 to 2155 | 1 byte | Year only |
 
 **DATETIME vs TIMESTAMP**:
 - `DATETIME` stores the exact date and time you give it. No timezone conversion.
 - `TIMESTAMP` converts to UTC on storage and back to the session timezone on retrieval. It is aware of timezone changes.
-- `TIMESTAMP` has a limited range (up to year 2038 — the "Year 2038 problem").
+- `TIMESTAMP` has a limited range (up to year 2038 - the "Year 2038 problem").
 - **Use TIMESTAMP** for audit fields (`created_at`, `updated_at`). **Use DATETIME** for business dates that should not change with timezone (meeting times, event dates).
 
 ### 3.3.4 MySQL vs PostgreSQL Data Type Comparison
@@ -235,7 +235,7 @@ Use `CHAR` when all values are the same length (e.g., country codes, gender). Us
 | Fixed text | `CHAR(n)` | `CHAR(n)` |
 | Exact decimal | `DECIMAL(p,s)` | `NUMERIC(p,s)` or `DECIMAL(p,s)` |
 | Timestamp | `TIMESTAMP` (auto UTC convert) | `TIMESTAMP` or `TIMESTAMPTZ` (with timezone) |
-| JSON | `JSON` | `JSON` or `JSONB` (binary JSON — faster queries) |
+| JSON | `JSON` | `JSON` or `JSONB` (binary JSON - faster queries) |
 | Enum | `ENUM('a', 'b', 'c')` | `CREATE TYPE ... AS ENUM(...)` (must define separately) |
 | UUID | `CHAR(36)` or `BINARY(16)` | Native `UUID` type |
 
@@ -250,9 +250,9 @@ Constraints enforce rules on the data in your tables. They are the database's de
 A primary key uniquely identifies each row in a table. Every table should have one.
 
 Rules:
-- Must be **unique** — no two rows can have the same primary key value
-- Must be **NOT NULL** — a primary key cannot be empty
-- A table can have only **one** primary key (but it can span multiple columns — a "composite key")
+- Must be **unique** - no two rows can have the same primary key value
+- Must be **NOT NULL** - a primary key cannot be empty
+- A table can have only **one** primary key (but it can span multiple columns - a "composite key")
 
 ```sql
 DROP TABLE IF EXISTS students;
@@ -289,7 +289,7 @@ CREATE TABLE students (
     PRIMARY KEY (student_id)
 );
 
--- Insert without specifying student_id — MySQL assigns 1, 2, 3, ...
+-- Insert without specifying student_id - MySQL assigns 1, 2, 3, ...
 INSERT INTO students (first_name, last_name) VALUES ('Alice', 'Smith');
 INSERT INTO students (first_name, last_name) VALUES ('Bob', 'Jones');
 INSERT INTO students (first_name, last_name) VALUES ('Carol', 'Williams');
@@ -335,7 +335,7 @@ INSERT INTO students (last_name, email) VALUES ('Smith', 'smith@example.com');
 
 ### 3.4.4 UNIQUE
 
-Ensures no two rows have the same value in this column (NULLs are excluded — multiple NULLs are allowed):
+Ensures no two rows have the same value in this column (NULLs are excluded - multiple NULLs are allowed):
 
 ```sql
 CREATE TABLE students (
@@ -459,13 +459,13 @@ INSERT INTO enrollments (student_id, course_id) VALUES (99, 1);
 What happens to child rows when the parent row is deleted?
 
 ```sql
--- Option 1: RESTRICT (default) — Block the deletion
+-- Option 1: RESTRICT (default) - Block the deletion
 FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE RESTRICT
 
--- Option 2: CASCADE — Delete child rows automatically
+-- Option 2: CASCADE - Delete child rows automatically
 FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
 
--- Option 3: SET NULL — Set the foreign key to NULL in child rows
+-- Option 3: SET NULL - Set the foreign key to NULL in child rows
 FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE SET NULL
 ```
 
@@ -475,7 +475,7 @@ FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE SET NULL
 | `CASCADE` | Child rows are automatically deleted too | When child data has no meaning without the parent (e.g., order items without an order) |
 | `SET NULL` | Foreign key column in child rows is set to NULL | When you want to keep the child row but mark it as "no longer associated" (e.g., employee's manager is fired) |
 
-> **In the `salesdb` schema**: Look at the `employees` table — `managerid` has `ON DELETE SET NULL`. If a manager is deleted, their reports' `managerid` becomes NULL rather than cascading the deletion.
+> **In the `salesdb` schema**: Look at the `employees` table - `managerid` has `ON DELETE SET NULL`. If a manager is deleted, their reports' `managerid` becomes NULL rather than cascading the deletion.
 
 ---
 
@@ -495,13 +495,13 @@ DESCRIBE orders;
 
 | Table | Design Decision | Reasoning |
 |---|---|---|
-| `customers` | `customerid INT NOT NULL PRIMARY KEY` | Surrogate key — simple integer |
+| `customers` | `customerid INT NOT NULL PRIMARY KEY` | Surrogate key - simple integer |
 | `customers` | `score INT` (nullable) | Some customers may not have a score yet |
 | `employees` | `managerid INT` with self-reference FK | Employee-manager hierarchy using the same table |
 | `employees` | `ON DELETE SET NULL` for managerid | If a manager is deleted, reports should remain but lose their manager reference |
 | `orders` | Three foreign keys: productid, customerid, salespersonid | Each order links to a product, customer, and salesperson |
 | `orders` | All FKs use `ON DELETE SET NULL` | If a referenced record is deleted, the order remains but the reference is nullified |
-| `orders_archive` | No primary key, no foreign keys | Archive tables often relax constraints for flexibility — this one allows duplicate orderids (notice orderid 4 and 6 appear multiple times) |
+| `orders_archive` | No primary key, no foreign keys | Archive tables often relax constraints for flexibility - this one allows duplicate orderids (notice orderid 4 and 6 appear multiple times) |
 
 ---
 
@@ -739,11 +739,11 @@ CREATE TABLE students (...);
 **Exercise 3.1**: Create a database called `school_db` and switch to it.
 
 **Exercise 3.2**: Create a table called `teachers` with these columns:
-- `teacher_id` — integer, auto-increment, primary key
-- `first_name` — text up to 50 characters, required
-- `last_name` — text up to 50 characters
-- `subject` — text up to 50 characters, required
-- `hire_date` — date, defaults to the current date
+- `teacher_id` - integer, auto-increment, primary key
+- `first_name` - text up to 50 characters, required
+- `last_name` - text up to 50 characters
+- `subject` - text up to 50 characters, required
+- `hire_date` - date, defaults to the current date
 
 **Exercise 3.3**: Add a column `salary` (decimal with 10 total digits and 2 decimal places) to the `teachers` table.
 
@@ -786,7 +786,7 @@ Include appropriate data types, primary keys, foreign keys, NOT NULL constraints
 
 4. **`AUTO_INCREMENT` (MySQL) or `SERIAL` (PostgreSQL)** generates unique IDs automatically. Always use surrogate keys for primary keys.
 
-5. **`ALTER TABLE` evolves schema without data loss.** Add columns, modify types, add constraints — all without dropping the table.
+5. **`ALTER TABLE` evolves schema without data loss.** Add columns, modify types, add constraints - all without dropping the table.
 
 6. **`DROP TABLE` is permanent.** `TRUNCATE TABLE` empties data but preserves structure. `DELETE` is the only DML alternative (slower but transactional). Always use `IF EXISTS` for safety.
 
@@ -818,4 +818,4 @@ Compare this to how MySQL handles ENUM inline in the column definition.
 
 ## Next Chapter
 
-→ **Chapter 4 — Data Manipulation (DML)**: Now that you can create tables, it is time to fill them with data — and learn how to insert, update, and delete rows safely using transactions.
+→ **Chapter 4 - Data Manipulation (DML)**: Now that you can create tables, it is time to fill them with data - and learn how to insert, update, and delete rows safely using transactions.

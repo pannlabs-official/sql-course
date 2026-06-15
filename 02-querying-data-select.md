@@ -1,4 +1,4 @@
-# Chapter 2 — Querying Data (SELECT)
+# Chapter 2 - Querying Data (SELECT)
 
 ---
 
@@ -77,10 +77,10 @@ FROM customers;
 | 5 | Anna | Adams | USA | NULL |
 
 Two things to notice immediately:
-- Row 3: `lastname` is **NULL** — this is not an empty string, it is the absence of a value. NULL is a critical concept we will explore deeply in Chapter 5.
+- Row 3: `lastname` is **NULL** - this is not an empty string, it is the absence of a value. NULL is a critical concept we will explore deeply in Chapter 5.
 - Row 5: `score` is also **NULL**. Anna has no score recorded.
 
-> ⚠️ **When to use `SELECT *`**: For quick exploration only. In production queries, reports, or application code, **always specify the exact columns you need.** `SELECT *` retrieves unnecessary data, increases network transfer, and makes your query fragile — if someone adds or removes columns from the table, your query's output changes unexpectedly.
+> ⚠️ **When to use `SELECT *`**: For quick exploration only. In production queries, reports, or application code, **always specify the exact columns you need.** `SELECT *` retrieves unnecessary data, increases network transfer, and makes your query fragile - if someone adds or removes columns from the table, your query's output changes unexpectedly.
 
 ### 2.1.2 Selecting Specific Columns
 
@@ -103,7 +103,7 @@ FROM customers;
 | Mark | Schwarz | Germany |
 | Anna | Adams | USA |
 
-The column order in your output matches the order you specify in the `SELECT` clause — not the order they exist in the table definition.
+The column order in your output matches the order you specify in the `SELECT` clause - not the order they exist in the table definition.
 
 ```sql
 -- You control the column order
@@ -171,7 +171,7 @@ SELECT * FROM orders;
 
 ## 2.2 Expressions and Arithmetic
 
-SQL can compute values on the fly. You are not limited to retrieving raw column values — you can transform them.
+SQL can compute values on the fly. You are not limited to retrieving raw column values - you can transform them.
 
 ### 2.2.1 Arithmetic in SELECT
 
@@ -251,7 +251,7 @@ FROM customers;
 
 ### 2.3.1 The `AS` Keyword
 
-An alias renames a column in the output. It does not change the actual column name in the table — it only affects how the result is displayed.
+An alias renames a column in the output. It does not change the actual column name in the table - it only affects how the result is displayed.
 
 ```sql
 SELECT 
@@ -307,7 +307,7 @@ Recall the execution order from Chapter 1:
 | Clause | Can Use Aliases? | Why? |
 |---|---|---|
 | `WHERE` | ❌ No | WHERE executes before SELECT (where aliases are created) |
-| `GROUP BY` | ✅ Yes (MySQL only) | MySQL extension — PostgreSQL requires the original expression |
+| `GROUP BY` | ✅ Yes (MySQL only) | MySQL extension - PostgreSQL requires the original expression |
 | `HAVING` | ✅ Yes (MySQL only) | Same MySQL extension |
 | `ORDER BY` | ✅ Yes | ORDER BY executes after SELECT |
 
@@ -350,7 +350,7 @@ FROM employees;
 | Sales | F |
 | Sales | M |
 
-Three unique combinations. "Marketing M" appears once (even though Kevin and Frank are both in Marketing and Male — wait, let us check: Frank is Marketing/M and Kevin is Marketing/M. So there are actually two employees with Marketing/M, but DISTINCT shows it once. And Mary is Sales/F, Michael is Sales/M, Carol is Sales/F — so Sales/F appears once in the output despite two employees having it.)
+Three unique combinations. "Marketing M" appears once (even though Kevin and Frank are both in Marketing and Male - wait, let us check: Frank is Marketing/M and Kevin is Marketing/M. So there are actually two employees with Marketing/M, but DISTINCT shows it once. And Mary is Sales/F, Michael is Sales/M, Carol is Sales/F - so Sales/F appears once in the output despite two employees having it.)
 
 ### 2.4.3 Common Misconception
 
@@ -381,7 +381,7 @@ ORDER BY score ASC;
 | 3 | Mary | NULL | USA | 750 |
 | 2 | Kevin | Brown | USA | 900 |
 
-> **Note**: `ASC` is the default — you can omit it. `ORDER BY score` is identical to `ORDER BY score ASC`. NULL values appear first in ascending order in MySQL.
+> **Note**: `ASC` is the default - you can omit it. `ORDER BY score` is identical to `ORDER BY score ASC`. NULL values appear first in ascending order in MySQL.
 
 ### 2.5.2 Descending Order
 
@@ -419,7 +419,7 @@ ORDER BY country ASC;
 | 3 | Mary | NULL | USA | 750 |
 | 5 | Anna | Adams | USA | NULL |
 
-Text columns are sorted alphabetically (lexicographic order). The exact sorting rules depend on the **collation** — MySQL's `utf8mb4_unicode_ci` collation sorts case-insensitively.
+Text columns are sorted alphabetically (lexicographic order). The exact sorting rules depend on the **collation** - MySQL's `utf8mb4_unicode_ci` collation sorts case-insensitively.
 
 ### 2.5.4 Multi-Column Sorting
 
@@ -486,7 +486,7 @@ FROM customers
 ORDER BY 3, 4 DESC;
 ```
 
-> ⚠️ **Not recommended for production code.** Column positions are fragile — if someone rearranges the SELECT list, the sort order silently changes. Use column names or aliases instead.
+> ⚠️ **Not recommended for production code.** Column positions are fragile - if someone rearranges the SELECT list, the sort order silently changes. Use column names or aliases instead.
 
 ---
 
@@ -551,7 +551,7 @@ SELECT * FROM customers ORDER BY customerid LIMIT 3 OFFSET 0;
 -- Page 2: next 3 rows (skip the first 3)
 SELECT * FROM customers ORDER BY customerid LIMIT 3 OFFSET 3;
 
--- Page 3: next 3 rows (skip the first 6) — only 2 left
+-- Page 3: next 3 rows (skip the first 6) - only 2 left
 SELECT * FROM customers ORDER BY customerid LIMIT 3 OFFSET 6;
 ```
 
@@ -563,7 +563,7 @@ SELECT * FROM customers ORDER BY customerid LIMIT 3, 3;
 -- This is equivalent to LIMIT 3 OFFSET 3
 ```
 
-> ⚠️ **Be careful with the shorthand**: `LIMIT 3, 3` means "skip 3, return 3" — the first number is the offset, the second is the count. This is the opposite of what many people expect.
+> ⚠️ **Be careful with the shorthand**: `LIMIT 3, 3` means "skip 3, return 3" - the first number is the offset, the second is the count. This is the opposite of what many people expect.
 
 ### 2.6.4 MySQL vs PostgreSQL Pagination
 
@@ -636,7 +636,7 @@ GROUP BY country;
 
 The error occurs because if you are grouping by country and Germany has two customers (Jossef and Mark), which `firstname` should MySQL display? It is ambiguous.
 
-> **MySQL quirk**: In older MySQL versions or with `ONLY_FULL_GROUP_BY` disabled, MySQL silently picks an arbitrary value for non-grouped, non-aggregated columns. This is dangerous — it gives results that look valid but may be misleading. Modern MySQL (8.0+) has `ONLY_FULL_GROUP_BY` enabled by default and will correctly raise an error.
+> **MySQL quirk**: In older MySQL versions or with `ONLY_FULL_GROUP_BY` disabled, MySQL silently picks an arbitrary value for non-grouped, non-aggregated columns. This is dangerous - it gives results that look valid but may be misleading. Modern MySQL (8.0+) has `ONLY_FULL_GROUP_BY` enabled by default and will correctly raise an error.
 
 ### 2.7.3 Multiple Aggregations
 
@@ -656,7 +656,7 @@ GROUP BY country;
 | Germany | 850 | 425.0000 | 2 |
 | USA | 1650 | 825.0000 | 3 |
 
-> **Note on NULL handling**: `SUM` and `AVG` ignore NULLs. Anna (USA) has `score = NULL`, so her score is not included in the sum or average for USA. The count is 3 because `COUNT(customerid)` counts non-NULL customerid values — Anna has a customerid, so she is counted. But if you used `COUNT(score)`, the USA count would be 2 (because Anna's score is NULL).
+> **Note on NULL handling**: `SUM` and `AVG` ignore NULLs. Anna (USA) has `score = NULL`, so her score is not included in the sum or average for USA. The count is 3 because `COUNT(customerid)` counts non-NULL customerid values - Anna has a customerid, so she is counted. But if you used `COUNT(score)`, the USA count would be 2 (because Anna's score is NULL).
 
 ---
 
@@ -682,7 +682,7 @@ HAVING AVG(score) > 430;
 
 Germany (avg 425) is excluded because 425 is not greater than 430.
 
-### 2.8.2 HAVING vs WHERE — The Difference
+### 2.8.2 HAVING vs WHERE - The Difference
 
 | Aspect | WHERE | HAVING |
 |---|---|---|
@@ -706,11 +706,11 @@ HAVING AVG(score) > 430;      -- Step 3: keep only groups with avg > 430
 ```
 
 Execution order:
-1. `FROM customers` — load all 5 rows
-2. `WHERE score > 0` — removes Peter (score = 0) and Anna (score = NULL). 3 rows remain.
-3. `GROUP BY country` — groups into Germany (Jossef 350, Mark 500) and USA (Kevin 900, Mary 750)
-4. `HAVING AVG(score) > 430` — Germany avg = 425 (excluded), USA avg = 825 (kept)
-5. `SELECT` — returns the result
+1. `FROM customers` - load all 5 rows
+2. `WHERE score > 0` - removes Peter (score = 0) and Anna (score = NULL). 3 rows remain.
+3. `GROUP BY country` - groups into Germany (Jossef 350, Mark 500) and USA (Kevin 900, Mary 750)
+4. `HAVING AVG(score) > 430` - Germany avg = 425 (excluded), USA avg = 825 (kept)
+5. `SELECT` - returns the result
 
 | country | avg_score |
 |---|---|
@@ -792,12 +792,12 @@ This is useful when you need to tag rows with a label, create placeholder values
 You can execute multiple queries in a single script. Each must end with a semicolon:
 
 ```sql
--- Two separate queries — both execute, both produce separate result sets
+-- Two separate queries - both execute, both produce separate result sets
 SELECT * FROM customers;
 SELECT * FROM orders;
 ```
 
-MySQL Workbench will show two result tabs at the bottom — one for each query.
+MySQL Workbench will show two result tabs at the bottom - one for each query.
 
 ---
 
@@ -851,7 +851,7 @@ GROUP BY country;
 `HAVING` without `GROUP BY` treats the entire result set as one group:
 
 ```sql
--- This works but is unusual — use WHERE instead when no grouping is needed
+-- This works but is unusual - use WHERE instead when no grouping is needed
 SELECT SUM(score) AS total
 FROM customers
 HAVING SUM(score) > 1000;
@@ -971,4 +971,4 @@ Complete these exercises in pgAdmin 4 using the PostgreSQL `salesdb` database. R
 
 ## Next Chapter
 
-→ **Chapter 3 — Data Definition (DDL)**: Now that you can read data, it is time to learn how to create the structures that hold the data — databases, tables, columns, constraints, and the relationships between them.
+→ **Chapter 3 - Data Definition (DDL)**: Now that you can read data, it is time to learn how to create the structures that hold the data - databases, tables, columns, constraints, and the relationships between them.

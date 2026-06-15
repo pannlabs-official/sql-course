@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Complete SQL Course — From Zero to Production</title>
+<title>The Complete SQL Course - From Zero to Production</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
@@ -92,7 +92,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
     <section class="cover">
       <img src="images/course_hero.png" alt="SQL Course">
       <h1>The Complete SQL Course</h1>
-      <p class="sub">From Zero to Production — A Data Analyst's Training Manual</p>
+      <p class="sub">From Zero to Production - A Data Analyst's Training Manual</p>
       <div class="badges">
         <span class="badge"><b>12</b> Chapters</span>
         <span class="badge"><b>120+</b> Exercises</span>
@@ -112,13 +112,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 
 <script>
 const chapterData = {
-  "01-introduction.md": `# Chapter 1 — Introduction
+  "01-introduction.md": `# Chapter 1 - Introduction
 
 ---
 
 ## Chapter Overview
 
-This chapter answers the questions that every trainee has on day one: *What is a database? What is SQL? Why should I learn this?* — and then immediately puts you in front of a working MySQL environment running real queries.
+This chapter answers the questions that every trainee has on day one: *What is a database? What is SQL? Why should I learn this?* - and then immediately puts you in front of a working MySQL environment running real queries.
 
 We do not spend the entire chapter on theory. By the end of this chapter, you will have installed MySQL, loaded two databases, written and executed your first SQL queries, and understood the mental model that governs how SQL processes every query you will ever write.
 
@@ -147,13 +147,13 @@ By the end of this chapter, you will be able to:
 
 ### 1.1.1 The Problem Databases Solve
 
-Before databases existed, data lived in flat files — spreadsheets, text files, paper ledgers. This worked fine when you had 50 customers. It fails catastrophically when you have 50,000.
+Before databases existed, data lived in flat files - spreadsheets, text files, paper ledgers. This worked fine when you had 50 customers. It fails catastrophically when you have 50,000.
 
 The problems with flat files:
 
 | Problem | Example |
 |---|---|
-| **Data duplication** | Customer "Kevin Brown" appears in 47 different invoice rows, each with his address copied. If he moves, you update 47 rows — or miss one. |
+| **Data duplication** | Customer "Kevin Brown" appears in 47 different invoice rows, each with his address copied. If he moves, you update 47 rows - or miss one. |
 | **No data integrity** | Nothing stops someone from entering "January 32nd" as a date, or "-500" as a quantity. |
 | **No concurrent access** | Two people editing the same spreadsheet at once leads to conflicts and data loss. |
 | **No relationships** | How do you connect a customer to their orders to the products they bought? In a spreadsheet, you either cram everything into one mega-row or maintain multiple sheets with no enforced link. |
@@ -170,7 +170,7 @@ The most widely used database model is the **relational model**, proposed by Edg
 - Each **column** (field/attribute) is one property of that entity (customer's name, country, score)
 - Tables are **linked** through shared columns (a customer's ID appears in both the \`customers\` table and the \`orders\` table)
 
-This linking — the "relational" part — is the key innovation. Instead of duplicating "Kevin Brown, USA" across 47 rows, you store Kevin once in the \`customers\` table with an ID of \`2\`, and every order he places simply references \`customer_id = 2\`.
+This linking - the "relational" part - is the key innovation. Instead of duplicating "Kevin Brown, USA" across 47 rows, you store Kevin once in the \`customers\` table with an ID of \`2\`, and every order he places simply references \`customer_id = 2\`.
 
 **Example**: Here is how the \`MyDatabase\` you loaded organises customer and order data across two linked tables:
 
@@ -193,7 +193,7 @@ This linking — the "relational" part — is the key innovation. Instead of dup
 | 1003 | 3 | 2021-06-18 | 20 |
 | 1004 | 6 | 2021-08-31 | 10 |
 
-Notice: \`customer_id\` in the orders table corresponds to \`id\` in the customers table. Customer \`1\` (Maria) placed order \`1001\`. Customer \`6\` placed order \`1004\` — but there is no customer with \`id = 6\` in our customers table. This kind of inconsistency is called an **orphan record**, and we will learn how to prevent it with foreign keys in Chapter 3.
+Notice: \`customer_id\` in the orders table corresponds to \`id\` in the customers table. Customer \`1\` (Maria) placed order \`1001\`. Customer \`6\` placed order \`1004\` - but there is no customer with \`id = 6\` in our customers table. This kind of inconsistency is called an **orphan record**, and we will learn how to prevent it with foreign keys in Chapter 3.
 
 ### 1.1.3 Relational vs Non-Relational Databases
 
@@ -254,7 +254,7 @@ SQL is divided into several sub-languages, each handling a different aspect of d
 
 ## 1.3 Database Engines
 
-A **database engine** (or DBMS — Database Management System) is the software that stores, manages, and serves the data. SQL is the language; the engine is the machine that interprets and executes it.
+A **database engine** (or DBMS - Database Management System) is the software that stores, manages, and serves the data. SQL is the language; the engine is the machine that interprets and executes it.
 
 ### 1.3.1 Engines We Use in This Course
 
@@ -268,13 +268,13 @@ A **database engine** (or DBMS — Database Management System) is the software t
 | Engine | When You'd Use It |
 |---|---|
 | **SQL Server** | Microsoft ecosystem, enterprise environments, .NET applications |
-| **Oracle** | Large enterprise, banking, telecommunications — very expensive licensing |
-| **SQLite** | Embedded databases, mobile apps, browser storage, prototyping — no separate server process |
-| **BigQuery** | Google Cloud analytics — handles petabytes, serverless |
-| **Redshift** | AWS analytics — columnar storage optimised for analytical queries |
-| **Snowflake** | Cloud-native data warehouse — separates compute and storage |
+| **Oracle** | Large enterprise, banking, telecommunications - very expensive licensing |
+| **SQLite** | Embedded databases, mobile apps, browser storage, prototyping - no separate server process |
+| **BigQuery** | Google Cloud analytics - handles petabytes, serverless |
+| **Redshift** | AWS analytics - columnar storage optimised for analytical queries |
+| **Snowflake** | Cloud-native data warehouse - separates compute and storage |
 
-### 1.3.3 MySQL vs PostgreSQL — Key Differences
+### 1.3.3 MySQL vs PostgreSQL - Key Differences
 
 Since this course uses both engines, here is a quick reference of the most common syntax differences you will encounter:
 
@@ -368,7 +368,7 @@ SHOW DATABASES;
 | performance_schema |
 | sys |
 
-The system databases (\`information_schema\`, \`mysql\`, \`performance_schema\`, \`sys\`) are MySQL internals — you do not need to touch them in this course.
+The system databases (\`information_schema\`, \`mysql\`, \`performance_schema\`, \`sys\`) are MySQL internals - you do not need to touch them in this course.
 
 ### 1.5.2 Switching to a Database
 
@@ -415,12 +415,12 @@ SELECT * FROM customers;
 | 5 | Peter | USA | 0 |
 
 Breaking this down:
-- \`SELECT\` — the command that says "retrieve data"
-- \`*\` — a wildcard meaning "all columns"
-- \`FROM customers\` — specifies which table to read from
-- \`;\` — terminates the statement (required in MySQL)
+- \`SELECT\` - the command that says "retrieve data"
+- \`*\` - a wildcard meaning "all columns"
+- \`FROM customers\` - specifies which table to read from
+- \`;\` - terminates the statement (required in MySQL)
 
-> **Note**: Notice the leading space in " John" (row 2). This is intentional in the source data — it represents a common real-world data quality issue. We will learn how to fix this with string functions in Chapter 7.
+> **Note**: Notice the leading space in " John" (row 2). This is intentional in the source data - it represents a common real-world data quality issue. We will learn how to fix this with string functions in Chapter 7.
 
 ### 1.5.5 Retrieving Specific Columns
 
@@ -511,7 +511,7 @@ You have just queried two different databases. Every database has its own tables
 
 ---
 
-## 1.6 SQL Execution Order — The Most Important Mental Model
+## 1.6 SQL Execution Order - The Most Important Mental Model
 
 This is arguably the most valuable concept in this entire chapter. Most SQL beginners (and many intermediate users) are confused by SQL because they think SQL executes in the order you write it. **It does not.**
 
@@ -556,7 +556,7 @@ WHERE double_score > 500;
 -- ERROR 1054: Unknown column 'double_score' in 'where clause'
 \`\`\`
 
-The reason: \`WHERE\` executes before \`SELECT\`. When MySQL processes the \`WHERE\` clause, it has not yet created the alias \`double_score\` — it does not exist yet.
+The reason: \`WHERE\` executes before \`SELECT\`. When MySQL processes the \`WHERE\` clause, it has not yet created the alias \`double_score\` - it does not exist yet.
 
 **Why you CAN use a column alias in ORDER BY**:
 
@@ -679,7 +679,7 @@ SeLeCt * FrOm CuStOmErS;  -- Please don't do this
 
 **Table and column names**: In MySQL on **Windows and macOS**, table names are case-insensitive. On **Linux**, they are case-sensitive. Column names are always case-insensitive in MySQL. PostgreSQL treats unquoted identifiers as lowercase.
 
-**Best practice**: Always use consistent casing. Treat table and column names as case-sensitive even on platforms where they are not — your code will be portable.
+**Best practice**: Always use consistent casing. Treat table and column names as case-sensitive even on platforms where they are not - your code will be portable.
 
 ### 1.8.3 Whitespace and Formatting
 
@@ -689,7 +689,7 @@ SQL ignores extra whitespace (spaces, tabs, newlines). These are identical:
 -- Compact (hard to read)
 SELECT first_name,country,score FROM customers WHERE country='Germany' ORDER BY score DESC;
 
--- Expanded (easy to read — this is how we write SQL)
+-- Expanded (easy to read - this is how we write SQL)
 SELECT 
     first_name, 
     country, 
@@ -706,10 +706,10 @@ Both produce the same result. The second version is dramatically easier to read,
 Text values are enclosed in **single quotes**:
 
 \`\`\`sql
--- ✅ Correct — single quotes for string values
+-- ✅ Correct - single quotes for string values
 SELECT * FROM customers WHERE country = 'Germany';
 
--- ❌ Wrong — double quotes are for identifiers (column/table names) in some engines
+-- ❌ Wrong - double quotes are for identifiers (column/table names) in some engines
 SELECT * FROM customers WHERE country = "Germany";
 \`\`\`
 
@@ -759,7 +759,7 @@ SELECT * FROM orders;
 -- ❌ Non-standard (works in MySQL but fails in PostgreSQL)
 SELECT * FROM customers WHERE country = "Germany";
 
--- ✅ Standard SQL — works everywhere
+-- ✅ Standard SQL - works everywhere
 SELECT * FROM customers WHERE country = 'Germany';
 \`\`\`
 
@@ -834,7 +834,7 @@ Complete these exercises using **pgAdmin 4** connected to your PostgreSQL server
 
 **PG-1.3**: Run \`SELECT version();\` to confirm your PostgreSQL version.
 
-**PG-1.4**: In PostgreSQL, try running \`SHOW DATABASES;\` — the same command that works in MySQL. What happens? What is the PostgreSQL equivalent?
+**PG-1.4**: In PostgreSQL, try running \`SHOW DATABASES;\` - the same command that works in MySQL. What happens? What is the PostgreSQL equivalent?
 
 > **Hint**: PostgreSQL uses \`\\l\` in the psql command line, or \`SELECT datname FROM pg_database;\` in a query.
 
@@ -848,7 +848,7 @@ This database contains **10 interconnected tables**, each loaded with at least *
 
 **Your Goal**: Write the exact SQL queries to answer the following business questions. 
 
-> **Constraint**: You are strictly limited to the clauses taught in Chapter 1 (\`SELECT\`, \`FROM\`, \`WHERE\`, \`ORDER BY\`, \`LIMIT\`). You are not given any starting queries — you must build them from scratch. Pay careful attention to how your clauses are ordered and evaluated.
+> **Constraint**: You are strictly limited to the clauses taught in Chapter 1 (\`SELECT\`, \`FROM\`, \`WHERE\`, \`ORDER BY\`, \`LIMIT\`). You are not given any starting queries - you must build them from scratch. Pay careful attention to how your clauses are ordered and evaluated.
 
 1. **The Warehouse Audit**: Retrieve the names, locations, and total capacity of all warehouses that are located in "Germany" and have a capacity greater than 50,000 units. Sort the results so the largest warehouse appears first.
 2. **Courier Performance**: Find the top 5 couriers who have an average delivery time of less than 3 days. Display their \`courier_name\` and \`avg_delivery_time\`.
@@ -867,9 +867,9 @@ This database contains **10 interconnected tables**, each loaded with at least *
 
 ## Next Chapter
 
-→ **Chapter 2 — Querying Data (SELECT)**: Now that you can connect and run basic queries, we go deep on the \`SELECT\` statement — aliases, expressions, sorting, limiting, and building queries that extract exactly the information you need.
+→ **Chapter 2 - Querying Data (SELECT)**: Now that you can connect and run basic queries, we go deep on the \`SELECT\` statement - aliases, expressions, sorting, limiting, and building queries that extract exactly the information you need.
 `,
-  "02-querying-data-select.md": `# Chapter 2 — Querying Data (SELECT)
+  "02-querying-data-select.md": `# Chapter 2 - Querying Data (SELECT)
 
 ---
 
@@ -948,10 +948,10 @@ FROM customers;
 | 5 | Anna | Adams | USA | NULL |
 
 Two things to notice immediately:
-- Row 3: \`lastname\` is **NULL** — this is not an empty string, it is the absence of a value. NULL is a critical concept we will explore deeply in Chapter 5.
+- Row 3: \`lastname\` is **NULL** - this is not an empty string, it is the absence of a value. NULL is a critical concept we will explore deeply in Chapter 5.
 - Row 5: \`score\` is also **NULL**. Anna has no score recorded.
 
-> ⚠️ **When to use \`SELECT *\`**: For quick exploration only. In production queries, reports, or application code, **always specify the exact columns you need.** \`SELECT *\` retrieves unnecessary data, increases network transfer, and makes your query fragile — if someone adds or removes columns from the table, your query's output changes unexpectedly.
+> ⚠️ **When to use \`SELECT *\`**: For quick exploration only. In production queries, reports, or application code, **always specify the exact columns you need.** \`SELECT *\` retrieves unnecessary data, increases network transfer, and makes your query fragile - if someone adds or removes columns from the table, your query's output changes unexpectedly.
 
 ### 2.1.2 Selecting Specific Columns
 
@@ -974,7 +974,7 @@ FROM customers;
 | Mark | Schwarz | Germany |
 | Anna | Adams | USA |
 
-The column order in your output matches the order you specify in the \`SELECT\` clause — not the order they exist in the table definition.
+The column order in your output matches the order you specify in the \`SELECT\` clause - not the order they exist in the table definition.
 
 \`\`\`sql
 -- You control the column order
@@ -1042,7 +1042,7 @@ SELECT * FROM orders;
 
 ## 2.2 Expressions and Arithmetic
 
-SQL can compute values on the fly. You are not limited to retrieving raw column values — you can transform them.
+SQL can compute values on the fly. You are not limited to retrieving raw column values - you can transform them.
 
 ### 2.2.1 Arithmetic in SELECT
 
@@ -1122,7 +1122,7 @@ FROM customers;
 
 ### 2.3.1 The \`AS\` Keyword
 
-An alias renames a column in the output. It does not change the actual column name in the table — it only affects how the result is displayed.
+An alias renames a column in the output. It does not change the actual column name in the table - it only affects how the result is displayed.
 
 \`\`\`sql
 SELECT 
@@ -1178,7 +1178,7 @@ Recall the execution order from Chapter 1:
 | Clause | Can Use Aliases? | Why? |
 |---|---|---|
 | \`WHERE\` | ❌ No | WHERE executes before SELECT (where aliases are created) |
-| \`GROUP BY\` | ✅ Yes (MySQL only) | MySQL extension — PostgreSQL requires the original expression |
+| \`GROUP BY\` | ✅ Yes (MySQL only) | MySQL extension - PostgreSQL requires the original expression |
 | \`HAVING\` | ✅ Yes (MySQL only) | Same MySQL extension |
 | \`ORDER BY\` | ✅ Yes | ORDER BY executes after SELECT |
 
@@ -1221,7 +1221,7 @@ FROM employees;
 | Sales | F |
 | Sales | M |
 
-Three unique combinations. "Marketing M" appears once (even though Kevin and Frank are both in Marketing and Male — wait, let us check: Frank is Marketing/M and Kevin is Marketing/M. So there are actually two employees with Marketing/M, but DISTINCT shows it once. And Mary is Sales/F, Michael is Sales/M, Carol is Sales/F — so Sales/F appears once in the output despite two employees having it.)
+Three unique combinations. "Marketing M" appears once (even though Kevin and Frank are both in Marketing and Male - wait, let us check: Frank is Marketing/M and Kevin is Marketing/M. So there are actually two employees with Marketing/M, but DISTINCT shows it once. And Mary is Sales/F, Michael is Sales/M, Carol is Sales/F - so Sales/F appears once in the output despite two employees having it.)
 
 ### 2.4.3 Common Misconception
 
@@ -1252,7 +1252,7 @@ ORDER BY score ASC;
 | 3 | Mary | NULL | USA | 750 |
 | 2 | Kevin | Brown | USA | 900 |
 
-> **Note**: \`ASC\` is the default — you can omit it. \`ORDER BY score\` is identical to \`ORDER BY score ASC\`. NULL values appear first in ascending order in MySQL.
+> **Note**: \`ASC\` is the default - you can omit it. \`ORDER BY score\` is identical to \`ORDER BY score ASC\`. NULL values appear first in ascending order in MySQL.
 
 ### 2.5.2 Descending Order
 
@@ -1290,7 +1290,7 @@ ORDER BY country ASC;
 | 3 | Mary | NULL | USA | 750 |
 | 5 | Anna | Adams | USA | NULL |
 
-Text columns are sorted alphabetically (lexicographic order). The exact sorting rules depend on the **collation** — MySQL's \`utf8mb4_unicode_ci\` collation sorts case-insensitively.
+Text columns are sorted alphabetically (lexicographic order). The exact sorting rules depend on the **collation** - MySQL's \`utf8mb4_unicode_ci\` collation sorts case-insensitively.
 
 ### 2.5.4 Multi-Column Sorting
 
@@ -1357,7 +1357,7 @@ FROM customers
 ORDER BY 3, 4 DESC;
 \`\`\`
 
-> ⚠️ **Not recommended for production code.** Column positions are fragile — if someone rearranges the SELECT list, the sort order silently changes. Use column names or aliases instead.
+> ⚠️ **Not recommended for production code.** Column positions are fragile - if someone rearranges the SELECT list, the sort order silently changes. Use column names or aliases instead.
 
 ---
 
@@ -1422,7 +1422,7 @@ SELECT * FROM customers ORDER BY customerid LIMIT 3 OFFSET 0;
 -- Page 2: next 3 rows (skip the first 3)
 SELECT * FROM customers ORDER BY customerid LIMIT 3 OFFSET 3;
 
--- Page 3: next 3 rows (skip the first 6) — only 2 left
+-- Page 3: next 3 rows (skip the first 6) - only 2 left
 SELECT * FROM customers ORDER BY customerid LIMIT 3 OFFSET 6;
 \`\`\`
 
@@ -1434,7 +1434,7 @@ SELECT * FROM customers ORDER BY customerid LIMIT 3, 3;
 -- This is equivalent to LIMIT 3 OFFSET 3
 \`\`\`
 
-> ⚠️ **Be careful with the shorthand**: \`LIMIT 3, 3\` means "skip 3, return 3" — the first number is the offset, the second is the count. This is the opposite of what many people expect.
+> ⚠️ **Be careful with the shorthand**: \`LIMIT 3, 3\` means "skip 3, return 3" - the first number is the offset, the second is the count. This is the opposite of what many people expect.
 
 ### 2.6.4 MySQL vs PostgreSQL Pagination
 
@@ -1507,7 +1507,7 @@ GROUP BY country;
 
 The error occurs because if you are grouping by country and Germany has two customers (Jossef and Mark), which \`firstname\` should MySQL display? It is ambiguous.
 
-> **MySQL quirk**: In older MySQL versions or with \`ONLY_FULL_GROUP_BY\` disabled, MySQL silently picks an arbitrary value for non-grouped, non-aggregated columns. This is dangerous — it gives results that look valid but may be misleading. Modern MySQL (8.0+) has \`ONLY_FULL_GROUP_BY\` enabled by default and will correctly raise an error.
+> **MySQL quirk**: In older MySQL versions or with \`ONLY_FULL_GROUP_BY\` disabled, MySQL silently picks an arbitrary value for non-grouped, non-aggregated columns. This is dangerous - it gives results that look valid but may be misleading. Modern MySQL (8.0+) has \`ONLY_FULL_GROUP_BY\` enabled by default and will correctly raise an error.
 
 ### 2.7.3 Multiple Aggregations
 
@@ -1527,7 +1527,7 @@ GROUP BY country;
 | Germany | 850 | 425.0000 | 2 |
 | USA | 1650 | 825.0000 | 3 |
 
-> **Note on NULL handling**: \`SUM\` and \`AVG\` ignore NULLs. Anna (USA) has \`score = NULL\`, so her score is not included in the sum or average for USA. The count is 3 because \`COUNT(customerid)\` counts non-NULL customerid values — Anna has a customerid, so she is counted. But if you used \`COUNT(score)\`, the USA count would be 2 (because Anna's score is NULL).
+> **Note on NULL handling**: \`SUM\` and \`AVG\` ignore NULLs. Anna (USA) has \`score = NULL\`, so her score is not included in the sum or average for USA. The count is 3 because \`COUNT(customerid)\` counts non-NULL customerid values - Anna has a customerid, so she is counted. But if you used \`COUNT(score)\`, the USA count would be 2 (because Anna's score is NULL).
 
 ---
 
@@ -1553,7 +1553,7 @@ HAVING AVG(score) > 430;
 
 Germany (avg 425) is excluded because 425 is not greater than 430.
 
-### 2.8.2 HAVING vs WHERE — The Difference
+### 2.8.2 HAVING vs WHERE - The Difference
 
 | Aspect | WHERE | HAVING |
 |---|---|---|
@@ -1577,11 +1577,11 @@ HAVING AVG(score) > 430;      -- Step 3: keep only groups with avg > 430
 \`\`\`
 
 Execution order:
-1. \`FROM customers\` — load all 5 rows
-2. \`WHERE score > 0\` — removes Peter (score = 0) and Anna (score = NULL). 3 rows remain.
-3. \`GROUP BY country\` — groups into Germany (Jossef 350, Mark 500) and USA (Kevin 900, Mary 750)
-4. \`HAVING AVG(score) > 430\` — Germany avg = 425 (excluded), USA avg = 825 (kept)
-5. \`SELECT\` — returns the result
+1. \`FROM customers\` - load all 5 rows
+2. \`WHERE score > 0\` - removes Peter (score = 0) and Anna (score = NULL). 3 rows remain.
+3. \`GROUP BY country\` - groups into Germany (Jossef 350, Mark 500) and USA (Kevin 900, Mary 750)
+4. \`HAVING AVG(score) > 430\` - Germany avg = 425 (excluded), USA avg = 825 (kept)
+5. \`SELECT\` - returns the result
 
 | country | avg_score |
 |---|---|
@@ -1663,12 +1663,12 @@ This is useful when you need to tag rows with a label, create placeholder values
 You can execute multiple queries in a single script. Each must end with a semicolon:
 
 \`\`\`sql
--- Two separate queries — both execute, both produce separate result sets
+-- Two separate queries - both execute, both produce separate result sets
 SELECT * FROM customers;
 SELECT * FROM orders;
 \`\`\`
 
-MySQL Workbench will show two result tabs at the bottom — one for each query.
+MySQL Workbench will show two result tabs at the bottom - one for each query.
 
 ---
 
@@ -1722,7 +1722,7 @@ GROUP BY country;
 \`HAVING\` without \`GROUP BY\` treats the entire result set as one group:
 
 \`\`\`sql
--- This works but is unusual — use WHERE instead when no grouping is needed
+-- This works but is unusual - use WHERE instead when no grouping is needed
 SELECT SUM(score) AS total
 FROM customers
 HAVING SUM(score) > 1000;
@@ -1842,9 +1842,9 @@ Complete these exercises in pgAdmin 4 using the PostgreSQL \`salesdb\` database.
 
 ## Next Chapter
 
-→ **Chapter 3 — Data Definition (DDL)**: Now that you can read data, it is time to learn how to create the structures that hold the data — databases, tables, columns, constraints, and the relationships between them.
+→ **Chapter 3 - Data Definition (DDL)**: Now that you can read data, it is time to learn how to create the structures that hold the data - databases, tables, columns, constraints, and the relationships between them.
 `,
-  "03-data-definition-ddl.md": `# Chapter 3 — Data Definition (DDL)
+  "03-data-definition-ddl.md": `# Chapter 3 - Data Definition (DDL)
 
 ---
 
@@ -1852,14 +1852,14 @@ Complete these exercises in pgAdmin 4 using the PostgreSQL \`salesdb\` database.
 
 So far, you have queried data from existing tables. But who created those tables? Who decided that \`customers\` should have columns called \`firstname\`, \`lastname\`, \`country\`, and \`score\`? Who defined that \`score\` is an integer and not text?
 
-That is what **Data Definition Language (DDL)** is for. DDL is the set of SQL commands that define and modify the *structure* of databases and tables — the containers that hold data. In this chapter, you will learn to create databases, design tables with appropriate data types, enforce data integrity through constraints, and modify existing structures safely.
+That is what **Data Definition Language (DDL)** is for. DDL is the set of SQL commands that define and modify the *structure* of databases and tables - the containers that hold data. In this chapter, you will learn to create databases, design tables with appropriate data types, enforce data integrity through constraints, and modify existing structures safely.
 
 This is where you transition from being someone who *reads* data to someone who *architects* data.
 
 ### Prerequisites
 
 - Completed Chapters 1 and 2
-- \`salesdb\` loaded (for reference — we will study its structure)
+- \`salesdb\` loaded (for reference - we will study its structure)
 
 ### Database Used
 
@@ -1968,12 +1968,12 @@ CREATE TABLE students (
 \`\`\`
 
 Breaking this down:
-- \`CREATE TABLE students\` — creates a table named \`students\`
+- \`CREATE TABLE students\` - creates a table named \`students\`
 - Each line inside the parentheses defines a **column**: \`column_name DATA_TYPE\`
-- \`INT\` — whole number
-- \`VARCHAR(50)\` — variable-length text, maximum 50 characters
-- \`DATE\` — date value (YYYY-MM-DD)
-- \`DECIMAL(3, 2)\` — decimal number with 3 total digits and 2 after the decimal point (e.g., \`3.85\`)
+- \`INT\` - whole number
+- \`VARCHAR(50)\` - variable-length text, maximum 50 characters
+- \`DATE\` - date value (YYYY-MM-DD)
+- \`DECIMAL(3, 2)\` - decimal number with 3 total digits and 2 after the decimal point (e.g., \`3.85\`)
 
 ### 3.2.2 Verifying Table Structure
 
@@ -1997,7 +1997,7 @@ Notice: all columns allow NULL and have no keys or defaults. This is a bare-mini
 
 ---
 
-## 3.3 Data Types — The Complete Guide
+## 3.3 Data Types - The Complete Guide
 
 Choosing the right data type is one of the most important schema design decisions. The wrong choice leads to wasted storage, incorrect calculations, or data that cannot be stored at all.
 
@@ -2010,7 +2010,7 @@ Choosing the right data type is one of the most important schema design decision
 | \`TINYINT\` | 1 byte | -128 to 127 | 0 to 255 | Boolean flags, status codes |
 | \`SMALLINT\` | 2 bytes | -32,768 to 32,767 | 0 to 65,535 | Small counts (e.g., order quantity) |
 | \`MEDIUMINT\` | 3 bytes | -8.3M to 8.3M | 0 to 16.7M | Medium-range IDs |
-| \`INT\` | 4 bytes | -2.1B to 2.1B | 0 to 4.3B | **Most common integer type** — IDs, counts, amounts |
+| \`INT\` | 4 bytes | -2.1B to 2.1B | 0 to 4.3B | **Most common integer type** - IDs, counts, amounts |
 | \`BIGINT\` | 8 bytes | -9.2×10¹⁸ to 9.2×10¹⁸ | 0 to 1.8×10¹⁹ | Very large numbers (social media IDs, big data) |
 
 > **Rule of thumb**: Use \`INT\` unless you have a reason to use something else. Use \`BIGINT\` if the values could exceed 2 billion.
@@ -2019,9 +2019,9 @@ Choosing the right data type is one of the most important schema design decision
 
 | Type | Storage | Precision | Use Case |
 |---|---|---|---|
-| \`DECIMAL(p, s)\` | Varies | Exact (up to 65 digits) | **Money, financial data** — no rounding errors |
-| \`FLOAT\` | 4 bytes | ~7 significant digits | Scientific measurements — rounding is acceptable |
-| \`DOUBLE\` | 8 bytes | ~15 significant digits | Scientific measurements — more precision than FLOAT |
+| \`DECIMAL(p, s)\` | Varies | Exact (up to 65 digits) | **Money, financial data** - no rounding errors |
+| \`FLOAT\` | 4 bytes | ~7 significant digits | Scientific measurements - rounding is acceptable |
+| \`DOUBLE\` | 8 bytes | ~15 significant digits | Scientific measurements - more precision than FLOAT |
 
 > ⚠️ **Never use FLOAT or DOUBLE for money.** They introduce floating-point rounding errors. \`0.1 + 0.2\` might become \`0.30000000000000004\`. Use \`DECIMAL(10, 2)\` for monetary values.
 
@@ -2040,10 +2040,10 @@ Choosing the right data type is one of the most important schema design decision
 | Type | Storage | Max Length | Use Case |
 |---|---|---|---|
 | \`CHAR(n)\` | Fixed n bytes | 255 | Fixed-length codes: country codes (\`CHAR(2)\`), gender (\`CHAR(1)\`), postal codes |
-| \`VARCHAR(n)\` | Variable (up to n) | 65,535 | **Most common string type** — names, emails, addresses |
-| \`TEXT\` | Variable | 65,535 | Long text — descriptions, comments, notes |
+| \`VARCHAR(n)\` | Variable (up to n) | 65,535 | **Most common string type** - names, emails, addresses |
+| \`TEXT\` | Variable | 65,535 | Long text - descriptions, comments, notes |
 | \`MEDIUMTEXT\` | Variable | 16.7MB | Articles, documentation |
-| \`LONGTEXT\` | Variable | 4.3GB | Very large text — rarely needed |
+| \`LONGTEXT\` | Variable | 4.3GB | Very large text - rarely needed |
 | \`ENUM('a','b','c')\` | 1-2 bytes | N/A | Fixed set of values: status ('Active', 'Inactive'), gender ('M', 'F') |
 
 **CHAR vs VARCHAR**:
@@ -2062,13 +2062,13 @@ Use \`CHAR\` when all values are the same length (e.g., country codes, gender). 
 | \`DATE\` | \`YYYY-MM-DD\` | 1000-01-01 to 9999-12-31 | 3 bytes | Birthdays, hire dates, order dates |
 | \`TIME\` | \`HH:MM:SS\` | -838:59:59 to 838:59:59 | 3 bytes | Duration, time of day |
 | \`DATETIME\` | \`YYYY-MM-DD HH:MM:SS\` | 1000-01-01 to 9999-12-31 | 8 bytes | Event timestamps where timezone is not needed |
-| \`TIMESTAMP\` | \`YYYY-MM-DD HH:MM:SS\` | 1970-01-01 to 2038-01-19 | 4 bytes | Record creation/modification times — auto-converts to UTC |
+| \`TIMESTAMP\` | \`YYYY-MM-DD HH:MM:SS\` | 1970-01-01 to 2038-01-19 | 4 bytes | Record creation/modification times - auto-converts to UTC |
 | \`YEAR\` | \`YYYY\` | 1901 to 2155 | 1 byte | Year only |
 
 **DATETIME vs TIMESTAMP**:
 - \`DATETIME\` stores the exact date and time you give it. No timezone conversion.
 - \`TIMESTAMP\` converts to UTC on storage and back to the session timezone on retrieval. It is aware of timezone changes.
-- \`TIMESTAMP\` has a limited range (up to year 2038 — the "Year 2038 problem").
+- \`TIMESTAMP\` has a limited range (up to year 2038 - the "Year 2038 problem").
 - **Use TIMESTAMP** for audit fields (\`created_at\`, \`updated_at\`). **Use DATETIME** for business dates that should not change with timezone (meeting times, event dates).
 
 ### 3.3.4 MySQL vs PostgreSQL Data Type Comparison
@@ -2081,7 +2081,7 @@ Use \`CHAR\` when all values are the same length (e.g., country codes, gender). 
 | Fixed text | \`CHAR(n)\` | \`CHAR(n)\` |
 | Exact decimal | \`DECIMAL(p,s)\` | \`NUMERIC(p,s)\` or \`DECIMAL(p,s)\` |
 | Timestamp | \`TIMESTAMP\` (auto UTC convert) | \`TIMESTAMP\` or \`TIMESTAMPTZ\` (with timezone) |
-| JSON | \`JSON\` | \`JSON\` or \`JSONB\` (binary JSON — faster queries) |
+| JSON | \`JSON\` | \`JSON\` or \`JSONB\` (binary JSON - faster queries) |
 | Enum | \`ENUM('a', 'b', 'c')\` | \`CREATE TYPE ... AS ENUM(...)\` (must define separately) |
 | UUID | \`CHAR(36)\` or \`BINARY(16)\` | Native \`UUID\` type |
 
@@ -2096,9 +2096,9 @@ Constraints enforce rules on the data in your tables. They are the database's de
 A primary key uniquely identifies each row in a table. Every table should have one.
 
 Rules:
-- Must be **unique** — no two rows can have the same primary key value
-- Must be **NOT NULL** — a primary key cannot be empty
-- A table can have only **one** primary key (but it can span multiple columns — a "composite key")
+- Must be **unique** - no two rows can have the same primary key value
+- Must be **NOT NULL** - a primary key cannot be empty
+- A table can have only **one** primary key (but it can span multiple columns - a "composite key")
 
 \`\`\`sql
 DROP TABLE IF EXISTS students;
@@ -2135,7 +2135,7 @@ CREATE TABLE students (
     PRIMARY KEY (student_id)
 );
 
--- Insert without specifying student_id — MySQL assigns 1, 2, 3, ...
+-- Insert without specifying student_id - MySQL assigns 1, 2, 3, ...
 INSERT INTO students (first_name, last_name) VALUES ('Alice', 'Smith');
 INSERT INTO students (first_name, last_name) VALUES ('Bob', 'Jones');
 INSERT INTO students (first_name, last_name) VALUES ('Carol', 'Williams');
@@ -2181,7 +2181,7 @@ INSERT INTO students (last_name, email) VALUES ('Smith', 'smith@example.com');
 
 ### 3.4.4 UNIQUE
 
-Ensures no two rows have the same value in this column (NULLs are excluded — multiple NULLs are allowed):
+Ensures no two rows have the same value in this column (NULLs are excluded - multiple NULLs are allowed):
 
 \`\`\`sql
 CREATE TABLE students (
@@ -2305,13 +2305,13 @@ INSERT INTO enrollments (student_id, course_id) VALUES (99, 1);
 What happens to child rows when the parent row is deleted?
 
 \`\`\`sql
--- Option 1: RESTRICT (default) — Block the deletion
+-- Option 1: RESTRICT (default) - Block the deletion
 FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE RESTRICT
 
--- Option 2: CASCADE — Delete child rows automatically
+-- Option 2: CASCADE - Delete child rows automatically
 FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
 
--- Option 3: SET NULL — Set the foreign key to NULL in child rows
+-- Option 3: SET NULL - Set the foreign key to NULL in child rows
 FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE SET NULL
 \`\`\`
 
@@ -2321,7 +2321,7 @@ FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE SET NULL
 | \`CASCADE\` | Child rows are automatically deleted too | When child data has no meaning without the parent (e.g., order items without an order) |
 | \`SET NULL\` | Foreign key column in child rows is set to NULL | When you want to keep the child row but mark it as "no longer associated" (e.g., employee's manager is fired) |
 
-> **In the \`salesdb\` schema**: Look at the \`employees\` table — \`managerid\` has \`ON DELETE SET NULL\`. If a manager is deleted, their reports' \`managerid\` becomes NULL rather than cascading the deletion.
+> **In the \`salesdb\` schema**: Look at the \`employees\` table - \`managerid\` has \`ON DELETE SET NULL\`. If a manager is deleted, their reports' \`managerid\` becomes NULL rather than cascading the deletion.
 
 ---
 
@@ -2341,13 +2341,13 @@ DESCRIBE orders;
 
 | Table | Design Decision | Reasoning |
 |---|---|---|
-| \`customers\` | \`customerid INT NOT NULL PRIMARY KEY\` | Surrogate key — simple integer |
+| \`customers\` | \`customerid INT NOT NULL PRIMARY KEY\` | Surrogate key - simple integer |
 | \`customers\` | \`score INT\` (nullable) | Some customers may not have a score yet |
 | \`employees\` | \`managerid INT\` with self-reference FK | Employee-manager hierarchy using the same table |
 | \`employees\` | \`ON DELETE SET NULL\` for managerid | If a manager is deleted, reports should remain but lose their manager reference |
 | \`orders\` | Three foreign keys: productid, customerid, salespersonid | Each order links to a product, customer, and salesperson |
 | \`orders\` | All FKs use \`ON DELETE SET NULL\` | If a referenced record is deleted, the order remains but the reference is nullified |
-| \`orders_archive\` | No primary key, no foreign keys | Archive tables often relax constraints for flexibility — this one allows duplicate orderids (notice orderid 4 and 6 appear multiple times) |
+| \`orders_archive\` | No primary key, no foreign keys | Archive tables often relax constraints for flexibility - this one allows duplicate orderids (notice orderid 4 and 6 appear multiple times) |
 
 ---
 
@@ -2585,11 +2585,11 @@ CREATE TABLE students (...);
 **Exercise 3.1**: Create a database called \`school_db\` and switch to it.
 
 **Exercise 3.2**: Create a table called \`teachers\` with these columns:
-- \`teacher_id\` — integer, auto-increment, primary key
-- \`first_name\` — text up to 50 characters, required
-- \`last_name\` — text up to 50 characters
-- \`subject\` — text up to 50 characters, required
-- \`hire_date\` — date, defaults to the current date
+- \`teacher_id\` - integer, auto-increment, primary key
+- \`first_name\` - text up to 50 characters, required
+- \`last_name\` - text up to 50 characters
+- \`subject\` - text up to 50 characters, required
+- \`hire_date\` - date, defaults to the current date
 
 **Exercise 3.3**: Add a column \`salary\` (decimal with 10 total digits and 2 decimal places) to the \`teachers\` table.
 
@@ -2632,7 +2632,7 @@ Include appropriate data types, primary keys, foreign keys, NOT NULL constraints
 
 4. **\`AUTO_INCREMENT\` (MySQL) or \`SERIAL\` (PostgreSQL)** generates unique IDs automatically. Always use surrogate keys for primary keys.
 
-5. **\`ALTER TABLE\` evolves schema without data loss.** Add columns, modify types, add constraints — all without dropping the table.
+5. **\`ALTER TABLE\` evolves schema without data loss.** Add columns, modify types, add constraints - all without dropping the table.
 
 6. **\`DROP TABLE\` is permanent.** \`TRUNCATE TABLE\` empties data but preserves structure. \`DELETE\` is the only DML alternative (slower but transactional). Always use \`IF EXISTS\` for safety.
 
@@ -2664,17 +2664,17 @@ Compare this to how MySQL handles ENUM inline in the column definition.
 
 ## Next Chapter
 
-→ **Chapter 4 — Data Manipulation (DML)**: Now that you can create tables, it is time to fill them with data — and learn how to insert, update, and delete rows safely using transactions.
+→ **Chapter 4 - Data Manipulation (DML)**: Now that you can create tables, it is time to fill them with data - and learn how to insert, update, and delete rows safely using transactions.
 `,
-  "04-data-manipulation-dml.md": `# Chapter 4 — Data Manipulation (DML)
+  "04-data-manipulation-dml.md": `# Chapter 4 - Data Manipulation (DML)
 
 ---
 
 ## Chapter Overview
 
-In Chapter 3, you built the containers (databases and tables). Now it is time to fill them — and learn how to modify and remove data safely. Data Manipulation Language (DML) covers the three operations that change what is *inside* a table: \`INSERT\` (add rows), \`UPDATE\` (modify rows), and \`DELETE\` (remove rows).
+In Chapter 3, you built the containers (databases and tables). Now it is time to fill them - and learn how to modify and remove data safely. Data Manipulation Language (DML) covers the three operations that change what is *inside* a table: \`INSERT\` (add rows), \`UPDATE\` (modify rows), and \`DELETE\` (remove rows).
 
-This chapter also introduces **transactions** — the mechanism that lets you group multiple changes into a single atomic operation that either fully succeeds or fully rolls back. Transactions are what separate a professional data workflow from a dangerous one.
+This chapter also introduces **transactions** - the mechanism that lets you group multiple changes into a single atomic operation that either fully succeeds or fully rolls back. Transactions are what separate a professional data workflow from a dangerous one.
 
 ### Prerequisites
 
@@ -2683,9 +2683,9 @@ This chapter also introduces **transactions** — the mechanism that lets you gr
 
 ### Databases Used
 
-- \`salesdb\` — for INSERT, UPDATE, DELETE exercises on real relational data
-- \`Parks_and_Recreation\` — for beginner-friendly DML practice
-- \`my_practice_db\` — the database you created in Chapter 3 (or create a fresh one)
+- \`salesdb\` - for INSERT, UPDATE, DELETE exercises on real relational data
+- \`Parks_and_Recreation\` - for beginner-friendly DML practice
+- \`my_practice_db\` - the database you created in Chapter 3 (or create a fresh one)
 
 ---
 
@@ -2695,7 +2695,7 @@ By the end of this chapter, you will be able to:
 
 1. Insert single and multiple rows into a table
 2. Insert data from one table into another using \`INSERT INTO ... SELECT\`
-3. Update existing rows — single columns, multiple columns, and conditional updates
+3. Update existing rows - single columns, multiple columns, and conditional updates
 4. Delete specific rows and understand the difference between \`DELETE\` and \`TRUNCATE\`
 5. Use \`REPLACE\` and \`INSERT ... ON DUPLICATE KEY UPDATE\` for upsert operations
 6. Wrap DML operations in transactions with \`START TRANSACTION\`, \`COMMIT\`, and \`ROLLBACK\`
@@ -2704,7 +2704,7 @@ By the end of this chapter, you will be able to:
 
 ---
 
-## 4.1 INSERT — Adding Data
+## 4.1 INSERT - Adding Data
 
 ### 4.1.1 Inserting a Single Row
 
@@ -2742,7 +2742,7 @@ SELECT * FROM students;
 Notice:
 - \`student_id\` was auto-generated (AUTO_INCREMENT)
 - \`enrollment_date\` used the DEFAULT value (today's date)
-- We specified the columns we wanted to fill — columns we omitted got their defaults
+- We specified the columns we wanted to fill - columns we omitted got their defaults
 
 ### 4.1.2 Inserting Without Specifying Columns
 
@@ -2815,7 +2815,7 @@ This is extremely useful for:
 
 ### 4.1.5 Inserting with Specific Columns from SELECT
 
-You do not need to select all columns — just match the target table's expected columns:
+You do not need to select all columns - just match the target table's expected columns:
 
 \`\`\`sql
 -- Create a simple name list table
@@ -2842,7 +2842,7 @@ SELECT * FROM student_names;
 
 ---
 
-## 4.2 UPDATE — Modifying Data
+## 4.2 UPDATE - Modifying Data
 
 ### 4.2.1 Updating a Single Column
 
@@ -2928,7 +2928,7 @@ SET o.orderstatus = 'Delivered'
 WHERE c.country = 'Germany';
 \`\`\`
 
-This is a MySQL extension — PostgreSQL uses a different syntax:
+This is a MySQL extension - PostgreSQL uses a different syntax:
 
 \`\`\`sql
 -- PostgreSQL equivalent
@@ -2941,7 +2941,7 @@ WHERE orders.customerid = customers.customerid
 
 ---
 
-## 4.3 DELETE — Removing Data
+## 4.3 DELETE - Removing Data
 
 ### 4.3.1 Deleting Specific Rows
 
@@ -2978,9 +2978,9 @@ WHERE gpa < 3.00;
 | \`DROP TABLE table\` | Removes the table entirely | ❌ No | ❌ No | N/A (table is gone) | Instant |
 
 **When to use each**:
-- \`DELETE\` — when you need to remove specific rows, or need the ability to roll back
-- \`TRUNCATE\` — when you want to empty a table quickly and do not need to undo it
-- \`DROP\` — when you want to remove the table definition itself
+- \`DELETE\` - when you need to remove specific rows, or need the ability to roll back
+- \`TRUNCATE\` - when you want to empty a table quickly and do not need to undo it
+- \`DROP\` - when you want to remove the table definition itself
 
 ### 4.3.4 DELETE with JOIN (MySQL)
 
@@ -3087,7 +3087,7 @@ A transaction is a group of SQL operations that are treated as a **single unit o
 2. Add \$500 to Account B
 \`\`\`
 
-If step 1 succeeds but step 2 fails (database crash, network error), Account A lost \$500 that never arrived in Account B. A transaction prevents this — if step 2 fails, step 1 is automatically undone.
+If step 1 succeeds but step 2 fails (database crash, network error), Account A lost \$500 that never arrived in Account B. A transaction prevents this - if step 2 fails, step 1 is automatically undone.
 
 ### 4.5.2 ACID Properties
 
@@ -3151,7 +3151,7 @@ DELETE FROM orders WHERE orderstatus = 'Shipped';
 
 -- Check how many orders remain
 SELECT COUNT(*) AS remaining_orders FROM orders;
--- Oops — we deleted too many. Let's undo.
+-- Oops - we deleted too many. Let's undo.
 
 ROLLBACK;
 
@@ -3195,12 +3195,12 @@ ROLLBACK;  -- Undo it
 
 | Scenario | Use Transaction? |
 |---|---|
-| Single SELECT query | No — read-only, nothing to undo |
-| Single INSERT of one row | Usually no — auto-commit is fine |
-| Bulk INSERT (thousands of rows) | **Yes** — commit once at the end is much faster |
-| UPDATE or DELETE on production data | **Yes, always** — verify results before committing |
-| Multiple related changes (e.g., transfer between accounts) | **Yes, absolutely** — atomicity is essential |
-| Running a script you have not tested | **Yes** — wrap in a transaction, review, then commit |
+| Single SELECT query | No - read-only, nothing to undo |
+| Single INSERT of one row | Usually no - auto-commit is fine |
+| Bulk INSERT (thousands of rows) | **Yes** - commit once at the end is much faster |
+| UPDATE or DELETE on production data | **Yes, always** - verify results before committing |
+| Multiple related changes (e.g., transfer between accounts) | **Yes, absolutely** - atomicity is essential |
+| Running a script you have not tested | **Yes** - wrap in a transaction, review, then commit |
 
 ---
 
@@ -3352,7 +3352,7 @@ INSERT INTO students (first_name) VALUES ('Frank');
 -- Columns not specified get DEFAULT values, not the old values
 REPLACE INTO students (student_id, first_name)
 VALUES (1, 'Alice');
--- Alice's last_name, email, gpa are now NULL/default — NOT their old values
+-- Alice's last_name, email, gpa are now NULL/default - NOT their old values
 
 -- UPDATE preserves unmentioned columns
 UPDATE students SET first_name = 'Alice' WHERE student_id = 1;
@@ -3435,7 +3435,7 @@ Verify that the salaries returned to their original values.
 
 6. **The Safe DML Workflow**: SELECT first (preview) → COUNT (verify scope) → START TRANSACTION → execute DML → verify → COMMIT or ROLLBACK.
 
-7. **REPLACE deletes then inserts** — it does not preserve unmentioned column values. Use \`INSERT ... ON DUPLICATE KEY UPDATE\` for true upsert behaviour.
+7. **REPLACE deletes then inserts** - it does not preserve unmentioned column values. Use \`INSERT ... ON DUPLICATE KEY UPDATE\` for true upsert behaviour.
 
 8. **Always back up before bulk operations.** \`CREATE TABLE backup AS SELECT * FROM target;\` is your safety net.
 
@@ -3463,15 +3463,15 @@ Explain what \`EXCLUDED\` refers to.
 
 ## Next Chapter
 
-→ **Chapter 5 — Filtering Data**: You know how to read, create, and modify data. Now learn how to precisely target the exact rows you need using the WHERE clause, comparison operators, pattern matching, NULL logic, and more.
+→ **Chapter 5 - Filtering Data**: You know how to read, create, and modify data. Now learn how to precisely target the exact rows you need using the WHERE clause, comparison operators, pattern matching, NULL logic, and more.
 `,
-  "05-filtering-data.md": `# Chapter 5 — Filtering Data
+  "05-filtering-data.md": `# Chapter 5 - Filtering Data
 
 ---
 
 ## Chapter Overview
 
-Every useful query filters data. A database with 10 million rows is useless if you cannot extract the 47 rows that answer your question. The \`WHERE\` clause is the gatekeeper — it determines which rows pass through to the result set and which are excluded.
+Every useful query filters data. A database with 10 million rows is useless if you cannot extract the 47 rows that answer your question. The \`WHERE\` clause is the gatekeeper - it determines which rows pass through to the result set and which are excluded.
 
 This chapter is not just about the WHERE clause itself, but about the entire toolbox of operators and techniques that make filtering precise: comparison operators, logical operators, pattern matching, range checks, list matching, NULL handling, and the \`EXISTS\` operator.
 
@@ -3482,8 +3482,8 @@ This chapter is not just about the WHERE clause itself, but about the entire too
 
 ### Databases Used
 
-- \`salesdb\` — primary (customers, orders, employees, products)
-- \`sql_store\` — secondary (more diverse data for practice)
+- \`salesdb\` - primary (customers, orders, employees, products)
+- \`sql_store\` - secondary (more diverse data for practice)
 
 \`\`\`sql
 USE salesdb;
@@ -3496,7 +3496,7 @@ USE salesdb;
 By the end of this chapter, you will be able to:
 
 1. Filter rows using the \`WHERE\` clause with all comparison operators
-2. Combine conditions with \`AND\`, \`OR\`, and \`NOT\` — understanding precedence
+2. Combine conditions with \`AND\`, \`OR\`, and \`NOT\` - understanding precedence
 3. Use \`BETWEEN\` for range queries, including date ranges
 4. Use \`IN\` and \`NOT IN\` for matching against lists
 5. Use \`LIKE\` and \`REGEXP\` for pattern matching
@@ -3590,13 +3590,13 @@ WHERE orderdate > '2025-02-01';
 | 9 | 2025-03-10 | Shipped |
 | 10 | 2025-03-15 | Shipped |
 
-> Wait — order 5 has \`orderdate = '2025-02-01'\` and our condition is \`> '2025-02-01'\`. Since \`>\` is strict greater-than, \`2025-02-01\` is NOT greater than itself. If we wanted to include it: use \`>= '2025-02-01'\`.
+> Wait - order 5 has \`orderdate = '2025-02-01'\` and our condition is \`> '2025-02-01'\`. Since \`>\` is strict greater-than, \`2025-02-01\` is NOT greater than itself. If we wanted to include it: use \`>= '2025-02-01'\`.
 
 ---
 
 ## 5.3 Logical Operators: AND, OR, NOT
 
-### 5.3.1 AND — All Conditions Must Be True
+### 5.3.1 AND - All Conditions Must Be True
 
 \`\`\`sql
 -- Customers from USA with a score above 700
@@ -3612,7 +3612,7 @@ WHERE country = 'USA' AND score > 700;
 
 Both conditions must be satisfied for a row to appear.
 
-### 5.3.2 OR — At Least One Condition Must Be True
+### 5.3.2 OR - At Least One Condition Must Be True
 
 \`\`\`sql
 -- Customers from Germany OR with a score above 700
@@ -3631,7 +3631,7 @@ WHERE country = 'Germany' OR score > 700;
 Jossef (Germany, score 350) passes because the country condition is true.
 Kevin (USA, score 900) passes because the score condition is true.
 
-### 5.3.3 NOT — Negates a Condition
+### 5.3.3 NOT - Negates a Condition
 
 \`\`\`sql
 -- Customers who are NOT from the USA
@@ -3645,7 +3645,7 @@ WHERE NOT country = 'USA';
 | 1 | Jossef | Goldberg | Germany | 350 |
 | 4 | Mark | Schwarz | Germany | 500 |
 
-### 5.3.4 Operator Precedence — Why Parentheses Matter
+### 5.3.4 Operator Precedence - Why Parentheses Matter
 
 **\`AND\` has higher precedence than \`OR\`.** This means:
 
@@ -3690,9 +3690,9 @@ WHERE (country = 'Germany' OR country = 'USA') AND score > 700
 | 2 | Kevin | Brown | USA | 900 |
 | 3 | Mary | NULL | USA | 750 |
 
-Only 2 rows — because now the score filter applies to everyone.
+Only 2 rows - because now the score filter applies to everyone.
 
-> **Rule**: Always use parentheses when mixing AND and OR. Do not rely on precedence — explicit grouping is clearer and safer.
+> **Rule**: Always use parentheses when mixing AND and OR. Do not rely on precedence - explicit grouping is clearer and safer.
 
 ---
 
@@ -3773,7 +3773,7 @@ This is equivalent to:
 WHERE country = 'Germany' OR country = 'USA'
 \`\`\`
 
-But \`IN\` is shorter, cleaner, and more readable — especially with longer lists.
+But \`IN\` is shorter, cleaner, and more readable - especially with longer lists.
 
 ### 5.5.2 IN with Numbers
 
@@ -3805,7 +3805,7 @@ WHERE country NOT IN ('Germany', 'USA');
 | customerid | firstname | lastname | country | score |
 |---|---|---|---|---|
 
-Empty result — all our customers are from Germany or USA.
+Empty result - all our customers are from Germany or USA.
 
 ### 5.5.4 IN with Subquery
 
@@ -3858,7 +3858,7 @@ WHERE score NOT IN (350, 500)
 
 ---
 
-## 5.6 LIKE — Pattern Matching
+## 5.6 LIKE - Pattern Matching
 
 \`LIKE\` compares a string against a pattern using two wildcard characters:
 
@@ -3908,7 +3908,7 @@ WHERE firstname LIKE '%ar%';
 | 3 | Mary | NULL | USA | 750 |
 | 4 | Mark | Schwarz | Germany | 500 |
 
-### 5.6.4 Underscore Wildcard — Exact Position
+### 5.6.4 Underscore Wildcard - Exact Position
 
 \`\`\`sql
 -- Customers whose first name has exactly 4 characters
@@ -3947,7 +3947,7 @@ WHERE firstname NOT LIKE 'M%';
 
 ---
 
-## 5.7 REGEXP — Regular Expressions
+## 5.7 REGEXP - Regular Expressions
 
 When LIKE is not powerful enough, MySQL offers \`REGEXP\` (regular expression matching) for advanced pattern matching.
 
@@ -3996,7 +3996,7 @@ WHERE lastname REGEXP '(er|ee)\$';
 
 ## 5.8 IS NULL / IS NOT NULL
 
-NULL is not a value — it is the **absence of a value**. It cannot be compared with \`=\`, \`!=\`, \`>\`, \`<\`, or any standard operator.
+NULL is not a value - it is the **absence of a value**. It cannot be compared with \`=\`, \`!=\`, \`>\`, \`<\`, or any standard operator.
 
 ### 5.8.1 Why \`= NULL\` Does Not Work
 
@@ -4008,7 +4008,7 @@ WHERE lastname = NULL;
 -- Empty result set
 \`\`\`
 
-**Why?** In SQL's three-valued logic, any comparison with NULL returns **UNKNOWN** — not TRUE, not FALSE. \`NULL = NULL\` is UNKNOWN. \`NULL != NULL\` is UNKNOWN. Only \`IS NULL\` evaluates to TRUE.
+**Why?** In SQL's three-valued logic, any comparison with NULL returns **UNKNOWN** - not TRUE, not FALSE. \`NULL = NULL\` is UNKNOWN. \`NULL != NULL\` is UNKNOWN. Only \`IS NULL\` evaluates to TRUE.
 
 ### 5.8.2 IS NULL
 
@@ -4077,7 +4077,7 @@ For Anna: \`NULL > 300\` → UNKNOWN; \`'USA' = 'USA'\` → TRUE. \`UNKNOWN AND 
 
 ## 5.9 EXISTS
 
-\`EXISTS\` checks whether a subquery returns **any rows at all**. It does not care about the values — only whether the result set is empty or not.
+\`EXISTS\` checks whether a subquery returns **any rows at all**. It does not care about the values - only whether the result set is empty or not.
 
 ### 5.9.1 Basic EXISTS
 
@@ -4118,12 +4118,12 @@ WHERE NOT EXISTS (
 |---|---|---|---|---|
 | 5 | Anna | Adams | USA | NULL |
 
-### 5.9.3 EXISTS vs IN — When to Use Each
+### 5.9.3 EXISTS vs IN - When to Use Each
 
 | Aspect | \`IN\` | \`EXISTS\` |
 |---|---|---|
 | Syntax | Simpler | More verbose (requires correlated subquery) |
-| NULL handling | Dangerous with \`NOT IN\` + NULLs | Safe — NULLs do not cause issues |
+| NULL handling | Dangerous with \`NOT IN\` + NULLs | Safe - NULLs do not cause issues |
 | Performance (large outer, small inner) | Often faster | May be slower |
 | Performance (small outer, large inner) | May be slower | Often faster (stops at first match) |
 | Readability | Better for static lists | Better for correlated checks |
@@ -4271,13 +4271,13 @@ Apply De Morgan's Law to rewrite the condition without NOT.
 
 3. **AND has higher precedence than OR.** Always use parentheses when combining them to make your intent explicit.
 
-4. **BETWEEN is inclusive on both ends.** Be careful with DATETIME columns — \`BETWEEN '2025-01-01' AND '2025-01-31'\` may miss records after midnight on Jan 31.
+4. **BETWEEN is inclusive on both ends.** Be careful with DATETIME columns - \`BETWEEN '2025-01-01' AND '2025-01-31'\` may miss records after midnight on Jan 31.
 
-5. **IN is cleaner than multiple OR conditions.** But \`NOT IN\` is dangerous when the list contains NULLs — it silently returns no rows. Use \`NOT EXISTS\` as a safe alternative.
+5. **IN is cleaner than multiple OR conditions.** But \`NOT IN\` is dangerous when the list contains NULLs - it silently returns no rows. Use \`NOT EXISTS\` as a safe alternative.
 
 6. **LIKE uses \`%\` (any characters) and \`_\` (one character).** MySQL LIKE is case-insensitive; PostgreSQL LIKE is case-sensitive (use \`ILIKE\`).
 
-7. **NULL is not a value — it is the absence of a value.** You cannot compare to NULL with \`=\`. Use \`IS NULL\` and \`IS NOT NULL\`. Every comparison with NULL returns UNKNOWN, which is neither TRUE nor FALSE.
+7. **NULL is not a value - it is the absence of a value.** You cannot compare to NULL with \`=\`. Use \`IS NULL\` and \`IS NOT NULL\`. Every comparison with NULL returns UNKNOWN, which is neither TRUE nor FALSE.
 
 8. **EXISTS checks for the existence of rows** in a subquery. It is NULL-safe and often outperforms \`IN\` for correlated subqueries.
 
@@ -4297,19 +4297,19 @@ Apply De Morgan's Law to rewrite the condition without NOT.
 
 ## Next Chapter
 
-→ **Chapter 6 — Combining Data**: Filtering is powerful on one table. But real insights come from connecting multiple tables. Joins are how you do that — and they are the most important SQL concept you will learn after SELECT.
+→ **Chapter 6 - Combining Data**: Filtering is powerful on one table. But real insights come from connecting multiple tables. Joins are how you do that - and they are the most important SQL concept you will learn after SELECT.
 `,
-  "06-combining-data.md": `# Chapter 6 — Combining Data
+  "06-combining-data.md": `# Chapter 6 - Combining Data
 
 ---
 
 ## Chapter Overview
 
-Until now, every query has pulled data from a single table. But databases are relational — data is deliberately split across multiple tables to eliminate redundancy. To answer real business questions, you need to **combine** data from different tables.
+Until now, every query has pulled data from a single table. But databases are relational - data is deliberately split across multiple tables to eliminate redundancy. To answer real business questions, you need to **combine** data from different tables.
 
 This chapter covers two mechanisms for combining data:
-1. **JOINs** — connect rows from different tables based on a shared column
-2. **Set Operations** — stack or compare result sets from different queries (UNION, INTERSECT, EXCEPT)
+1. **JOINs** - connect rows from different tables based on a shared column
+2. **Set Operations** - stack or compare result sets from different queries (UNION, INTERSECT, EXCEPT)
 
 JOINs are the single most important SQL concept after SELECT. If you master JOINs, you can query virtually any relational database.
 
@@ -4320,10 +4320,10 @@ JOINs are the single most important SQL concept after SELECT. If you master JOIN
 
 ### Databases Used
 
-- \`salesdb\` — primary (multi-table JOINs across customers/orders/products/employees)
-- \`sql_hr\` — self-JOIN exercises (employee → manager hierarchy)
-- \`sql_store\` — complex multi-table JOINs
-- \`sql_invoicing\` — financial data JOINs
+- \`salesdb\` - primary (multi-table JOINs across customers/orders/products/employees)
+- \`sql_hr\` - self-JOIN exercises (employee → manager hierarchy)
+- \`sql_store\` - complex multi-table JOINs
+- \`sql_invoicing\` - financial data JOINs
 
 ---
 
@@ -4392,9 +4392,9 @@ INNER JOIN customers c ON o.customerid = c.customerid;
 | 10 | Mary | NULL | 2025-03-15 | 60 |
 
 **Anatomy of this JOIN**:
-- \`orders o\` — the left table (aliased as \`o\`)
-- \`INNER JOIN customers c\` — the right table (aliased as \`c\`)
-- \`ON o.customerid = c.customerid\` — the join condition (how to match rows)
+- \`orders o\` - the left table (aliased as \`o\`)
+- \`INNER JOIN customers c\` - the right table (aliased as \`c\`)
+- \`ON o.customerid = c.customerid\` - the join condition (how to match rows)
 - Table aliases (\`o\`, \`c\`) prevent ambiguity and keep the query concise
 
 ### 6.2.2 Adding Product Information
@@ -4427,7 +4427,7 @@ INNER JOIN products p ON o.productid = p.productid;
 
 We are now querying across 3 tables in a single statement. This is the power of JOINs.
 
-### 6.2.3 Four-Table JOIN — Full Order Details
+### 6.2.3 Four-Table JOIN - Full Order Details
 
 \`\`\`sql
 -- Complete order report: customer, product, and salesperson
@@ -4516,7 +4516,7 @@ The \`WHERE o.orderid IS NULL\` keeps only the rows where the LEFT JOIN found no
 
 ## 6.4 RIGHT JOIN (RIGHT OUTER JOIN)
 
-A \`RIGHT JOIN\` is the mirror of LEFT JOIN — it keeps **all rows from the right table**, filling non-matching left table columns with NULL.
+A \`RIGHT JOIN\` is the mirror of LEFT JOIN - it keeps **all rows from the right table**, filling non-matching left table columns with NULL.
 
 \`\`\`sql
 -- All orders, including those for customers not in the customers table
@@ -4528,7 +4528,7 @@ FROM customers c
 RIGHT JOIN orders o ON c.customerid = o.customerid;
 \`\`\`
 
-In our data, every order has a valid customerid, so this produces the same result as INNER JOIN. Right JOINs are rarely used in practice — you can always rewrite them as LEFT JOINs by swapping the table order.
+In our data, every order has a valid customerid, so this produces the same result as INNER JOIN. Right JOINs are rarely used in practice - you can always rewrite them as LEFT JOINs by swapping the table order.
 
 > **Convention**: Prefer LEFT JOIN over RIGHT JOIN. It reads more naturally (start with the "main" table on the left) and is the industry standard.
 
@@ -4564,7 +4564,7 @@ RIGHT JOIN orders o ON c.customerid = o.customerid;
 
 ## 6.6 CROSS JOIN
 
-A \`CROSS JOIN\` produces the **Cartesian product** — every row from the left table paired with every row from the right table. No join condition is needed.
+A \`CROSS JOIN\` produces the **Cartesian product** - every row from the left table paired with every row from the right table. No join condition is needed.
 
 \`\`\`sql
 -- Every customer paired with every product
@@ -4597,7 +4597,7 @@ This produces 5 customers × 5 products = **25 rows**.
 
 ## 6.7 SELF JOIN
 
-A self JOIN joins a table **to itself**. This is essential for hierarchical or recursive data — like the employee/manager relationship in our \`employees\` table.
+A self JOIN joins a table **to itself**. This is essential for hierarchical or recursive data - like the employee/manager relationship in our \`employees\` table.
 
 ### 6.7.1 Employee-Manager Hierarchy
 
@@ -4621,7 +4621,7 @@ LEFT JOIN employees m ON e.managerid = m.employeeid;
 | Michael | Ray | Kevin |
 | Carol | Baker | Mary |
 
-Frank has no manager (NULL) — he is at the top. Kevin reports to Frank, Mary reports to Frank, Michael reports to Kevin, and Carol reports to Mary.
+Frank has no manager (NULL) - he is at the top. Kevin reports to Frank, Mary reports to Frank, Michael reports to Kevin, and Carol reports to Mary.
 
 > **Why LEFT JOIN?** Because Frank's \`managerid\` is NULL. An INNER JOIN would exclude him since there is no matching manager.
 
@@ -4656,7 +4656,7 @@ All 19 employees report to Yovonnda (employee_id = 37270).
 
 Both specify the join condition, but they work differently:
 
-### \`ON\` — Full Control
+### \`ON\` - Full Control
 
 \`\`\`sql
 SELECT *
@@ -4664,7 +4664,7 @@ FROM orders o
 INNER JOIN customers c ON o.customerid = c.customerid;
 \`\`\`
 
-\`ON\` allows any condition — the column names do not need to match:
+\`ON\` allows any condition - the column names do not need to match:
 
 \`\`\`sql
 -- Join on differently-named columns
@@ -4672,7 +4672,7 @@ FROM orders o
 INNER JOIN employees e ON o.salespersonid = e.employeeid
 \`\`\`
 
-### \`USING\` — Shorthand for Same-Named Columns
+### \`USING\` - Shorthand for Same-Named Columns
 
 When both tables have a column with the **exact same name**, you can use \`USING\`:
 
@@ -4692,7 +4692,7 @@ This is equivalent to \`ON orders.customerid = customers.customerid\`, but short
 
 Set operations combine the **results** of two separate queries (not the tables themselves).
 
-### 6.9.1 UNION — Combine and Deduplicate
+### 6.9.1 UNION - Combine and Deduplicate
 
 \`UNION\` stacks two result sets vertically and removes duplicates:
 
@@ -4713,7 +4713,7 @@ FROM orders_archive;
 - Column names come from the **first** query
 - **Duplicates are removed** (if a row appears in both result sets, it appears once in the output)
 
-### 6.9.2 UNION ALL — Combine Without Deduplication
+### 6.9.2 UNION ALL - Combine Without Deduplication
 
 \`UNION ALL\` keeps all rows, including duplicates. It is faster than \`UNION\` because it does not need to check for duplicates:
 
@@ -4750,9 +4750,9 @@ SELECT firstname, lastname, 'Employee' AS source FROM employees;
 | Michael | Ray | Employee |
 | Carol | Baker | Employee |
 
-Notice: Kevin Brown appears twice — once as Customer, once as Employee. They are not duplicates because the \`source\` column differs.
+Notice: Kevin Brown appears twice - once as Customer, once as Employee. They are not duplicates because the \`source\` column differs.
 
-### 6.9.4 INTERSECT — Common Rows Only
+### 6.9.4 INTERSECT - Common Rows Only
 
 \`INTERSECT\` returns only rows that appear in **both** result sets.
 
@@ -4780,7 +4780,7 @@ FROM customers c
 INNER JOIN employees e ON c.firstname = e.firstname;
 \`\`\`
 
-### 6.9.5 EXCEPT — Rows in First But Not Second
+### 6.9.5 EXCEPT - Rows in First But Not Second
 
 \`EXCEPT\` returns rows from the first query that do **not** appear in the second.
 
@@ -4817,7 +4817,7 @@ WHERE e.firstname IS NULL;
 ### Mistake 1: Accidental Cartesian Product
 
 \`\`\`sql
--- ❌ Missing join condition — produces Cartesian product
+-- ❌ Missing join condition - produces Cartesian product
 SELECT c.firstname, o.orderid
 FROM customers c, orders o;
 -- Returns 5 × 10 = 50 rows instead of 10
@@ -4943,11 +4943,11 @@ This requires joining: \`orders\` → \`customers\`, \`order_items\` → \`produ
 
 3. **RIGHT JOIN** is the mirror of LEFT JOIN. Prefer LEFT JOIN (reorder tables) for consistency.
 
-4. **FULL OUTER JOIN** returns all rows from both tables. MySQL does not support it natively — simulate with \`UNION\` of LEFT and RIGHT JOINs.
+4. **FULL OUTER JOIN** returns all rows from both tables. MySQL does not support it natively - simulate with \`UNION\` of LEFT and RIGHT JOINs.
 
 5. **CROSS JOIN** produces every combination of rows (Cartesian product). Use deliberately and cautiously.
 
-6. **SELF JOIN** joins a table to itself — essential for hierarchical data (employee-manager).
+6. **SELF JOIN** joins a table to itself - essential for hierarchical data (employee-manager).
 
 7. **UNION combines result sets vertically** and removes duplicates. \`UNION ALL\` is faster and keeps duplicates.
 
@@ -4963,7 +4963,7 @@ This requires joining: \`orders\` → \`customers\`, \`order_items\` → \`produ
 
 **PG-6.1**: In the PostgreSQL \`salesdb\`, join \`sales.orders\` with \`sales.customers\` using schema-qualified table names. Note the syntax difference.
 
-**PG-6.2**: Write a FULL OUTER JOIN between \`sales.customers\` and \`sales.orders\` in PostgreSQL (native support — no UNION workaround needed).
+**PG-6.2**: Write a FULL OUTER JOIN between \`sales.customers\` and \`sales.orders\` in PostgreSQL (native support - no UNION workaround needed).
 
 **PG-6.3**: Use PostgreSQL's native \`INTERSECT\` and \`EXCEPT\` to find:
 - Names that appear in both \`sales.customers\` and \`sales.employees\`
@@ -4973,9 +4973,9 @@ This requires joining: \`orders\` → \`customers\`, \`order_items\` → \`produ
 
 ## Next Chapter
 
-→ **Chapter 7 — Row-Level Functions**: JOINs let you combine tables. Row-level functions let you transform individual values — cleaning strings, formatting dates, handling NULLs, and building conditional logic.
+→ **Chapter 7 - Row-Level Functions**: JOINs let you combine tables. Row-level functions let you transform individual values - cleaning strings, formatting dates, handling NULLs, and building conditional logic.
 `,
-  "07-row-level-functions.md": `# Chapter 7 — Row-Level Functions
+  "07-row-level-functions.md": `# Chapter 7 - Row-Level Functions
 
 ---
 
@@ -5021,7 +5021,7 @@ By the end of this chapter, you will be able to:
 
 ## 7.1 String Functions
 
-### 7.1.1 CONCAT — Combining Strings
+### 7.1.1 CONCAT - Combining Strings
 
 \`\`\`sql
 -- Combine first and last name
@@ -5040,7 +5040,7 @@ FROM customers;
 
 > Recall from Chapter 2: CONCAT returns NULL if any argument is NULL (Mary's lastname is NULL). We will fix this with COALESCE in Section 7.4.
 
-**CONCAT_WS** — Concat With Separator (skips NULLs):
+**CONCAT_WS** - Concat With Separator (skips NULLs):
 
 \`\`\`sql
 SELECT CONCAT_WS(' ', firstname, lastname) AS full_name
@@ -5057,7 +5057,7 @@ FROM customers;
 
 \`CONCAT_WS\` ignores NULL values instead of propagating them. Mary's name now appears as just "Mary".
 
-### 7.1.2 UPPER / LOWER — Case Conversion
+### 7.1.2 UPPER / LOWER - Case Conversion
 
 \`\`\`sql
 SELECT 
@@ -5094,7 +5094,7 @@ FROM customers;
 
 > **LENGTH vs CHAR_LENGTH**: \`LENGTH\` returns bytes; \`CHAR_LENGTH\` returns characters. For ASCII text they are the same. For multi-byte characters (emojis, accented characters): \`LENGTH('é')\` = 2 bytes, \`CHAR_LENGTH('é')\` = 1 character. Use \`CHAR_LENGTH\` when you care about character count.
 
-### 7.1.4 SUBSTRING — Extracting Parts of a String
+### 7.1.4 SUBSTRING - Extracting Parts of a String
 
 \`\`\`sql
 -- Extract the first 3 characters of each product name
@@ -5112,9 +5112,9 @@ FROM products;
 | Caps | Cap |
 | Gloves | Glo |
 
-Syntax: \`SUBSTRING(string, start_position, length)\` — positions are 1-based.
+Syntax: \`SUBSTRING(string, start_position, length)\` - positions are 1-based.
 
-### 7.1.5 LEFT / RIGHT — Extract from Ends
+### 7.1.5 LEFT / RIGHT - Extract from Ends
 
 \`\`\`sql
 SELECT 
@@ -5130,7 +5130,7 @@ FROM products;
 | Tire | Tir | re |
 | Socks | Soc | ks |
 
-### 7.1.6 TRIM — Removing Whitespace
+### 7.1.6 TRIM - Removing Whitespace
 
 \`\`\`sql
 -- Remove leading and trailing spaces
@@ -5146,7 +5146,7 @@ SELECT
 
 > **Real-world use**: Remember " John" from \`MyDatabase.customers\`? \`TRIM(first_name)\` would fix that leading space.
 
-### 7.1.7 REPLACE — Substituting Text
+### 7.1.7 REPLACE - Substituting Text
 
 \`\`\`sql
 -- Replace 'USA' with 'United States'
@@ -5178,7 +5178,7 @@ FROM customers;
 | Jossef | fessoJ |
 | Kevin | niveK |
 
-### 7.1.9 LPAD / RPAD — Padding
+### 7.1.9 LPAD / RPAD - Padding
 
 \`\`\`sql
 -- Pad product IDs to 5 digits with leading zeros
@@ -5194,7 +5194,7 @@ FROM products;
 | 102 | 00102 |
 | 103 | 00103 |
 
-### 7.1.10 LOCATE — Finding Position
+### 7.1.10 LOCATE - Finding Position
 
 \`\`\`sql
 -- Find the position of 'o' in each product name
@@ -5218,7 +5218,7 @@ Returns 0 if not found (unlike most programming languages which return -1).
 
 ## 7.2 Numeric Functions
 
-### 7.2.1 ROUND — Rounding
+### 7.2.1 ROUND - Rounding
 
 \`\`\`sql
 SELECT 
@@ -5234,7 +5234,7 @@ SELECT
 
 > **Banker's rounding**: When the value is exactly halfway (e.g., 4.5), MySQL rounds to the nearest even number (4, not 5). This reduces bias in large datasets.
 
-### 7.2.2 CEIL / FLOOR — Rounding Up and Down
+### 7.2.2 CEIL / FLOOR - Rounding Up and Down
 
 \`\`\`sql
 SELECT 
@@ -5242,7 +5242,7 @@ SELECT
     FLOOR(3.9) AS floor_val;  -- 3 (always rounds down)
 \`\`\`
 
-### 7.2.3 TRUNCATE — Cut Off Decimals
+### 7.2.3 TRUNCATE - Cut Off Decimals
 
 Unlike ROUND, TRUNCATE simply removes digits without rounding:
 
@@ -5258,13 +5258,13 @@ SELECT
     ROUND(3.149, 2) AS rounded;        -- 3.15  ← Different!
 \`\`\`
 
-### 7.2.4 ABS — Absolute Value
+### 7.2.4 ABS - Absolute Value
 
 \`\`\`sql
 SELECT ABS(-42) AS absolute_value;  -- 42
 \`\`\`
 
-### 7.2.5 MOD — Modulo (Remainder)
+### 7.2.5 MOD - Modulo (Remainder)
 
 \`\`\`sql
 -- Find even/odd employee IDs
@@ -5283,7 +5283,7 @@ FROM employees;
 | 4 | Michael | 0 |
 | 5 | Carol | 1 |
 
-### 7.2.6 POWER — Exponentiation
+### 7.2.6 POWER - Exponentiation
 
 \`\`\`sql
 SELECT POWER(2, 10) AS two_to_the_ten;  -- 1024
@@ -5324,7 +5324,7 @@ FROM orders;
 | 2025-01-05 | 2025 | 1 | 5 | Sunday | January | 1 | 1 |
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
-\`EXTRACT()\` — The SQL standard approach:
+\`EXTRACT()\` - The SQL standard approach:
 
 \`\`\`sql
 SELECT 
@@ -5352,7 +5352,7 @@ LIMIT 3;
 | 2025-01-05 | 2025-02-04 | 2024-12-05 | 2025-01-12 |
 | 2025-01-10 | 2025-02-09 | 2024-12-10 | 2025-01-17 |
 
-**DATEDIFF** — Days between two dates:
+**DATEDIFF** - Days between two dates:
 
 \`\`\`sql
 SELECT 
@@ -5375,7 +5375,7 @@ FROM orders;
 > SELECT shipdate - orderdate AS days_to_ship FROM sales.orders;
 > \`\`\`
 
-### 7.3.4 DATE_FORMAT — Formatting Output
+### 7.3.4 DATE_FORMAT - Formatting Output
 
 \`\`\`sql
 SELECT 
@@ -5418,7 +5418,7 @@ LIMIT 3;
 
 ## 7.4 NULL-Handling Functions
 
-### 7.4.1 IFNULL — Replace NULL with a Default
+### 7.4.1 IFNULL - Replace NULL with a Default
 
 \`\`\`sql
 -- Replace NULL scores with 0
@@ -5437,7 +5437,7 @@ FROM customers;
 | Mark | 500 | 500 |
 | Anna | NULL | 0 |
 
-### 7.4.2 COALESCE — First Non-NULL Value
+### 7.4.2 COALESCE - First Non-NULL Value
 
 \`COALESCE\` accepts multiple arguments and returns the first one that is not NULL:
 
@@ -5477,7 +5477,7 @@ FROM customers;
 | Mark Schwarz |
 | Anna Adams |
 
-### 7.4.4 NULLIF — Return NULL If Values Are Equal
+### 7.4.4 NULLIF - Return NULL If Values Are Equal
 
 \`\`\`sql
 -- NULLIF(a, b) returns NULL if a = b, otherwise returns a
@@ -5498,9 +5498,9 @@ FROM orders;
 
 ---
 
-## 7.5 Conditional Logic — CASE and IF
+## 7.5 Conditional Logic - CASE and IF
 
-### 7.5.1 IF() — MySQL Inline Conditional
+### 7.5.1 IF() - MySQL Inline Conditional
 
 \`\`\`sql
 -- Classify orders as 'High' or 'Low' based on sales
@@ -5520,7 +5520,7 @@ FROM orders;
 
 > \`IF()\` is MySQL-specific. For portability, use \`CASE\`.
 
-### 7.5.2 Simple CASE — Matching Values
+### 7.5.2 Simple CASE - Matching Values
 
 \`\`\`sql
 -- Convert order status to a descriptive label
@@ -5541,7 +5541,7 @@ FROM orders;
 | 2 | Shipped | In Transit |
 | ... | ... | ... |
 
-### 7.5.3 Searched CASE — Multiple Conditions
+### 7.5.3 Searched CASE - Multiple Conditions
 
 \`\`\`sql
 -- Classify employees by salary range
@@ -5567,7 +5567,7 @@ FROM employees;
 
 > **Execution note**: CASE evaluates conditions top to bottom and stops at the **first** match. If Michael's salary is 90000, it matches \`>= 80000\` first and never checks the other conditions.
 
-### 7.5.4 CASE with Aggregation — Pivoting Data
+### 7.5.4 CASE with Aggregation - Pivoting Data
 
 CASE inside aggregate functions is a powerful technique for creating pivot-like reports:
 
@@ -5583,7 +5583,7 @@ FROM orders;
 |---|---|
 | 4 | 6 |
 
-This transforms row values into columns — a common reporting pattern.
+This transforms row values into columns - a common reporting pattern.
 
 ### 7.5.5 Nested CASE
 
@@ -5658,7 +5658,7 @@ SELECT CONCAT_WS(' ', 'Mary', NULL);  -- Returns 'Mary'
 \`\`\`sql
 -- MySQL: DATEDIFF(end, start)
 SELECT DATEDIFF('2025-03-15', '2025-01-01');  -- 73 (positive)
-SELECT DATEDIFF('2025-01-01', '2025-03-15');  -- -73 (negative — wrong order)
+SELECT DATEDIFF('2025-01-01', '2025-03-15');  -- -73 (negative - wrong order)
 \`\`\`
 
 ### Mistake 3: Forgetting CASE ... END
@@ -5744,9 +5744,9 @@ TRUNCATE(9.99, 1) -- 9.9  (cuts off)
 
 ## Next Chapter
 
-→ **Chapter 8 — Aggregation & Analytical Functions**: Row-level functions transform individual values. Aggregation and window functions transform entire groups — totals, averages, rankings, running sums, and comparisons across rows.
+→ **Chapter 8 - Aggregation & Analytical Functions**: Row-level functions transform individual values. Aggregation and window functions transform entire groups - totals, averages, rankings, running sums, and comparisons across rows.
 `,
-  "08-aggregation-analytical-functions.md": `# Chapter 8 — Aggregation & Analytical Functions
+  "08-aggregation-analytical-functions.md": `# Chapter 8 - Aggregation & Analytical Functions
 
 ---
 
@@ -5806,7 +5806,7 @@ FROM orders;
 |---|---|---|---|---|
 | 10 | 380 | 38.0000 | 10 | 90 |
 
-### 8.1.2 COUNT Variations — What Each Actually Counts
+### 8.1.2 COUNT Variations - What Each Actually Counts
 
 \`\`\`sql
 SELECT 
@@ -5820,9 +5820,9 @@ FROM customers;
 |---|---|---|
 | 5 | 4 | 2 |
 
-- \`COUNT(*)\` — counts all rows, regardless of NULLs
-- \`COUNT(column)\` — counts rows where that column is NOT NULL
-- \`COUNT(DISTINCT column)\` — counts unique non-NULL values
+- \`COUNT(*)\` - counts all rows, regardless of NULLs
+- \`COUNT(column)\` - counts rows where that column is NOT NULL
+- \`COUNT(DISTINCT column)\` - counts unique non-NULL values
 
 ### 8.1.3 NULL Behaviour in Aggregates
 
@@ -5837,7 +5837,7 @@ SELECT AVG(score) FROM customers;  -- (350+900+750+500)/4 = 625, NOT /5
 |---|
 | 625.0000 |
 
-The average is 625, calculated from 4 values (not 5). Anna's NULL is excluded entirely — not treated as 0.
+The average is 625, calculated from 4 values (not 5). Anna's NULL is excluded entirely - not treated as 0.
 
 > ⚠️ **Common trap**: If you want NULLs treated as 0, use \`AVG(COALESCE(score, 0))\`:
 > \`\`\`sql
@@ -5846,7 +5846,7 @@ The average is 625, calculated from 4 values (not 5). Anna's NULL is excluded en
 
 ---
 
-## 8.2 GROUP BY — Deep Dive
+## 8.2 GROUP BY - Deep Dive
 
 ### 8.2.1 GROUP BY with Multiple Columns
 
@@ -5890,7 +5890,7 @@ ORDER BY order_month;
 | 2025-02 | 4 | 195 |
 | 2025-03 | 2 | 80 |
 
-### 8.2.3 GROUP BY with ROLLUP — Subtotals and Grand Total
+### 8.2.3 GROUP BY with ROLLUP - Subtotals and Grand Total
 
 \`ROLLUP\` adds subtotal and grand total rows to your grouped output:
 
@@ -5911,7 +5911,7 @@ GROUP BY orderstatus WITH ROLLUP;
 
 The last row is the grand total, added by ROLLUP. Without COALESCE, the \`orderstatus\` column would show NULL for the total row.
 
-### 8.2.4 GROUPING() — Distinguishing Real NULLs from ROLLUP NULLs
+### 8.2.4 GROUPING() - Distinguishing Real NULLs from ROLLUP NULLs
 
 \`\`\`sql
 SELECT 
@@ -5932,7 +5932,7 @@ GROUP BY orderstatus WITH ROLLUP;
 
 ---
 
-## 8.3 Window Functions — The Game Changer
+## 8.3 Window Functions - The Game Changer
 
 ### 8.3.1 The Conceptual Shift
 
@@ -5941,7 +5941,7 @@ GROUP BY orderstatus WITH ROLLUP;
 
 This is the fundamental difference. Window functions compute aggregates, ranks, and comparisons **across a "window" of related rows** without reducing the number of rows in the output.
 
-### 8.3.2 The OVER Clause — Defining the Window
+### 8.3.2 The OVER Clause - Defining the Window
 
 The \`OVER()\` clause turns an aggregate function into a window function:
 
@@ -5971,7 +5971,7 @@ FROM orders;
 
 All 10 rows remain. Each row now carries the grand total (380) alongside its individual data. With GROUP BY, you would lose the individual order details.
 
-### 8.3.3 PARTITION BY — Windowing by Category
+### 8.3.3 PARTITION BY - Windowing by Category
 
 \`PARTITION BY\` divides the window into groups (like GROUP BY, but without collapsing rows):
 
@@ -6002,7 +6002,7 @@ FROM orders;
 
 Each row now has both the grand total (380) and its product-specific total. Product 101 orders each show 140, product 102 orders show 105, etc.
 
-### 8.3.4 ORDER BY — Ordering Within the Window
+### 8.3.4 ORDER BY - Ordering Within the Window
 
 Adding \`ORDER BY\` inside \`OVER()\` creates **running calculations**:
 
@@ -6031,7 +6031,7 @@ FROM orders;
 
 The \`running_total\` accumulates as we move through the ordered rows. This is a cumulative sum.
 
-### 8.3.5 PARTITION BY + ORDER BY — Running Totals Per Category
+### 8.3.5 PARTITION BY + ORDER BY - Running Totals Per Category
 
 \`\`\`sql
 -- Running total of sales PER ORDER STATUS
@@ -6075,11 +6075,11 @@ ROWS BETWEEN <start> AND <end>
 \`\`\`
 
 Where \`<start>\` and \`<end>\` can be:
-- \`UNBOUNDED PRECEDING\` — from the first row of the partition
-- \`N PRECEDING\` — N rows before the current row
-- \`CURRENT ROW\` — the current row
-- \`N FOLLOWING\` — N rows after the current row
-- \`UNBOUNDED FOLLOWING\` — to the last row of the partition
+- \`UNBOUNDED PRECEDING\` - from the first row of the partition
+- \`N PRECEDING\` - N rows before the current row
+- \`CURRENT ROW\` - the current row
+- \`N FOLLOWING\` - N rows after the current row
+- \`UNBOUNDED FOLLOWING\` - to the last row of the partition
 
 ### 8.4.2 Moving Average (3-Row Window)
 
@@ -6121,12 +6121,12 @@ SELECT
 FROM orders;
 \`\`\`
 
-This is equivalent to \`SUM(sales) OVER(ORDER BY orderdate)\` — the default frame when ORDER BY is specified is \`ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\`.
+This is equivalent to \`SUM(sales) OVER(ORDER BY orderdate)\` - the default frame when ORDER BY is specified is \`ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\`.
 
 ### 8.4.4 ROWS vs RANGE
 
-- \`ROWS\` — counts physical rows (position-based)
-- \`RANGE\` — groups logically equivalent values (value-based)
+- \`ROWS\` - counts physical rows (position-based)
+- \`RANGE\` - groups logically equivalent values (value-based)
 
 If two rows have the same \`orderdate\`, \`RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\` includes both in the calculation, while \`ROWS\` treats them as separate positions.
 
@@ -6136,7 +6136,7 @@ If two rows have the same \`orderdate\`, \`RANGE BETWEEN UNBOUNDED PRECEDING AND
 
 ## 8.5 Ranking Functions
 
-### 8.5.1 ROW_NUMBER — Unique Sequential Number
+### 8.5.1 ROW_NUMBER - Unique Sequential Number
 
 \`\`\`sql
 SELECT 
@@ -6157,7 +6157,7 @@ FROM orders;
 
 Every row gets a unique number. Ties (orders 4 and 10 both have sales = 60) are assigned arbitrarily.
 
-### 8.5.2 RANK — Gaps After Ties
+### 8.5.2 RANK - Gaps After Ties
 
 \`\`\`sql
 SELECT 
@@ -6175,9 +6175,9 @@ FROM orders;
 | 6 | 50 | **4** |
 | ... | ... | ... |
 
-Orders 4 and 10 both get rank 2 (tied). The next rank is 4 (not 3) — the gap reflects the number of rows at the tied rank.
+Orders 4 and 10 both get rank 2 (tied). The next rank is 4 (not 3) - the gap reflects the number of rows at the tied rank.
 
-### 8.5.3 DENSE_RANK — No Gaps
+### 8.5.3 DENSE_RANK - No Gaps
 
 \`\`\`sql
 SELECT 
@@ -6197,7 +6197,7 @@ FROM orders;
 
 Same as RANK, but the next value after the tie is 3 (no gap).
 
-### 8.5.4 NTILE — Dividing Into Buckets
+### 8.5.4 NTILE - Dividing Into Buckets
 
 \`\`\`sql
 -- Divide orders into 4 quartiles by sales
@@ -6246,7 +6246,7 @@ GROUP BY customerid;
 
 Value functions access data from other rows in the window without self-joining.
 
-### 8.6.1 LAG — Previous Row Value
+### 8.6.1 LAG - Previous Row Value
 
 \`\`\`sql
 -- Compare each order's sales to the previous order's sales
@@ -6272,7 +6272,7 @@ FROM orders;
 
 \`LAG(sales, 2)\` would look 2 rows back. \`LAG(sales, 1, 0)\` provides a default value (0) instead of NULL.
 
-### 8.6.2 LEAD — Next Row Value
+### 8.6.2 LEAD - Next Row Value
 
 \`\`\`sql
 -- Compare each order's sales to the NEXT order
@@ -6420,7 +6420,7 @@ The default frame with ORDER BY stops at the current row, making LAST_VALUE usel
 
 3. **Window functions keep all rows.** The OVER() clause is what makes an aggregate a window function. Empty OVER() = entire table as one window.
 
-4. **PARTITION BY** is the window equivalent of GROUP BY — it divides rows into groups without collapsing.
+4. **PARTITION BY** is the window equivalent of GROUP BY - it divides rows into groups without collapsing.
 
 5. **ORDER BY inside OVER()** enables running/cumulative calculations.
 
@@ -6446,9 +6446,9 @@ The default frame with ORDER BY stops at the current row, making LAST_VALUE usel
 
 ## Next Chapter
 
-→ **Chapter 9 — Advanced SQL Techniques**: Subqueries, CTEs, recursive CTEs, views, stored procedures, and triggers — the tools that make SQL a complete programming environment.
+→ **Chapter 9 - Advanced SQL Techniques**: Subqueries, CTEs, recursive CTEs, views, stored procedures, and triggers - the tools that make SQL a complete programming environment.
 `,
-  "09-advanced-sql-techniques.md": `# Chapter 9 — Advanced SQL Techniques
+  "09-advanced-sql-techniques.md": `# Chapter 9 - Advanced SQL Techniques
 
 ---
 
@@ -6490,7 +6490,7 @@ By the end of this chapter, you will be able to:
 
 A subquery is a query nested inside another query. It runs first, and its result is used by the outer query.
 
-### 9.1.1 Scalar Subquery — Returns a Single Value
+### 9.1.1 Scalar Subquery - Returns a Single Value
 
 \`\`\`sql
 -- Find employees earning above the average salary
@@ -6506,7 +6506,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
 
 The subquery \`(SELECT AVG(salary) FROM employees)\` returns a single value (68000), and the outer query uses it as a filter.
 
-### 9.1.2 Column Subquery — Returns a List of Values
+### 9.1.2 Column Subquery - Returns a List of Values
 
 \`\`\`sql
 -- Find customers who have placed orders
@@ -6519,7 +6519,7 @@ WHERE customerid IN (
 
 The subquery returns a list: \`(1, 2, 3, 4)\`. The outer query checks membership.
 
-### 9.1.3 Table Subquery (Derived Table) — Returns a Result Set
+### 9.1.3 Table Subquery (Derived Table) - Returns a Result Set
 
 \`\`\`sql
 -- Find the top-selling product
@@ -6703,13 +6703,13 @@ WITH RECURSIVE date_series AS (
 SELECT date_val FROM date_series;
 \`\`\`
 
-This generates 31 rows, one per day — useful for creating calendar tables or filling gaps in time-series data.
+This generates 31 rows, one per day - useful for creating calendar tables or filling gaps in time-series data.
 
 ---
 
 ## 9.3 Views
 
-A view is a saved query that behaves like a virtual table. It does not store data — it runs the query every time you reference it.
+A view is a saved query that behaves like a virtual table. It does not store data - it runs the query every time you reference it.
 
 ### 9.3.1 Creating a View
 
@@ -7033,7 +7033,7 @@ GROUP BY c.firstname;
 
 ## PostgreSQL Assignment
 
-**PG-9.1**: Rewrite the recursive org chart CTE for \`sales.employees\` using PostgreSQL syntax (no \`CAST(... AS CHAR(200))\` — use \`TEXT\` instead).
+**PG-9.1**: Rewrite the recursive org chart CTE for \`sales.employees\` using PostgreSQL syntax (no \`CAST(... AS CHAR(200))\` - use \`TEXT\` instead).
 
 **PG-9.2**: PostgreSQL supports \`CREATE OR REPLACE FUNCTION\` instead of stored procedures (prior to PG 11). Create a function that returns all orders for a given status.
 
@@ -7043,15 +7043,15 @@ GROUP BY c.firstname;
 
 ## Next Chapter
 
-→ **Chapter 10 — Performance Optimization**: You can now write any query. The next question is: how do you make it fast?
+→ **Chapter 10 - Performance Optimization**: You can now write any query. The next question is: how do you make it fast?
 `,
-  "10-performance-optimization.md": `# Chapter 10 — Performance Optimization
+  "10-performance-optimization.md": `# Chapter 10 - Performance Optimization
 
 ---
 
 ## Chapter Overview
 
-Writing correct SQL is necessary. Writing *fast* SQL is what separates a junior analyst from someone who can handle real-world data at scale. When your query takes 45 minutes instead of 2 seconds, the difference is usually not the data — it is how you wrote the query.
+Writing correct SQL is necessary. Writing *fast* SQL is what separates a junior analyst from someone who can handle real-world data at scale. When your query takes 45 minutes instead of 2 seconds, the difference is usually not the data - it is how you wrote the query.
 
 This chapter teaches you to understand how MySQL executes queries, use EXPLAIN to diagnose bottlenecks, create and manage indexes, write SARGable predicates, and apply optimisation patterns that make queries orders of magnitude faster.
 
@@ -7084,16 +7084,16 @@ By the end of this chapter, you will be able to:
 
 When you run a query, MySQL does not simply scan every row. It follows a process:
 
-1. **Parse** — Check syntax
-2. **Optimise** — The query optimiser decides the best execution strategy (which indexes to use, join order, etc.)
-3. **Execute** — Run the chosen plan
-4. **Return** — Send results to the client
+1. **Parse** - Check syntax
+2. **Optimise** - The query optimiser decides the best execution strategy (which indexes to use, join order, etc.)
+3. **Execute** - Run the chosen plan
+4. **Return** - Send results to the client
 
 The optimiser's job is to find the **cheapest** execution plan. "Cheapest" means fewest disk reads, fewest comparisons, and least memory usage.
 
 ---
 
-## 10.2 EXPLAIN — Reading Execution Plans
+## 10.2 EXPLAIN - Reading Execution Plans
 
 \`EXPLAIN\` shows you the execution plan **without** running the query.
 
@@ -7108,10 +7108,10 @@ EXPLAIN SELECT * FROM orders WHERE customerid = 2;
 | 1 | SIMPLE | orders | ALL | NULL | NULL | 10 | Using where |
 
 **Reading this output**:
-- \`type: ALL\` — **Full table scan.** MySQL is reading every row. This is the worst-case scenario.
-- \`key: NULL\` — No index is being used.
-- \`rows: 10\` — MySQL estimates it needs to examine 10 rows.
-- \`Extra: Using where\` — A WHERE filter is applied, but without an index.
+- \`type: ALL\` - **Full table scan.** MySQL is reading every row. This is the worst-case scenario.
+- \`key: NULL\` - No index is being used.
+- \`rows: 10\` - MySQL estimates it needs to examine 10 rows.
+- \`Extra: Using where\` - A WHERE filter is applied, but without an index.
 
 ### 10.2.2 After Adding an Index
 
@@ -7125,9 +7125,9 @@ EXPLAIN SELECT * FROM orders WHERE customerid = 2;
 | 1 | SIMPLE | orders | ref | idx_orders_customerid | idx_orders_customerid | 3 | NULL |
 
 Now:
-- \`type: ref\` — MySQL is using the index to look up matching rows. Much better.
-- \`key: idx_orders_customerid\` — The index we created is being used.
-- \`rows: 3\` — Only 3 rows examined (instead of 10).
+- \`type: ref\` - MySQL is using the index to look up matching rows. Much better.
+- \`key: idx_orders_customerid\` - The index we created is being used.
+- \`rows: 3\` - Only 3 rows examined (instead of 10).
 
 ### 10.2.3 EXPLAIN Key Columns
 
@@ -7156,7 +7156,7 @@ Now:
 
 ### 10.3.1 What Is an Index?
 
-An index is a data structure (usually a B-tree) that allows MySQL to find rows quickly without scanning the entire table. Think of it like a book's index — instead of reading every page to find "window functions," you look up the term in the index and go directly to page 142.
+An index is a data structure (usually a B-tree) that allows MySQL to find rows quickly without scanning the entire table. Think of it like a book's index - instead of reading every page to find "window functions," you look up the term in the index and go directly to page 142.
 
 ### 10.3.2 Creating Indexes
 
@@ -7217,14 +7217,14 @@ DROP INDEX idx_orders_customerid ON orders;
 
 ## 10.4 Query Optimization Patterns
 
-### 10.4.1 SARGable Predicates — The #1 Optimization Rule
+### 10.4.1 SARGable Predicates - The #1 Optimization Rule
 
 **SARGable** (Search ARGument able) means a WHERE condition can use an index. The rule: **never apply a function to the indexed column**.
 
 \`\`\`sql
 -- ❌ Non-SARGable: function on column kills index usage
 WHERE YEAR(orderdate) = 2025
--- MySQL must evaluate YEAR() for EVERY row — full table scan
+-- MySQL must evaluate YEAR() for EVERY row - full table scan
 
 -- ✅ SARGable: compare column directly
 WHERE orderdate >= '2025-01-01' AND orderdate < '2026-01-01'
@@ -7283,7 +7283,7 @@ SELECT * FROM orders UNION ALL SELECT * FROM orders_archive;
 ### 10.4.5 Implicit Type Conversions
 
 \`\`\`sql
--- ❌ customerid is INT but we pass a string — forces conversion on every row
+-- ❌ customerid is INT but we pass a string - forces conversion on every row
 WHERE customerid = '2'
 
 -- ✅ Match the data type
@@ -7421,9 +7421,9 @@ SELECT * FROM orders WHERE MONTH(orderdate) = 3;
 
 1. **EXPLAIN is your diagnostic tool.** Run it before optimising. The \`type\` column tells you how MySQL accesses data: \`ALL\` (scan everything) is bad, \`ref\`/\`range\` (indexed lookup) is good.
 
-2. **Indexes are the primary optimisation mechanism.** They transform O(n) full scans into O(log n) lookups. But they are not free — each index adds overhead to writes.
+2. **Indexes are the primary optimisation mechanism.** They transform O(n) full scans into O(log n) lookups. But they are not free - each index adds overhead to writes.
 
-3. **The leftmost prefix rule** governs composite indexes. \`INDEX(a, b, c)\` works for queries filtering on \`(a)\`, \`(a, b)\`, or \`(a, b, c)\` — but not \`(b)\` alone.
+3. **The leftmost prefix rule** governs composite indexes. \`INDEX(a, b, c)\` works for queries filtering on \`(a)\`, \`(a, b)\`, or \`(a, b, c)\` - but not \`(b)\` alone.
 
 4. **SARGable predicates are non-negotiable.** Never wrap an indexed column in a function. \`WHERE YEAR(date) = 2025\` kills performance; \`WHERE date >= '2025-01-01' AND date < '2026-01-01'\` uses the index.
 
@@ -7445,9 +7445,9 @@ SELECT * FROM orders WHERE MONTH(orderdate) = 3;
 
 ## Next Chapter
 
-→ **Chapter 11 — AI & SQL**: How AI tools can help you write, debug, optimise, and learn SQL faster.
+→ **Chapter 11 - AI & SQL**: How AI tools can help you write, debug, optimise, and learn SQL faster.
 `,
-  "11-ai-and-sql.md": `# Chapter 11 — AI & SQL
+  "11-ai-and-sql.md": `# Chapter 11 - AI & SQL
 
 ---
 
@@ -7455,7 +7455,7 @@ SELECT * FROM orders WHERE MONTH(orderdate) = 3;
 
 AI tools have fundamentally changed how SQL is written, debugged, and optimised. This chapter covers the practical intersection of AI and SQL: using AI assistants to write queries, debug errors, optimise performance, generate test data, and integrate SQL with Python for data analysis workflows.
 
-This is not a theoretical chapter about "the future of AI." It is a practical guide to using AI tools effectively — and critically — in your SQL work today.
+This is not a theoretical chapter about "the future of AI." It is a practical guide to using AI tools effectively - and critically - in your SQL work today.
 
 ### Prerequisites
 
@@ -7614,7 +7614,7 @@ AI-generated SQL is useful but not infallible. Here is what to always check:
 
 1. Describe your requirement to the AI
 2. Get the query
-3. **Read it before running** — does the logic make sense?
+3. **Read it before running** - does the logic make sense?
 4. Run it on a **small dataset** or with \`LIMIT\`
 5. Verify the output against known data
 6. Only then run on production data
@@ -7719,7 +7719,7 @@ df = pd.read_sql("SELECT * FROM orders", engine)
 df.to_sql('orders_backup', engine, if_exists='replace', index=False)
 \`\`\`
 
-### 11.3.5 Parameterised Queries — Preventing SQL Injection
+### 11.3.5 Parameterised Queries - Preventing SQL Injection
 
 \`\`\`python
 # ❌ NEVER do this (SQL injection vulnerability)
@@ -7757,7 +7757,7 @@ LEFT JOIN orders o ON c.customerid = o.customerid
 GROUP BY c.customerid, c.country, c.score;
 \`\`\`
 
-This single query creates 8 features from raw transactional data — ready to load into a Python ML pipeline.
+This single query creates 8 features from raw transactional data - ready to load into a Python ML pipeline.
 
 ---
 
@@ -7772,7 +7772,7 @@ Modern data analytics often happens in cloud data warehouses. The SQL is the sam
 | **Snowflake** | Multi-cloud | Separates compute and storage, auto-scaling, time travel queries |
 | **Azure Synapse** | Microsoft | T-SQL based, integrates with Power BI |
 
-Your MySQL and PostgreSQL skills transfer directly. The core SQL is identical — only platform-specific extensions (partitioning syntax, data types, optimisation hints) differ.
+Your MySQL and PostgreSQL skills transfer directly. The core SQL is identical - only platform-specific extensions (partitioning syntax, data types, optimisation hints) differ.
 
 ---
 
@@ -7816,13 +7816,13 @@ As a data analyst, you have access to sensitive information. Handle it responsib
 
 ## Key Takeaways
 
-1. **AI accelerates SQL work** but does not replace understanding. Use it for drafting, debugging, and optimising — but always verify the output.
+1. **AI accelerates SQL work** but does not replace understanding. Use it for drafting, debugging, and optimising - but always verify the output.
 
 2. **Provide schema context in prompts.** AI cannot guess your table and column names. The better the context, the better the output.
 
 3. **Python + SQL is the modern data analyst's toolkit.** \`pd.read_sql()\` bridges database queries into DataFrames for analysis and visualisation.
 
-4. **Use parameterised queries in Python.** Never concatenate user input into SQL strings — this creates SQL injection vulnerabilities.
+4. **Use parameterised queries in Python.** Never concatenate user input into SQL strings - this creates SQL injection vulnerabilities.
 
 5. **Cloud SQL platforms** (BigQuery, Redshift, Snowflake) use the same SQL fundamentals you have learned. Your skills are portable.
 
@@ -7832,15 +7832,15 @@ As a data analyst, you have access to sensitive information. Handle it responsib
 
 ## Next Chapter
 
-→ **Chapter 12 — SQL Projects**: Put everything together. Six guided capstone projects that test every concept from the course.
+→ **Chapter 12 - SQL Projects**: Put everything together. Six guided capstone projects that test every concept from the course.
 `,
-  "12-sql-projects.md": `# Chapter 12 — SQL Projects
+  "12-sql-projects.md": `# Chapter 12 - SQL Projects
 
 ---
 
 ## Chapter Overview
 
-This is where everything comes together. Six guided capstone projects, each designed to test a different combination of skills from the course. These are not toy exercises — they simulate real analytical tasks you would encounter in a professional setting.
+This is where everything comes together. Six guided capstone projects, each designed to test a different combination of skills from the course. These are not toy exercises - they simulate real analytical tasks you would encounter in a professional setting.
 
 Each project includes: business context, requirements, the databases used, a guided step-by-step solution, and extension challenges for trainees who want to go further.
 
@@ -7850,7 +7850,7 @@ All projects draw from the databases you loaded during setup. Each project speci
 
 ---
 
-## Project 1 — Sales Performance Dashboard
+## Project 1 - Sales Performance Dashboard
 
 **Databases**: \`salesdb\`  
 **Skills Tested**: JOINs, aggregation, window functions, CASE, date functions
@@ -7863,12 +7863,12 @@ The sales manager wants a comprehensive dashboard report showing key performance
 
 Build a single query (or a series of queries) that produces:
 
-1. **Total Revenue, Order Count, and Average Order Value** — overall
-2. **Revenue by Product** — which products generate the most revenue
-3. **Revenue by Month** — monthly trend
-4. **Top Salesperson** — ranked by total sales
-5. **Customer Rankings** — customers ranked by lifetime value
-6. **Month-over-Month Growth** — percentage change from previous month
+1. **Total Revenue, Order Count, and Average Order Value** - overall
+2. **Revenue by Product** - which products generate the most revenue
+3. **Revenue by Month** - monthly trend
+4. **Top Salesperson** - ranked by total sales
+5. **Customer Rankings** - customers ranked by lifetime value
+6. **Month-over-Month Growth** - percentage change from previous month
 
 ### Guided Solution
 
@@ -7973,14 +7973,14 @@ FROM monthly;
 
 ---
 
-## Project 2 — Customer Segmentation (RFM Analysis)
+## Project 2 - Customer Segmentation (RFM Analysis)
 
 **Databases**: \`sql_store\`  
 **Skills Tested**: Aggregation, date functions, CASE, NTILE, CTEs
 
 ### Business Context
 
-Marketing wants to segment customers into groups based on their purchasing behaviour using **RFM (Recency, Frequency, Monetary)** analysis — a proven technique used by retail, e-commerce, and SaaS companies.
+Marketing wants to segment customers into groups based on their purchasing behaviour using **RFM (Recency, Frequency, Monetary)** analysis - a proven technique used by retail, e-commerce, and SaaS companies.
 
 ### Requirements
 
@@ -8056,7 +8056,7 @@ ORDER BY monetary DESC;
 
 ---
 
-## Project 3 — Employee Analytics
+## Project 3 - Employee Analytics
 
 **Databases**: \`sql_hr\`, \`employees\` (large)  
 **Skills Tested**: Self-JOINs, recursive CTEs, window functions, aggregation, subqueries
@@ -8138,7 +8138,7 @@ ORDER BY AVG(s.salary) DESC;
 
 ---
 
-## Project 4 — Financial Reporting
+## Project 4 - Financial Reporting
 
 **Databases**: \`sql_invoicing\`  
 **Skills Tested**: JOINs, date functions, aggregation, CASE, HAVING
@@ -8203,7 +8203,7 @@ ORDER BY days_past_due DESC;
 
 ---
 
-## Project 5 — Data Quality Audit
+## Project 5 - Data Quality Audit
 
 **Databases**: \`salesdb\` (orders_archive specifically)  
 **Skills Tested**: Self-JOINs, aggregation, HAVING, NOT EXISTS, CASE
@@ -8266,7 +8266,7 @@ WHERE quantity = 0 AND sales > 0;
 
 ---
 
-## Project 6 — ETL Pipeline (Mini)
+## Project 6 - ETL Pipeline (Mini)
 
 **Databases**: CSV files from \`assets/\`, a new staging database  
 **Skills Tested**: DDL, DML, data loading, transformations, CTEs, views
@@ -8297,7 +8297,7 @@ You are building a simple ETL (Extract, Transform, Load) pipeline that:
 CREATE DATABASE IF NOT EXISTS staging_db;
 USE staging_db;
 
--- Step 2: Create staging tables (raw — matches CSV structure exactly)
+-- Step 2: Create staging tables (raw - matches CSV structure exactly)
 CREATE TABLE stg_customers (
     customerid INT,
     firstname VARCHAR(50),
@@ -8392,13 +8392,13 @@ Congratulations. You have worked through 12 chapters covering the full spectrum 
 - Modern workflows (AI, Python, cloud platforms)
 - Applied projects (dashboards, RFM, ETL)
 
-You are now equipped with production-grade SQL skills. The next step is practice — not in exercises, but on real data, real problems, and real deadlines.
+You are now equipped with production-grade SQL skills. The next step is practice - not in exercises, but on real data, real problems, and real deadlines.
 
 **Keep writing SQL. Keep breaking queries. Keep fixing them.**
 `
 };
 
-const chapters = [{"id":"ch01","num":"Chapter 01","title":"Introduction to Databases & SQL","img":"images/ch01.png","desc":"What databases are, why SQL exists, and your very first queries on real data.","file":"01-introduction.md"},{"id":"ch02","num":"Chapter 02","title":"Querying Data — The SELECT Statement","img":"images/ch02.png","desc":"SELECT is the verb you will use in 95% of your queries. Master it here.","file":"02-querying-data-select.md"},{"id":"ch03","num":"Chapter 03","title":"Data Definition (DDL)","img":"images/ch03.png","desc":"Create databases, design tables, choose data types, and enforce constraints.","file":"03-data-definition-ddl.md"},{"id":"ch04","num":"Chapter 04","title":"Data Manipulation (DML)","img":"images/ch04.png","desc":"INSERT, UPDATE, DELETE — and how to do it safely with transactions.","file":"04-data-manipulation-dml.md"},{"id":"ch05","num":"Chapter 05","title":"Filtering Data","img":"images/ch05.png","desc":"WHERE, operators, pattern matching, NULL logic, and EXISTS.","file":"05-filtering-data.md"},{"id":"ch06","num":"Chapter 06","title":"Combining Data","img":"images/ch06.png","desc":"JOINs, self-joins, UNION, INTERSECT — connecting tables together.","file":"06-combining-data.md"},{"id":"ch07","num":"Chapter 07","title":"Row-Level Functions","img":"images/ch07.png","desc":"String, numeric, date, NULL-handling, and CASE conditional logic.","file":"07-row-level-functions.md"},{"id":"ch08","num":"Chapter 08","title":"Aggregation & Analytical Functions","img":"images/ch08.png","desc":"Aggregates, GROUP BY, window functions — the analytics powerhouse.","file":"08-aggregation-analytical-functions.md"},{"id":"ch09","num":"Chapter 09","title":"Advanced SQL Techniques","img":"images/ch09.png","desc":"Subqueries, CTEs, views, stored procedures, and triggers.","file":"09-advanced-sql-techniques.md"},{"id":"ch10","num":"Chapter 10","title":"Performance Optimization","img":"images/ch10.png","desc":"Indexes, EXPLAIN, SARGable predicates — make your queries fast.","file":"10-performance-optimization.md"},{"id":"ch11","num":"Chapter 11","title":"AI & SQL","img":"images/ch11.png","desc":"AI prompt patterns, Python integration, and the modern data stack.","file":"11-ai-and-sql.md"},{"id":"ch12","num":"Chapter 12","title":"SQL Projects","img":"images/ch12.png","desc":"Six guided capstone projects — put everything together.","file":"12-sql-projects.md"}];
+const chapters = [{"id":"ch01","num":"Chapter 01","title":"Introduction to Databases & SQL","img":"images/ch01.png","desc":"What databases are, why SQL exists, and your very first queries on real data.","file":"01-introduction.md"},{"id":"ch02","num":"Chapter 02","title":"Querying Data - The SELECT Statement","img":"images/ch02.png","desc":"SELECT is the verb you will use in 95% of your queries. Master it here.","file":"02-querying-data-select.md"},{"id":"ch03","num":"Chapter 03","title":"Data Definition (DDL)","img":"images/ch03.png","desc":"Create databases, design tables, choose data types, and enforce constraints.","file":"03-data-definition-ddl.md"},{"id":"ch04","num":"Chapter 04","title":"Data Manipulation (DML)","img":"images/ch04.png","desc":"INSERT, UPDATE, DELETE - and how to do it safely with transactions.","file":"04-data-manipulation-dml.md"},{"id":"ch05","num":"Chapter 05","title":"Filtering Data","img":"images/ch05.png","desc":"WHERE, operators, pattern matching, NULL logic, and EXISTS.","file":"05-filtering-data.md"},{"id":"ch06","num":"Chapter 06","title":"Combining Data","img":"images/ch06.png","desc":"JOINs, self-joins, UNION, INTERSECT - connecting tables together.","file":"06-combining-data.md"},{"id":"ch07","num":"Chapter 07","title":"Row-Level Functions","img":"images/ch07.png","desc":"String, numeric, date, NULL-handling, and CASE conditional logic.","file":"07-row-level-functions.md"},{"id":"ch08","num":"Chapter 08","title":"Aggregation & Analytical Functions","img":"images/ch08.png","desc":"Aggregates, GROUP BY, window functions - the analytics powerhouse.","file":"08-aggregation-analytical-functions.md"},{"id":"ch09","num":"Chapter 09","title":"Advanced SQL Techniques","img":"images/ch09.png","desc":"Subqueries, CTEs, views, stored procedures, and triggers.","file":"09-advanced-sql-techniques.md"},{"id":"ch10","num":"Chapter 10","title":"Performance Optimization","img":"images/ch10.png","desc":"Indexes, EXPLAIN, SARGable predicates - make your queries fast.","file":"10-performance-optimization.md"},{"id":"ch11","num":"Chapter 11","title":"AI & SQL","img":"images/ch11.png","desc":"AI prompt patterns, Python integration, and the modern data stack.","file":"11-ai-and-sql.md"},{"id":"ch12","num":"Chapter 12","title":"SQL Projects","img":"images/ch12.png","desc":"Six guided capstone projects - put everything together.","file":"12-sql-projects.md"}];
 
 // Markdown Config
 marked.setOptions({ gfm: true, breaks: false });

@@ -1,4 +1,4 @@
-// build-course.js — Run with: node build-course.js
+// build-course.js - Run with: node build-course.js
 // Reads all .md chapter files and generates a self-contained index.html
 
 const fs = require('fs');
@@ -8,17 +8,17 @@ const dir = __dirname;
 
 const chapters = [
   { id:'ch01', num:'Chapter 01', title:'Introduction to Databases & SQL', img:'images/ch01.png', desc:'What databases are, why SQL exists, and your very first queries on real data.', file:'01-introduction.md' },
-  { id:'ch02', num:'Chapter 02', title:'Querying Data — The SELECT Statement', img:'images/ch02.png', desc:'SELECT is the verb you will use in 95% of your queries. Master it here.', file:'02-querying-data-select.md' },
+  { id:'ch02', num:'Chapter 02', title:'Querying Data - The SELECT Statement', img:'images/ch02.png', desc:'SELECT is the verb you will use in 95% of your queries. Master it here.', file:'02-querying-data-select.md' },
   { id:'ch03', num:'Chapter 03', title:'Data Definition (DDL)', img:'images/ch03.png', desc:'Create databases, design tables, choose data types, and enforce constraints.', file:'03-data-definition-ddl.md' },
-  { id:'ch04', num:'Chapter 04', title:'Data Manipulation (DML)', img:'images/ch04.png', desc:'INSERT, UPDATE, DELETE — and how to do it safely with transactions.', file:'04-data-manipulation-dml.md' },
+  { id:'ch04', num:'Chapter 04', title:'Data Manipulation (DML)', img:'images/ch04.png', desc:'INSERT, UPDATE, DELETE - and how to do it safely with transactions.', file:'04-data-manipulation-dml.md' },
   { id:'ch05', num:'Chapter 05', title:'Filtering Data', img:'images/ch05.png', desc:'WHERE, operators, pattern matching, NULL logic, and EXISTS.', file:'05-filtering-data.md' },
-  { id:'ch06', num:'Chapter 06', title:'Combining Data', img:'images/ch06.png', desc:'JOINs, self-joins, UNION, INTERSECT — connecting tables together.', file:'06-combining-data.md' },
+  { id:'ch06', num:'Chapter 06', title:'Combining Data', img:'images/ch06.png', desc:'JOINs, self-joins, UNION, INTERSECT - connecting tables together.', file:'06-combining-data.md' },
   { id:'ch07', num:'Chapter 07', title:'Row-Level Functions', img:'images/ch07.png', desc:'String, numeric, date, NULL-handling, and CASE conditional logic.', file:'07-row-level-functions.md' },
-  { id:'ch08', num:'Chapter 08', title:'Aggregation & Analytical Functions', img:'images/ch08.png', desc:'Aggregates, GROUP BY, window functions — the analytics powerhouse.', file:'08-aggregation-analytical-functions.md' },
+  { id:'ch08', num:'Chapter 08', title:'Aggregation & Analytical Functions', img:'images/ch08.png', desc:'Aggregates, GROUP BY, window functions - the analytics powerhouse.', file:'08-aggregation-analytical-functions.md' },
   { id:'ch09', num:'Chapter 09', title:'Advanced SQL Techniques', img:'images/ch09.png', desc:'Subqueries, CTEs, views, stored procedures, and triggers.', file:'09-advanced-sql-techniques.md' },
-  { id:'ch10', num:'Chapter 10', title:'Performance Optimization', img:'images/ch10.png', desc:'Indexes, EXPLAIN, SARGable predicates — make your queries fast.', file:'10-performance-optimization.md' },
+  { id:'ch10', num:'Chapter 10', title:'Performance Optimization', img:'images/ch10.png', desc:'Indexes, EXPLAIN, SARGable predicates - make your queries fast.', file:'10-performance-optimization.md' },
   { id:'ch11', num:'Chapter 11', title:'AI & SQL', img:'images/ch11.png', desc:'AI prompt patterns, Python integration, and the modern data stack.', file:'11-ai-and-sql.md' },
-  { id:'ch12', num:'Chapter 12', title:'SQL Projects', img:'images/ch12.png', desc:'Six guided capstone projects — put everything together.', file:'12-sql-projects.md' },
+  { id:'ch12', num:'Chapter 12', title:'SQL Projects', img:'images/ch12.png', desc:'Six guided capstone projects - put everything together.', file:'12-sql-projects.md' },
 ];
 
 // Read all markdown files
@@ -47,7 +47,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Complete SQL Course — From Zero to Production</title>
+<title>The Complete SQL Course - From Zero to Production</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\\/script>
 <style>
@@ -136,7 +136,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
     <section class="cover">
       <img src="images/course_hero.png" alt="SQL Course">
       <h1>The Complete SQL Course</h1>
-      <p class="sub">From Zero to Production — A Data Analyst's Training Manual</p>
+      <p class="sub">From Zero to Production - A Data Analyst's Training Manual</p>
       <div class="badges">
         <span class="badge"><b>12</b> Chapters</span>
         <span class="badge"><b>120+</b> Exercises</span>

@@ -1,4 +1,4 @@
-# Chapter 7 — Row-Level Functions
+# Chapter 7 - Row-Level Functions
 
 ---
 
@@ -44,7 +44,7 @@ By the end of this chapter, you will be able to:
 
 ## 7.1 String Functions
 
-### 7.1.1 CONCAT — Combining Strings
+### 7.1.1 CONCAT - Combining Strings
 
 ```sql
 -- Combine first and last name
@@ -63,7 +63,7 @@ FROM customers;
 
 > Recall from Chapter 2: CONCAT returns NULL if any argument is NULL (Mary's lastname is NULL). We will fix this with COALESCE in Section 7.4.
 
-**CONCAT_WS** — Concat With Separator (skips NULLs):
+**CONCAT_WS** - Concat With Separator (skips NULLs):
 
 ```sql
 SELECT CONCAT_WS(' ', firstname, lastname) AS full_name
@@ -80,7 +80,7 @@ FROM customers;
 
 `CONCAT_WS` ignores NULL values instead of propagating them. Mary's name now appears as just "Mary".
 
-### 7.1.2 UPPER / LOWER — Case Conversion
+### 7.1.2 UPPER / LOWER - Case Conversion
 
 ```sql
 SELECT 
@@ -117,7 +117,7 @@ FROM customers;
 
 > **LENGTH vs CHAR_LENGTH**: `LENGTH` returns bytes; `CHAR_LENGTH` returns characters. For ASCII text they are the same. For multi-byte characters (emojis, accented characters): `LENGTH('é')` = 2 bytes, `CHAR_LENGTH('é')` = 1 character. Use `CHAR_LENGTH` when you care about character count.
 
-### 7.1.4 SUBSTRING — Extracting Parts of a String
+### 7.1.4 SUBSTRING - Extracting Parts of a String
 
 ```sql
 -- Extract the first 3 characters of each product name
@@ -135,9 +135,9 @@ FROM products;
 | Caps | Cap |
 | Gloves | Glo |
 
-Syntax: `SUBSTRING(string, start_position, length)` — positions are 1-based.
+Syntax: `SUBSTRING(string, start_position, length)` - positions are 1-based.
 
-### 7.1.5 LEFT / RIGHT — Extract from Ends
+### 7.1.5 LEFT / RIGHT - Extract from Ends
 
 ```sql
 SELECT 
@@ -153,7 +153,7 @@ FROM products;
 | Tire | Tir | re |
 | Socks | Soc | ks |
 
-### 7.1.6 TRIM — Removing Whitespace
+### 7.1.6 TRIM - Removing Whitespace
 
 ```sql
 -- Remove leading and trailing spaces
@@ -169,7 +169,7 @@ SELECT
 
 > **Real-world use**: Remember " John" from `MyDatabase.customers`? `TRIM(first_name)` would fix that leading space.
 
-### 7.1.7 REPLACE — Substituting Text
+### 7.1.7 REPLACE - Substituting Text
 
 ```sql
 -- Replace 'USA' with 'United States'
@@ -201,7 +201,7 @@ FROM customers;
 | Jossef | fessoJ |
 | Kevin | niveK |
 
-### 7.1.9 LPAD / RPAD — Padding
+### 7.1.9 LPAD / RPAD - Padding
 
 ```sql
 -- Pad product IDs to 5 digits with leading zeros
@@ -217,7 +217,7 @@ FROM products;
 | 102 | 00102 |
 | 103 | 00103 |
 
-### 7.1.10 LOCATE — Finding Position
+### 7.1.10 LOCATE - Finding Position
 
 ```sql
 -- Find the position of 'o' in each product name
@@ -241,7 +241,7 @@ Returns 0 if not found (unlike most programming languages which return -1).
 
 ## 7.2 Numeric Functions
 
-### 7.2.1 ROUND — Rounding
+### 7.2.1 ROUND - Rounding
 
 ```sql
 SELECT 
@@ -257,7 +257,7 @@ SELECT
 
 > **Banker's rounding**: When the value is exactly halfway (e.g., 4.5), MySQL rounds to the nearest even number (4, not 5). This reduces bias in large datasets.
 
-### 7.2.2 CEIL / FLOOR — Rounding Up and Down
+### 7.2.2 CEIL / FLOOR - Rounding Up and Down
 
 ```sql
 SELECT 
@@ -265,7 +265,7 @@ SELECT
     FLOOR(3.9) AS floor_val;  -- 3 (always rounds down)
 ```
 
-### 7.2.3 TRUNCATE — Cut Off Decimals
+### 7.2.3 TRUNCATE - Cut Off Decimals
 
 Unlike ROUND, TRUNCATE simply removes digits without rounding:
 
@@ -281,13 +281,13 @@ SELECT
     ROUND(3.149, 2) AS rounded;        -- 3.15  ← Different!
 ```
 
-### 7.2.4 ABS — Absolute Value
+### 7.2.4 ABS - Absolute Value
 
 ```sql
 SELECT ABS(-42) AS absolute_value;  -- 42
 ```
 
-### 7.2.5 MOD — Modulo (Remainder)
+### 7.2.5 MOD - Modulo (Remainder)
 
 ```sql
 -- Find even/odd employee IDs
@@ -306,7 +306,7 @@ FROM employees;
 | 4 | Michael | 0 |
 | 5 | Carol | 1 |
 
-### 7.2.6 POWER — Exponentiation
+### 7.2.6 POWER - Exponentiation
 
 ```sql
 SELECT POWER(2, 10) AS two_to_the_ten;  -- 1024
@@ -347,7 +347,7 @@ FROM orders;
 | 2025-01-05 | 2025 | 1 | 5 | Sunday | January | 1 | 1 |
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
-`EXTRACT()` — The SQL standard approach:
+`EXTRACT()` - The SQL standard approach:
 
 ```sql
 SELECT 
@@ -375,7 +375,7 @@ LIMIT 3;
 | 2025-01-05 | 2025-02-04 | 2024-12-05 | 2025-01-12 |
 | 2025-01-10 | 2025-02-09 | 2024-12-10 | 2025-01-17 |
 
-**DATEDIFF** — Days between two dates:
+**DATEDIFF** - Days between two dates:
 
 ```sql
 SELECT 
@@ -398,7 +398,7 @@ FROM orders;
 > SELECT shipdate - orderdate AS days_to_ship FROM sales.orders;
 > ```
 
-### 7.3.4 DATE_FORMAT — Formatting Output
+### 7.3.4 DATE_FORMAT - Formatting Output
 
 ```sql
 SELECT 
@@ -441,7 +441,7 @@ LIMIT 3;
 
 ## 7.4 NULL-Handling Functions
 
-### 7.4.1 IFNULL — Replace NULL with a Default
+### 7.4.1 IFNULL - Replace NULL with a Default
 
 ```sql
 -- Replace NULL scores with 0
@@ -460,7 +460,7 @@ FROM customers;
 | Mark | 500 | 500 |
 | Anna | NULL | 0 |
 
-### 7.4.2 COALESCE — First Non-NULL Value
+### 7.4.2 COALESCE - First Non-NULL Value
 
 `COALESCE` accepts multiple arguments and returns the first one that is not NULL:
 
@@ -500,7 +500,7 @@ FROM customers;
 | Mark Schwarz |
 | Anna Adams |
 
-### 7.4.4 NULLIF — Return NULL If Values Are Equal
+### 7.4.4 NULLIF - Return NULL If Values Are Equal
 
 ```sql
 -- NULLIF(a, b) returns NULL if a = b, otherwise returns a
@@ -521,9 +521,9 @@ FROM orders;
 
 ---
 
-## 7.5 Conditional Logic — CASE and IF
+## 7.5 Conditional Logic - CASE and IF
 
-### 7.5.1 IF() — MySQL Inline Conditional
+### 7.5.1 IF() - MySQL Inline Conditional
 
 ```sql
 -- Classify orders as 'High' or 'Low' based on sales
@@ -543,7 +543,7 @@ FROM orders;
 
 > `IF()` is MySQL-specific. For portability, use `CASE`.
 
-### 7.5.2 Simple CASE — Matching Values
+### 7.5.2 Simple CASE - Matching Values
 
 ```sql
 -- Convert order status to a descriptive label
@@ -564,7 +564,7 @@ FROM orders;
 | 2 | Shipped | In Transit |
 | ... | ... | ... |
 
-### 7.5.3 Searched CASE — Multiple Conditions
+### 7.5.3 Searched CASE - Multiple Conditions
 
 ```sql
 -- Classify employees by salary range
@@ -590,7 +590,7 @@ FROM employees;
 
 > **Execution note**: CASE evaluates conditions top to bottom and stops at the **first** match. If Michael's salary is 90000, it matches `>= 80000` first and never checks the other conditions.
 
-### 7.5.4 CASE with Aggregation — Pivoting Data
+### 7.5.4 CASE with Aggregation - Pivoting Data
 
 CASE inside aggregate functions is a powerful technique for creating pivot-like reports:
 
@@ -606,7 +606,7 @@ FROM orders;
 |---|---|
 | 4 | 6 |
 
-This transforms row values into columns — a common reporting pattern.
+This transforms row values into columns - a common reporting pattern.
 
 ### 7.5.5 Nested CASE
 
@@ -681,7 +681,7 @@ SELECT CONCAT_WS(' ', 'Mary', NULL);  -- Returns 'Mary'
 ```sql
 -- MySQL: DATEDIFF(end, start)
 SELECT DATEDIFF('2025-03-15', '2025-01-01');  -- 73 (positive)
-SELECT DATEDIFF('2025-01-01', '2025-03-15');  -- -73 (negative — wrong order)
+SELECT DATEDIFF('2025-01-01', '2025-03-15');  -- -73 (negative - wrong order)
 ```
 
 ### Mistake 3: Forgetting CASE ... END
@@ -767,4 +767,4 @@ TRUNCATE(9.99, 1) -- 9.9  (cuts off)
 
 ## Next Chapter
 
-→ **Chapter 8 — Aggregation & Analytical Functions**: Row-level functions transform individual values. Aggregation and window functions transform entire groups — totals, averages, rankings, running sums, and comparisons across rows.
+→ **Chapter 8 - Aggregation & Analytical Functions**: Row-level functions transform individual values. Aggregation and window functions transform entire groups - totals, averages, rankings, running sums, and comparisons across rows.

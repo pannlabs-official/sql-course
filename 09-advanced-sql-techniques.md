@@ -1,4 +1,4 @@
-# Chapter 9 — Advanced SQL Techniques
+# Chapter 9 - Advanced SQL Techniques
 
 ---
 
@@ -40,7 +40,7 @@ By the end of this chapter, you will be able to:
 
 A subquery is a query nested inside another query. It runs first, and its result is used by the outer query.
 
-### 9.1.1 Scalar Subquery — Returns a Single Value
+### 9.1.1 Scalar Subquery - Returns a Single Value
 
 ```sql
 -- Find employees earning above the average salary
@@ -56,7 +56,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
 
 The subquery `(SELECT AVG(salary) FROM employees)` returns a single value (68000), and the outer query uses it as a filter.
 
-### 9.1.2 Column Subquery — Returns a List of Values
+### 9.1.2 Column Subquery - Returns a List of Values
 
 ```sql
 -- Find customers who have placed orders
@@ -69,7 +69,7 @@ WHERE customerid IN (
 
 The subquery returns a list: `(1, 2, 3, 4)`. The outer query checks membership.
 
-### 9.1.3 Table Subquery (Derived Table) — Returns a Result Set
+### 9.1.3 Table Subquery (Derived Table) - Returns a Result Set
 
 ```sql
 -- Find the top-selling product
@@ -253,13 +253,13 @@ WITH RECURSIVE date_series AS (
 SELECT date_val FROM date_series;
 ```
 
-This generates 31 rows, one per day — useful for creating calendar tables or filling gaps in time-series data.
+This generates 31 rows, one per day - useful for creating calendar tables or filling gaps in time-series data.
 
 ---
 
 ## 9.3 Views
 
-A view is a saved query that behaves like a virtual table. It does not store data — it runs the query every time you reference it.
+A view is a saved query that behaves like a virtual table. It does not store data - it runs the query every time you reference it.
 
 ### 9.3.1 Creating a View
 
@@ -583,7 +583,7 @@ GROUP BY c.firstname;
 
 ## PostgreSQL Assignment
 
-**PG-9.1**: Rewrite the recursive org chart CTE for `sales.employees` using PostgreSQL syntax (no `CAST(... AS CHAR(200))` — use `TEXT` instead).
+**PG-9.1**: Rewrite the recursive org chart CTE for `sales.employees` using PostgreSQL syntax (no `CAST(... AS CHAR(200))` - use `TEXT` instead).
 
 **PG-9.2**: PostgreSQL supports `CREATE OR REPLACE FUNCTION` instead of stored procedures (prior to PG 11). Create a function that returns all orders for a given status.
 
@@ -593,4 +593,4 @@ GROUP BY c.firstname;
 
 ## Next Chapter
 
-→ **Chapter 10 — Performance Optimization**: You can now write any query. The next question is: how do you make it fast?
+→ **Chapter 10 - Performance Optimization**: You can now write any query. The next question is: how do you make it fast?

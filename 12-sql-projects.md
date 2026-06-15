@@ -1,10 +1,10 @@
-# Chapter 12 — SQL Projects
+# Chapter 12 - SQL Projects
 
 ---
 
 ## Chapter Overview
 
-This is where everything comes together. Six guided capstone projects, each designed to test a different combination of skills from the course. These are not toy exercises — they simulate real analytical tasks you would encounter in a professional setting.
+This is where everything comes together. Six guided capstone projects, each designed to test a different combination of skills from the course. These are not toy exercises - they simulate real analytical tasks you would encounter in a professional setting.
 
 Each project includes: business context, requirements, the databases used, a guided step-by-step solution, and extension challenges for trainees who want to go further.
 
@@ -14,7 +14,7 @@ All projects draw from the databases you loaded during setup. Each project speci
 
 ---
 
-## Project 1 — Sales Performance Dashboard
+## Project 1 - Sales Performance Dashboard
 
 **Databases**: `salesdb`  
 **Skills Tested**: JOINs, aggregation, window functions, CASE, date functions
@@ -27,12 +27,12 @@ The sales manager wants a comprehensive dashboard report showing key performance
 
 Build a single query (or a series of queries) that produces:
 
-1. **Total Revenue, Order Count, and Average Order Value** — overall
-2. **Revenue by Product** — which products generate the most revenue
-3. **Revenue by Month** — monthly trend
-4. **Top Salesperson** — ranked by total sales
-5. **Customer Rankings** — customers ranked by lifetime value
-6. **Month-over-Month Growth** — percentage change from previous month
+1. **Total Revenue, Order Count, and Average Order Value** - overall
+2. **Revenue by Product** - which products generate the most revenue
+3. **Revenue by Month** - monthly trend
+4. **Top Salesperson** - ranked by total sales
+5. **Customer Rankings** - customers ranked by lifetime value
+6. **Month-over-Month Growth** - percentage change from previous month
 
 ### Guided Solution
 
@@ -137,14 +137,14 @@ FROM monthly;
 
 ---
 
-## Project 2 — Customer Segmentation (RFM Analysis)
+## Project 2 - Customer Segmentation (RFM Analysis)
 
 **Databases**: `sql_store`  
 **Skills Tested**: Aggregation, date functions, CASE, NTILE, CTEs
 
 ### Business Context
 
-Marketing wants to segment customers into groups based on their purchasing behaviour using **RFM (Recency, Frequency, Monetary)** analysis — a proven technique used by retail, e-commerce, and SaaS companies.
+Marketing wants to segment customers into groups based on their purchasing behaviour using **RFM (Recency, Frequency, Monetary)** analysis - a proven technique used by retail, e-commerce, and SaaS companies.
 
 ### Requirements
 
@@ -220,7 +220,7 @@ ORDER BY monetary DESC;
 
 ---
 
-## Project 3 — Employee Analytics
+## Project 3 - Employee Analytics
 
 **Databases**: `sql_hr`, `employees` (large)  
 **Skills Tested**: Self-JOINs, recursive CTEs, window functions, aggregation, subqueries
@@ -302,7 +302,7 @@ ORDER BY AVG(s.salary) DESC;
 
 ---
 
-## Project 4 — Financial Reporting
+## Project 4 - Financial Reporting
 
 **Databases**: `sql_invoicing`  
 **Skills Tested**: JOINs, date functions, aggregation, CASE, HAVING
@@ -367,7 +367,7 @@ ORDER BY days_past_due DESC;
 
 ---
 
-## Project 5 — Data Quality Audit
+## Project 5 - Data Quality Audit
 
 **Databases**: `salesdb` (orders_archive specifically)  
 **Skills Tested**: Self-JOINs, aggregation, HAVING, NOT EXISTS, CASE
@@ -430,7 +430,7 @@ WHERE quantity = 0 AND sales > 0;
 
 ---
 
-## Project 6 — ETL Pipeline (Mini)
+## Project 6 - ETL Pipeline (Mini)
 
 **Databases**: CSV files from `assets/`, a new staging database  
 **Skills Tested**: DDL, DML, data loading, transformations, CTEs, views
@@ -461,7 +461,7 @@ You are building a simple ETL (Extract, Transform, Load) pipeline that:
 CREATE DATABASE IF NOT EXISTS staging_db;
 USE staging_db;
 
--- Step 2: Create staging tables (raw — matches CSV structure exactly)
+-- Step 2: Create staging tables (raw - matches CSV structure exactly)
 CREATE TABLE stg_customers (
     customerid INT,
     firstname VARCHAR(50),
@@ -556,6 +556,6 @@ Congratulations. You have worked through 12 chapters covering the full spectrum 
 - Modern workflows (AI, Python, cloud platforms)
 - Applied projects (dashboards, RFM, ETL)
 
-You are now equipped with production-grade SQL skills. The next step is practice — not in exercises, but on real data, real problems, and real deadlines.
+You are now equipped with production-grade SQL skills. The next step is practice - not in exercises, but on real data, real problems, and real deadlines.
 
 **Keep writing SQL. Keep breaking queries. Keep fixing them.**

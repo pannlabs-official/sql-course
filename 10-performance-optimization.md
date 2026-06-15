@@ -1,10 +1,10 @@
-# Chapter 10 — Performance Optimization
+# Chapter 10 - Performance Optimization
 
 ---
 
 ## Chapter Overview
 
-Writing correct SQL is necessary. Writing *fast* SQL is what separates a junior analyst from someone who can handle real-world data at scale. When your query takes 45 minutes instead of 2 seconds, the difference is usually not the data — it is how you wrote the query.
+Writing correct SQL is necessary. Writing *fast* SQL is what separates a junior analyst from someone who can handle real-world data at scale. When your query takes 45 minutes instead of 2 seconds, the difference is usually not the data - it is how you wrote the query.
 
 This chapter teaches you to understand how MySQL executes queries, use EXPLAIN to diagnose bottlenecks, create and manage indexes, write SARGable predicates, and apply optimisation patterns that make queries orders of magnitude faster.
 
@@ -37,16 +37,16 @@ By the end of this chapter, you will be able to:
 
 When you run a query, MySQL does not simply scan every row. It follows a process:
 
-1. **Parse** — Check syntax
-2. **Optimise** — The query optimiser decides the best execution strategy (which indexes to use, join order, etc.)
-3. **Execute** — Run the chosen plan
-4. **Return** — Send results to the client
+1. **Parse** - Check syntax
+2. **Optimise** - The query optimiser decides the best execution strategy (which indexes to use, join order, etc.)
+3. **Execute** - Run the chosen plan
+4. **Return** - Send results to the client
 
 The optimiser's job is to find the **cheapest** execution plan. "Cheapest" means fewest disk reads, fewest comparisons, and least memory usage.
 
 ---
 
-## 10.2 EXPLAIN — Reading Execution Plans
+## 10.2 EXPLAIN - Reading Execution Plans
 
 `EXPLAIN` shows you the execution plan **without** running the query.
 
@@ -61,10 +61,10 @@ EXPLAIN SELECT * FROM orders WHERE customerid = 2;
 | 1 | SIMPLE | orders | ALL | NULL | NULL | 10 | Using where |
 
 **Reading this output**:
-- `type: ALL` — **Full table scan.** MySQL is reading every row. This is the worst-case scenario.
-- `key: NULL` — No index is being used.
-- `rows: 10` — MySQL estimates it needs to examine 10 rows.
-- `Extra: Using where` — A WHERE filter is applied, but without an index.
+- `type: ALL` - **Full table scan.** MySQL is reading every row. This is the worst-case scenario.
+- `key: NULL` - No index is being used.
+- `rows: 10` - MySQL estimates it needs to examine 10 rows.
+- `Extra: Using where` - A WHERE filter is applied, but without an index.
 
 ### 10.2.2 After Adding an Index
 
@@ -78,9 +78,9 @@ EXPLAIN SELECT * FROM orders WHERE customerid = 2;
 | 1 | SIMPLE | orders | ref | idx_orders_customerid | idx_orders_customerid | 3 | NULL |
 
 Now:
-- `type: ref` — MySQL is using the index to look up matching rows. Much better.
-- `key: idx_orders_customerid` — The index we created is being used.
-- `rows: 3` — Only 3 rows examined (instead of 10).
+- `type: ref` - MySQL is using the index to look up matching rows. Much better.
+- `key: idx_orders_customerid` - The index we created is being used.
+- `rows: 3` - Only 3 rows examined (instead of 10).
 
 ### 10.2.3 EXPLAIN Key Columns
 
@@ -109,7 +109,7 @@ Now:
 
 ### 10.3.1 What Is an Index?
 
-An index is a data structure (usually a B-tree) that allows MySQL to find rows quickly without scanning the entire table. Think of it like a book's index — instead of reading every page to find "window functions," you look up the term in the index and go directly to page 142.
+An index is a data structure (usually a B-tree) that allows MySQL to find rows quickly without scanning the entire table. Think of it like a book's index - instead of reading every page to find "window functions," you look up the term in the index and go directly to page 142.
 
 ### 10.3.2 Creating Indexes
 
@@ -170,14 +170,14 @@ DROP INDEX idx_orders_customerid ON orders;
 
 ## 10.4 Query Optimization Patterns
 
-### 10.4.1 SARGable Predicates — The #1 Optimization Rule
+### 10.4.1 SARGable Predicates - The #1 Optimization Rule
 
 **SARGable** (Search ARGument able) means a WHERE condition can use an index. The rule: **never apply a function to the indexed column**.
 
 ```sql
 -- ❌ Non-SARGable: function on column kills index usage
 WHERE YEAR(orderdate) = 2025
--- MySQL must evaluate YEAR() for EVERY row — full table scan
+-- MySQL must evaluate YEAR() for EVERY row - full table scan
 
 -- ✅ SARGable: compare column directly
 WHERE orderdate >= '2025-01-01' AND orderdate < '2026-01-01'
@@ -236,7 +236,7 @@ SELECT * FROM orders UNION ALL SELECT * FROM orders_archive;
 ### 10.4.5 Implicit Type Conversions
 
 ```sql
--- ❌ customerid is INT but we pass a string — forces conversion on every row
+-- ❌ customerid is INT but we pass a string - forces conversion on every row
 WHERE customerid = '2'
 
 -- ✅ Match the data type
@@ -374,9 +374,9 @@ SELECT * FROM orders WHERE MONTH(orderdate) = 3;
 
 1. **EXPLAIN is your diagnostic tool.** Run it before optimising. The `type` column tells you how MySQL accesses data: `ALL` (scan everything) is bad, `ref`/`range` (indexed lookup) is good.
 
-2. **Indexes are the primary optimisation mechanism.** They transform O(n) full scans into O(log n) lookups. But they are not free — each index adds overhead to writes.
+2. **Indexes are the primary optimisation mechanism.** They transform O(n) full scans into O(log n) lookups. But they are not free - each index adds overhead to writes.
 
-3. **The leftmost prefix rule** governs composite indexes. `INDEX(a, b, c)` works for queries filtering on `(a)`, `(a, b)`, or `(a, b, c)` — but not `(b)` alone.
+3. **The leftmost prefix rule** governs composite indexes. `INDEX(a, b, c)` works for queries filtering on `(a)`, `(a, b)`, or `(a, b, c)` - but not `(b)` alone.
 
 4. **SARGable predicates are non-negotiable.** Never wrap an indexed column in a function. `WHERE YEAR(date) = 2025` kills performance; `WHERE date >= '2025-01-01' AND date < '2026-01-01'` uses the index.
 
@@ -398,4 +398,4 @@ SELECT * FROM orders WHERE MONTH(orderdate) = 3;
 
 ## Next Chapter
 
-→ **Chapter 11 — AI & SQL**: How AI tools can help you write, debug, optimise, and learn SQL faster.
+→ **Chapter 11 - AI & SQL**: How AI tools can help you write, debug, optimise, and learn SQL faster.
