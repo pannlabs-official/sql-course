@@ -1,3 +1,4 @@
 {
-  "name": "sql-course"
+  "buildCommand": "node build-course.js",
+  "outputDirectory": "."
 }
