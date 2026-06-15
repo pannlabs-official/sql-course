@@ -1,0 +1,9 @@
+.vercel
+*.bak
+*.pdf
+*.mp4
+*.csv
+datasets/mysql/employees.sql
+assets/employees.sql
+assets/sql-ultimate-course-main/
+"assets/SQL Course - MindMeister Mind map_files/"
