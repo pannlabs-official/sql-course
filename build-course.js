@@ -51,8 +51,8 @@ const html = `<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\\/script>
 <style>
-:root{--bg:#0f1117;--bg-card:#181b23;--bg-code:#1e2029;--bg-th:#232730;--text:#e1e3ea;--dim:#8b8fa3;--bright:#fff;--blue:#5b8def;--purple:#a47de5;--teal:#3ecfb4;--orange:#f0a056;--red:#e85d6f;--green:#4ade80;--border:#2a2e3a;--r:14px;--rs:8px;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Consolas',monospace}
-[data-theme="light"]{--bg:#f4f0ea;--bg-card:#ffffff;--bg-code:#eef0f4;--bg-th:#eef0f4;--text:#1a1a1a;--dim:#5a5f73;--bright:#000;--blue:#0550ae;--purple:#8250df;--teal:#0d9488;--orange:#e36209;--red:#cf222e;--green:#1a7f37;--border:#d0d7de;}
+:root{--bg:#0f1117;--bg-card:#181b23;--bg-code:#1e2029;--bg-th:#232730;--text:#e1e3ea;--code-text:#c9d1d9;--dim:#8b8fa3;--bright:#fff;--blue:#5b8def;--purple:#a47de5;--teal:#3ecfb4;--orange:#f0a056;--red:#e85d6f;--green:#4ade80;--border:#2a2e3a;--r:14px;--rs:8px;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Consolas',monospace}
+[data-theme="light"]{--bg:#f4f0ea;--bg-card:#ffffff;--bg-code:#eef0f4;--bg-th:#eef0f4;--text:#1a1a1a;--code-text:#24292f;--dim:#5a5f73;--bright:#000;--blue:#0550ae;--purple:#8250df;--teal:#0d9488;--orange:#e36209;--red:#cf222e;--green:#1a7f37;--border:#d0d7de;}
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased}
@@ -106,7 +106,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 .md li{margin:.3rem 0}
 .md hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
 .md pre{background:var(--bg-code);border:1px solid var(--border);border-radius:var(--rs);padding:1.2rem 1.4rem;overflow-x:auto;margin:1rem 0}
-.md pre code{font-family:var(--mono);font-size:.84rem;line-height:1.7;color:#c9d1d9;background:none!important;padding:0!important;border:none!important;display:block}
+.md pre code{font-family:var(--mono);font-size:.84rem;line-height:1.7;color:var(--code-text);background:none!important;padding:0!important;border:none!important;display:block}
 .md code{font-family:var(--mono);font-size:.84em;background:var(--bg-code);padding:.15em .4em;border-radius:4px;color:var(--teal);border:1px solid var(--border)}
 .md table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem;border:1px solid var(--border);border-radius:var(--rs);overflow:hidden}
 .md thead{background:var(--bg-th)}
