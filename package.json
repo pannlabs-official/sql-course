@@ -1,0 +1,19 @@
+{
+  "name": "sql-course",
+  "version": "1.0.0",
+  "description": "The Complete SQL Course: From Zero to Production",
+  "main": "build-course.js",
+  "scripts": {
+    "build": "node build-course.js",
+    "start": "node build-course.js && echo 'Build complete. Open sql-course.html in your browser!'"
+  },
+  "keywords": [
+    "sql",
+    "course",
+    "analytics",
+    "data"
+  ],
+  "author": "Petre Pann Tech",
+  "license": "MIT",
+  "dependencies": {}
+}
