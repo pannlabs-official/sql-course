@@ -8,7 +8,6 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
 :root{--bg:#0f1117;--bg-card:#181b23;--bg-code:#1e2029;--bg-th:#232730;--text:#e1e3ea;--dim:#8b8fa3;--bright:#fff;--blue:#5b8def;--purple:#a47de5;--teal:#3ecfb4;--orange:#f0a056;--red:#e85d6f;--green:#4ade80;--border:#2a2e3a;--r:14px;--rs:8px;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Consolas',monospace}
-[data-theme="light"]{--bg:#f4f0ea;--bg-card:#ffffff;--bg-code:#eef0f4;--bg-th:#eef0f4;--text:#1a1a1a;--dim:#5a5f73;--bright:#000;--blue:#0550ae;--purple:#8250df;--teal:#0d9488;--orange:#e36209;--red:#cf222e;--green:#1a7f37;--border:#d0d7de;}
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased}
@@ -56,24 +55,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 .md blockquote{border-left:4px solid var(--teal);background:rgba(62,207,180,.06);border-radius:var(--rs);padding:1rem 1.3rem;margin:1.2rem 0;font-size:.92rem}
 .md blockquote p{margin:.3rem 0}
 .md blockquote strong{color:var(--teal)}
-
-/* Definition Boxes */
-.def-box { background: linear-gradient(135deg, rgba(20,184,166,0.06) 0%, rgba(59,130,246,0.04) 100%); border: 1px solid rgba(20,184,166,0.2); border-left: 4px solid var(--teal); border-radius: 0 var(--r) var(--r) 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; position: relative; }
-.def-box::before { content: '📖'; position: absolute; top: 1.25rem; right: 1.25rem; font-size: 1.1rem; opacity: 0.6; }
-.def-box .def-term { font-weight: 700; color: var(--teal); font-size: 1.05rem; margin-bottom: 0.35rem; display: block; }
-.def-box .def-body { color: var(--text); line-height: 1.75; font-size: 0.95rem; }
-.def-box .def-body p { margin-bottom: 0.5rem; }
-.def-box .def-body p:last-child { margin-bottom: 0; }
-
-/* Large desktop: use more space */
-@media (min-width: 1600px) {
-  .w { max-width: 1100px; padding: 3rem 4rem; }
-  .md h2 { font-size: 1.9rem; }
-  .md h3 { font-size: 1.4rem; }
-  .md p { font-size: 1.05rem; }
-  .md pre { padding: 1.75rem; }
-}
-
 @media print{
   body{background:#fff;color:#1a1a1a;font-size:10.5pt}
   .w{max-width:none;padding:.5in}
@@ -96,11 +77,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 </style>
 </head>
 <body>
-<div style="position:fixed;top:20px;right:20px;display:flex;gap:10px;z-index:100;">
-    <a id="home-btn" href="#home" style="padding:10px 15px;border-radius:20px;background:var(--bg-card);color:var(--text);border:1px solid var(--border);text-decoration:none;font-family:var(--font);font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:none;align-items:center;">🏠 Home</a>
-    <button id="smart-scroll" style="padding:10px 15px;border-radius:20px;background:var(--blue);color:#fff;border:none;cursor:pointer;font-family:var(--font);font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.2);">⬇️ Scroll Down</button>
-    <button id="theme-toggle" style="padding:10px 15px;border-radius:20px;background:var(--bg-card);color:var(--text);border:1px solid var(--border);cursor:pointer;font-family:var(--font);font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.1);">🌓 Theme</button>
-</div>
 <div class="w">
 <section class="cover">
   <img src="images/course_hero.png" alt="SQL Course">
@@ -182,13 +158,9 @@ The problems with flat files:
 | **No relationships** | How do you connect a customer to their orders to the products they bought? In a spreadsheet, you either cram everything into one mega-row or maintain multiple sheets with no enforced link. |
 | **Poor query performance** | Finding "all customers from Germany who ordered more than 3 items in Q1 2025" in a spreadsheet means scanning every row manually. |
 
-A **database** solves all of these.
-
-<div class="def-box"><span class="def-term">Definition: Database & DBMS</span><div class="def-body">A <strong>database</strong> is a structured, organised collection of data. A <strong>Database Management System (DBMS)</strong> is the software used to store, manage, secure, and access that data (e.g., MySQL, Oracle, MongoDB). While people often use the terms interchangeably, the database is the data itself, and the DBMS is the engine that runs it.</div></div>
+A **database** solves all of these. It is a structured, organised collection of data that is stored, managed, and accessed through software called a **Database Management System (DBMS)**.
 
 ### 1.1.2 Relational Databases
-
-<div class="def-box"><span class="def-term">Definition: Relational Database</span><div class="def-body">A type of database that stores and provides access to data points that are related to one another. It organises data into tables (relations) with columns and rows. Tables are linked together by shared keys (IDs), which ensures data is stored only once while allowing complex queries to reconstruct the full picture.</div></div>
 
 The most widely used database model is the **relational model**, proposed by Edgar F. Codd at IBM in 1970. His insight was elegant: store data in **tables** (he called them "relations"), where:
 
@@ -241,8 +213,6 @@ Not all databases are relational. Here is a quick landscape:
 ## 1.2 What Is SQL?
 
 ### 1.2.1 Definition
-
-<div class="def-box"><span class="def-term">Definition: SQL (Structured Query Language)</span><div class="def-body">The standard programming language used to communicate with relational databases. It allows you to create, read, update, and delete data, as well as manage database structure and permissions. SQL is a <em>declarative</em> language—you specify what data you want, and the database engine determines the most efficient way to get it.</div></div>
 
 **SQL** (Structured Query Language) is the standard language for interacting with relational databases. It is:
 
@@ -834,68 +804,6 @@ ORDER BY big_score;
 **Why does it work (or fail)?** Explain using the SQL execution order from Section 1.6.
 
 **Exercise 1.11**: Examine the data in both \`MyDatabase.customers\` and \`MyDatabase.orders\`. Customer 6 placed an order (order_id 1004), but customer 6 does not exist in the \`customers\` table. What problem does this represent? How would you prevent it? (You will learn the answer formally in Chapter 3.)
-
-**Exercise 1.12**: Look up the documentation for MySQL and PostgreSQL. Name one feature that exists in PostgreSQL but not in MySQL.
-
-**Exercise 1.13**: Explain the difference between DDL and DML in your own words, using examples of statements that belong to each category.
-
----
-
-## Chapter 1 Assignment: The Execution Order Gauntlet
-
-This assignment tests your understanding of SQL's execution order by exploring how the arrangement of clauses determines whether a query succeeds or fails.
-
-**Setup**:
-1. Open MySQL Workbench.
-2. Open the file \`datasets/mysql/ch1_assignment_db.sql\` and execute it (click the lightning bolt).
-3. This script will create a new database called \`global_retail_db\` containing 10 tables (\`customers\`, \`products\`, \`orders\`, etc.), each populated with 100+ rows.
-
-**Your Task**:
-Run the following queries against the \`global_retail_db\` and answer the questions based on what you learned in Section 1.6 about Execution Order (\`FROM → WHERE → SELECT → ORDER BY → LIMIT\`).
-
-**Part 1: The Alias Trap**
-Consider this query:
-\`\`\`sql
-USE global_retail_db;
-SELECT id, name, price * 1.20 AS price_with_tax
-FROM products
-WHERE price_with_tax > 100;
-\`\`\`
-1. Run this query. What error do you get?
-2. Explain *why* this error occurs based on the execution order of \`WHERE\` and \`SELECT\`.
-3. Rewrite the query so that it successfully filters products that have a price (with 20% tax) greater than 100.
-
-**Part 2: The Sorting Exception**
-Consider this query:
-\`\`\`sql
-SELECT id, name, price * 1.20 AS price_with_tax
-FROM products
-ORDER BY price_with_tax DESC
-LIMIT 5;
-\`\`\`
-1. Run this query. Does it work?
-2. Why does the alias \`price_with_tax\` work in the \`ORDER BY\` clause but fail in the \`WHERE\` clause? Explain using the execution order pipeline.
-
-**Part 3: Logical Arrangement**
-A junior analyst wrote this query to find the 3 most expensive Electronics products (\`category_id = 1\`):
-\`\`\`sql
-SELECT name, price 
-ORDER BY price DESC 
-FROM products 
-WHERE category_id = 1 
-LIMIT 3;
-\`\`\`
-1. Run it. It fails with a syntax error.
-2. Rearrange the clauses into the correct *writing* order so the query executes successfully. 
-3. After rearranging, write down the order in which MySQL *actually executes* those clauses behind the scenes.
-
-**Part 4: From Scratch**
-Your manager walks over to your desk and asks three rapid-fire questions about the new database. Write the SQL queries to answer them.
-*(Note: Use the \`global_retail_db\` dataset you generated earlier. You do not need \`JOIN\`s for these.)*
-
-1. "Can you get me a list of all products in our catalog, but just show me the \`name\`, \`price\`, and \`stock_quantity\`? Sort it so the most expensive items are at the top."
-2. "We need to contact all our suppliers in Germany. Write a query to get all columns for suppliers where the \`country\` is 'Germany'."
-3. "Which 5 customers have the highest \`loyalty_score\`? Show their \`first_name\`, \`last_name\`, and \`loyalty_score\`."
 
 ---
 
@@ -2159,8 +2067,6 @@ Constraints enforce rules on the data in your tables. They are the database's de
 
 ### 3.4.1 PRIMARY KEY
 
-<div class="def-box"><span class="def-term">Definition: Primary Key</span><div class="def-body">A column (or set of columns) that uniquely identifies each row in a table. It must contain unique values and cannot contain NULL values. A table can have only one primary key. It is the fundamental way a relational database distinguishes one record from another.</div></div>
-
 A primary key uniquely identifies each row in a table. Every table should have one.
 
 Rules:
@@ -2316,8 +2222,6 @@ INSERT INTO students (first_name, age, gpa) VALUES ('Bob', 12, 3.50);
 > **Note**: MySQL 8.0.16+ supports CHECK constraints. Older versions silently accept but do not enforce them.
 
 ### 3.4.7 FOREIGN KEY
-
-<div class="def-box"><span class="def-term">Definition: Foreign Key</span><div class="def-body">A column (or set of columns) in one table that refers to the Primary Key of another table. It is used to link two tables together and enforce referential integrity, ensuring that the relationship between the tables remains consistent (e.g., you cannot create an order for a customer ID that does not exist).</div></div>
 
 A foreign key creates a link between two tables. It ensures that a value in one table references a valid value in another table.
 
@@ -4432,8 +4336,6 @@ The orders table stores IDs, not names. To get names, you need to look them up i
 
 ## 6.2 INNER JOIN
 
-<div class="def-box"><span class="def-term">Definition: JOIN</span><div class="def-body">An operation that combines rows from two or more tables based on a related column between them. It is the fundamental mechanism in relational databases for assembling distributed data back into a single, cohesive view. There are different types of JOINs (INNER, LEFT, RIGHT, FULL) that determine which rows are kept when a match is not found.</div></div>
-
 An \`INNER JOIN\` returns **only rows where a match exists in both tables**. Non-matching rows from either side are excluded.
 
 ### 6.2.1 Basic Two-Table JOIN
@@ -5861,8 +5763,6 @@ By the end of this chapter, you will be able to:
 ---
 
 ## 8.1 Aggregate Functions
-
-<div class="def-box"><span class="def-term">Definition: Aggregate Function</span><div class="def-body">A mathematical function in SQL that takes a collection of values (many rows) and returns a single, scalar summary value. Common examples include <code>SUM()</code>, <code>AVG()</code>, <code>COUNT()</code>, <code>MIN()</code>, and <code>MAX()</code>. These are typically used in conjunction with the <code>GROUP BY</code> clause to summarise data by category.</div></div>
 
 ### 8.1.1 The Five Core Aggregates
 
@@ -8490,98 +8390,19 @@ renderer.heading = function(text, level) {
 marked.use({ renderer });
 
 const el = document.getElementById('chapters');
-for (let i = 0; i < chapters.length; i++) {
-  const ch = chapters[i];
-  const page = document.createElement('div');
-  page.className = 'chapter-page';
-  page.id = 'page-' + ch.id;
-  page.style.display = 'none';
-  
+for (const ch of chapters) {
   const hdr = document.createElement('div');
   hdr.className = 'ch-hdr';
+  hdr.id = ch.id;
   hdr.innerHTML = '<img src="'+ch.img+'" alt="'+ch.title+'"><div class="ch-n">'+ch.num+'</div><h2>'+ch.title+'</h2><p>'+ch.desc+'</p>';
-  page.appendChild(hdr);
-  
+  el.appendChild(hdr);
   const md = document.createElement('div');
   md.className = 'md';
   let src = chapterData[ch.file] || '_No content_';
   src = src.replace(/^# .+$/m, '');
   md.innerHTML = marked.parse(src);
-  page.appendChild(md);
-  
-  const nav = document.createElement('div');
-  nav.style.display = 'flex';
-  nav.style.justifyContent = 'space-between';
-  nav.style.marginTop = '4rem';
-  nav.style.paddingTop = '2rem';
-  nav.style.borderTop = '1px solid var(--border)';
-  
-  let navHtml = '';
-  if (i > 0) {
-      navHtml += '<a href="#page-' + chapters[i-1].id + '" style="padding:10px 20px; background:var(--bg-card); color:var(--text); border:1px solid var(--border); border-radius:var(--rs); text-decoration:none; font-weight:600;">⬅️ Previous Chapter</a>';
-  } else {
-      navHtml += '<div></div>';
-  }
-  if (i < chapters.length - 1) {
-      navHtml += '<a href="#page-' + chapters[i+1].id + '" style="padding:10px 20px; background:var(--blue); color:#fff; border:none; border-radius:var(--rs); text-decoration:none; font-weight:600;">Next Chapter ➡️</a>';
-  }
-  nav.innerHTML = navHtml;
-  page.appendChild(nav);
-  
-  el.appendChild(page);
+  el.appendChild(md);
 }
-
-// SPA Routing Logic
-function showChapter() {
-    const hash = window.location.hash;
-    const cover = document.querySelector('.cover');
-    const toc = document.querySelector('.toc');
-    const homeBtn = document.getElementById('home-btn');
-    
-    if (!hash || hash === '#home') {
-        cover.style.display = 'flex';
-        toc.style.display = 'block';
-        homeBtn.style.display = 'none';
-        document.querySelectorAll('.chapter-page').forEach(p => p.style.display = 'none');
-    } else {
-        cover.style.display = 'none';
-        toc.style.display = 'none';
-        homeBtn.style.display = 'flex';
-        document.querySelectorAll('.chapter-page').forEach(p => {
-            p.style.display = ('#' + p.id) === hash ? 'block' : 'none';
-        });
-    }
-    window.scrollTo(0,0);
-}
-window.addEventListener('hashchange', showChapter);
-
-// Update TOC links to point to new page IDs
-document.querySelectorAll('.toc a').forEach(a => {
-    a.href = a.href.replace('#ch', '#page-ch');
-});
-
-showChapter(); // Initial load
-const toggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('sql_theme') || 'dark';
-document.documentElement.setAttribute('data-theme', currentTheme);
-toggle.addEventListener('click', () => {
-    let theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('sql_theme', theme);
-});
-
-// Smart Scroll Button Logic
-const smartScroll = document.getElementById('smart-scroll');
-window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight / 2) {
-        smartScroll.innerHTML = '⬇️ Scroll Down';
-        smartScroll.onclick = () => window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
-    } else {
-        smartScroll.innerHTML = '⬆️ Scroll Up';
-        smartScroll.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-});
-smartScroll.onclick = () => window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
 </script>
 </body>
 </html>

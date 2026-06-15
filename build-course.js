@@ -194,6 +194,6 @@ for (const ch of chapters) {
 // Fix the escaped script tags
 const finalHtml = html.split('<\\/script>').join('</script>');
 
-fs.writeFileSync(path.join(dir, 'sql-course.html'), finalHtml, 'utf8');
-console.log('Built sql-course.html successfully!');
+fs.writeFileSync(path.join(dir, 'index.html'), finalHtml, 'utf8');
+console.log('Built index.html successfully!');
 console.log('Size: ' + (finalHtml.length / 1024).toFixed(0) + ' KB');

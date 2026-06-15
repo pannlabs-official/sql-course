@@ -5,7 +5,7 @@
   "main": "build-course.js",
   "scripts": {
     "build": "node build-course.js",
-    "start": "node build-course.js && echo 'Build complete. Open sql-course.html in your browser!'"
+    "start": "node build-course.js && echo 'Build complete. Open index.html in your browser!'"
   },
   "keywords": [
     "sql",
