@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Complete SQL Course - From Zero to Production</title>
+<link rel="icon" type="image/png" href="images/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
@@ -13,6 +14,10 @@
 html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased}
 .w{max-width:880px;margin:0 auto;padding:2rem 2.5rem}
+
+/* Brand Logo */
+.brand-logo{position:fixed;top:20px;left:20px;height:40px;z-index:100;border-radius:8px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:transform 0.2s}
+.brand-logo:hover{transform:scale(1.05)}
 
 /* Control Panel */
 .controls{position:fixed;top:20px;right:20px;display:flex;gap:10px;z-index:100}
@@ -78,6 +83,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 </style>
 </head>
 <body>
+
+<img src="images/logo.png" class="brand-logo" alt="Brand Logo" onclick="navigate('home')" title="Go to Home">
 
 <div class="controls">
   <button id="home-btn" class="btn" onclick="navigate('home')">🏠 Home</button>
