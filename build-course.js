@@ -131,7 +131,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:
 <img src="images/logo.png" class="brand-logo" alt="Brand Logo" onclick="navigate('home')" title="Go to Home">
 
 <div class="controls">
-  <a href="https://github.com/pannlabs-official/sql-course/tree/master/datasets" target="_blank" class="btn" style="text-decoration:none">📂 Datasets</a>
+  <a href="https://drive.google.com/drive/folders/1YYEZbjKJqih0zRL7yt9NUXgKIO7LZ-uR?usp=sharing" target="_blank" class="btn" style="text-decoration:none">📂 Datasets</a>
   <button id="home-btn" class="btn" onclick="navigate('home')">🏠 Home</button>
   <button id="theme-toggle" class="btn">🌓 Theme</button>
 </div>
