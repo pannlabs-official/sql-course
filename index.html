@@ -1848,6 +1848,32 @@ Complete these exercises in pgAdmin 4 using the PostgreSQL \`salesdb\` database.
 
 ---
 
+## Chapter 2 Final Assignment: The Global Logistics Database
+
+It is time to return to the Global Logistics Database (\`GlobalLogistics_DB.sql\`). This assignment will test your mastery of \`SELECT\`, aggregation, and the SQL execution pipeline. 
+
+> **Constraint**: You are strictly limited to the clauses taught so far (\`SELECT\`, \`DISTINCT\`, \`FROM\`, \`WHERE\`, \`GROUP BY\`, \`HAVING\`, \`ORDER BY\`, \`LIMIT\`). You **cannot** use \`JOIN\` or subqueries. 
+
+### Part 1: Tricky Query Scenarios
+
+1. **The Revenue Concentration**: The executive team wants to know which couriers are driving the most revenue. Calculate the total shipping fees collected per courier (\`courier_id\`), but only include couriers who have generated more than \$50,000 in total fees. Sort the results by total fees in descending order and show only the top 5 couriers. (Table: \`Shipments\`)
+2. **The Pagination Puzzle**: The warehouse manager is auditing heavy shipments. Using a page size of 15 records per page, write a query to retrieve the \`shipment_id\`, \`weight_kg\`, and \`shipping_fee\` for the **3rd page** of results, sorted by \`weight_kg\` from heaviest to lightest. (Table: \`Shipments\`)
+3. **The Profit Margin Dilemma**: Some product categories might be losing money. Calculate the *average profit margin* (defined as \`retail_price - unit_cost\`) for each product \`category\`. Only show categories where the average profit margin is strictly less than \$20.00. (Table: \`Products\`)
+4. **The Tricky Aggregation (The Null Trap)**: The marketing team is trying to send SMS alerts. In the \`Customers\` table, some customers have a \`NULL\` value for \`phone_number\`. Write a query that groups by \`country\` and returns the \`country\`, the \`total_customers\` count, and the \`customers_with_phones\` count. **Crucially**, use \`HAVING\` to only show countries that have *more than 100 total customers*, but *fewer than 50 customers with phone numbers*.
+5. **The Route Audit**: We need to understand our active delivery network. Write a single query to find all unique combinations of \`origin_city\` and \`destination_city\` that currently exist in the \`Routes\` table.
+
+### Part 2: Research & Report - The Architecture of Data
+
+Before we move into Chapter 3 (Data Definition), you must understand the theory behind how databases are structured. 
+
+**Task**: Write a 500-word technical brief on the following three concepts, tailored for a junior data analyst:
+
+1. **Data Types**: Why does SQL require strict data types? Why shouldn't we just store a date as a text string (e.g., \`'Jan 5th 2025'\`) or a numeric price as text (\`'\$50.00'\`)? Discuss the impact on storage, query performance, and data integrity.
+2. **Database Schema**: Define what a "schema" is in relational databases. Why is it often called the "blueprint" of the database? 
+3. **Cardinality**: What does cardinality mean in database design? Explain the difference between **1-to-1**, **1-to-many**, and **many-to-many** relationships. Give one concrete example of each relationship type using the tables in our Global Logistics Database (e.g., how does the \`Customers\` table relate to the \`Shipments\` table?).
+
+---
+
 ## Next Chapter
 
 → **Chapter 3 - Data Definition (DDL)**: Now that you can read data, it is time to learn how to create the structures that hold the data - databases, tables, columns, constraints, and the relationships between them.
